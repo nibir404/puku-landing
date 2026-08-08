@@ -18,7 +18,7 @@ export const CtaBanner = ({
   titleHighlight = 'Puku',
   primaryCtaText = 'Try Puku',
   secondaryCtaText = 'Contact sales',
-  primaryCtaHref = '/contact',
+  primaryCtaHref = '/signup',
   secondaryCtaHref = '/contact',
   enterpriseTitle = 'Custom Enterprise Deployment',
   enterpriseDesc = 'Dedicated VPC hosting, custom SLA, and priority support.',
@@ -36,16 +36,16 @@ export const CtaBanner = ({
             <span className="text-purple-highlight">{titleHighlight}</span>
           </h2>
 
-          <div className="mt-6 flex items-center gap-6">
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full max-w-md">
             <Link
               to={primaryCtaHref}
-              className="px-6 py-2.5 bg-[#0F0F11] text-white font-semibold text-[15px] rounded-[2px] hover:bg-[#6E56CF] transition-colors shadow-none inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+              className="w-full sm:w-[180px] min-h-[44px] px-6 py-2.5 bg-[#0F0F11] text-white font-bold text-[15px] rounded-md hover:bg-[#6E56CF] transition-colors shadow-none flex items-center justify-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
             >
               {primaryCtaText}
             </Link>
             <Link
               to={secondaryCtaHref}
-              className="px-6 py-2.5 bg-white border border-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] rounded-[2px] hover:bg-[#F3F3F5] transition-colors shadow-none inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+              className="w-full sm:w-[180px] min-h-[44px] px-6 py-2.5 bg-white border border-[#E5E5E8] text-[#0F0F11] font-bold text-[15px] rounded-md hover:bg-[#F3F3F5] transition-colors shadow-none flex items-center justify-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
             >
               {secondaryCtaText}
             </Link>
@@ -53,9 +53,9 @@ export const CtaBanner = ({
         </div>
 
         {/* Right Enterprise Info Box */}
-        <div className="md:col-span-5 p-5 bg-[#FAFAFC] rounded-[2px] border border-[#E5E5E8]">
-          <h3 className="text-[15.5px] font-semibold text-[#0F0F11] font-display mb-1">{enterpriseTitle}</h3>
-          <p className="text-[16px] font-normal text-[#666666] leading-relaxed mb-3.5">{enterpriseDesc}</p>
+        <div className="md:col-span-5 p-5 bg-[#FAFAFC] rounded-md border border-[#E5E5E8]">
+          <h3 className="text-[15.5px] font-bold text-[#0F0F11] font-display mb-1">{enterpriseTitle}</h3>
+          <p className="text-[15px] font-medium text-[#333338] leading-relaxed mb-3.5">{enterpriseDesc}</p>
           
           <Link to={enterpriseHref} className="text-[15px] font-semibold text-[#6E56CF] hover:underline flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]">
             <span>Contact sales for enterprise</span>

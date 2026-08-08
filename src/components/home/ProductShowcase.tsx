@@ -37,24 +37,24 @@ export const ProductShowcase = (p: ShowcaseProps) => {
             <h2 className={cn("mt-5 font-sans text-display-lg font-bold tracking-tight", p.dark ? "text-white" : "text-ink")}>
               {p.title}
             </h2>
-            <p className={cn("mt-6 text-base md:text-lg leading-relaxed", p.dark ? "text-zinc-400" : "text-ink-muted")}>
+            <p className={cn("mt-6 text-base md:text-lg leading-relaxed font-medium", p.dark ? "text-zinc-300" : "text-[#333338]")}>
               {p.description}
             </p>
             <ul className="mt-7 space-y-2.5">
               {p.bullets.map((b) => (
-                <li key={b} className={cn("flex items-start gap-3 text-[14.5px]", p.dark ? "text-zinc-300" : "text-ink")}>
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent" />
+                <li key={b} className={cn("flex items-start gap-3 text-[14.5px] font-medium", p.dark ? "text-zinc-200" : "text-[#0F0F11]")}>
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#6E56CF] shrink-0" />
                   {b}
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex items-center gap-3">
-              <ButtonLink to={p.cta.href} variant="primary" size="md" arrow="right">
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm">
+              <ButtonLink to={p.cta.href} variant="primary" size="md" arrow="right" className="w-full sm:w-[180px] shrink-0">
                 {p.cta.label}
               </ButtonLink>
               <Link
                 to={p.cta.href}
-                className={cn("inline-flex items-center gap-1 text-[14px] transition-colors", p.dark ? "text-zinc-400 hover:text-white" : "text-ink-muted hover:text-ink")}
+                className={cn("w-full sm:w-[160px] min-h-[44px] inline-flex items-center justify-center gap-1 text-[14px] font-bold rounded-md border border-transparent transition-colors", p.dark ? "text-zinc-200 hover:text-white bg-zinc-800/60" : "text-[#0F0F11] hover:text-[#6E56CF] bg-[#F3F3F5] border-[#E5E5E8]")}
               >
                 Learn more <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>

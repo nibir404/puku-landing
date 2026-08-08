@@ -74,17 +74,17 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="flex flex-wrap items-center justify-center gap-3 mt-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-8 w-full max-w-md mx-auto px-4 sm:px-0"
         >
           <a
-            href="/contact"
-            className="inline-block bg-accent hover:bg-accent/90 text-white border border-accent/20 font-bold uppercase tracking-wider text-[11.5px] px-7 py-3 rounded-[4px] shadow-sm transition-all"
+            href="/signup"
+            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-bold uppercase tracking-wider text-[12px] px-6 py-3 rounded-[4px] shadow-sm transition-all shrink-0"
           >
             Get Started
           </a>
           <a
             href="#workflow"
-            className="inline-flex items-center gap-2 bg-[#e8e8ed] border border-border/80 hover:bg-[#dcdce3] text-ink font-semibold uppercase tracking-wider text-[11px] px-6 py-3 rounded-[4px] shadow-sm transition-all"
+            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center gap-2 bg-[#e8e8ed] border border-[#E5E5E8] hover:bg-[#dcdce3] text-[#0F0F11] font-bold uppercase tracking-wider text-[11.5px] px-6 py-3 rounded-[4px] shadow-sm transition-all shrink-0"
           >
             <Play className="h-3 w-3 fill-current" />
             <span>See It in Action</span>
@@ -149,30 +149,30 @@ export const Hero = () => {
                   <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold">Active Buffer</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-slate-300 select-none text-right w-4">9</span>
-                  <span className="text-slate-700">const base = 'inline-flex items-center';</span>
+                  <span className="text-slate-600 font-semibold select-none text-right w-4">9</span>
+                  <span className="text-slate-900 font-medium">const base = 'inline-flex items-center';</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-slate-300 select-none text-right w-4">10</span>
-                  <span className="text-slate-700">const variants = &#123;</span>
+                  <span className="text-slate-600 font-semibold select-none text-right w-4">10</span>
+                  <span className="text-slate-900 font-medium">const variants = &#123;</span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-slate-300 select-none text-right w-4">11</span>
-                  <span className="text-slate-700 pl-4">primary: 'bg-accent text-white</span>
+                  <span className="text-slate-600 font-semibold select-none text-right w-4">11</span>
+                  <span className="text-slate-900 font-medium pl-4">primary: 'bg-accent text-white</span>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <span className="text-slate-300 select-none text-right w-4">12</span>
-                  <span className="text-slate-700 pl-4">
+                  <span className="text-slate-600 font-semibold select-none text-right w-4">12</span>
+                  <span className="text-slate-900 font-medium pl-4">
                     rounded-
-                    <span className="text-accent-secondary/60 bg-accent/5 border-b-2 border-accent border-dashed px-1 py-0.5">
+                    <span className="text-[#6E56CF] bg-[#F4F2FF] border-b-2 border-[#6E56CF] border-dashed px-1 py-0.5 font-bold">
                       [4px]
                     </span>
-                    <span className="h-3.5 w-1 bg-accent inline-block animate-pulse ml-0.5" />
+                    <span className="h-3.5 w-1 bg-[#6E56CF] inline-block animate-pulse ml-0.5" />
                   </span>
                 </div>
                 <div className="flex gap-4">
-                  <span className="text-slate-300 select-none text-right w-4">13</span>
-                  <span className="text-slate-400 italic">// Autocomplete suggestion matching UI rules</span>
+                  <span className="text-slate-600 font-semibold select-none text-right w-4">13</span>
+                  <span className="text-[#4A4A52] font-semibold italic">// Autocomplete suggestion matching UI rules</span>
                 </div>
               </div>
 

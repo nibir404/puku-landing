@@ -10,6 +10,8 @@ import {
   Lock, ArrowUpRight, Search, Server, ExternalLink, Cloud, Paintbrush, Users, Smartphone
 } from 'lucide-react';
 import { cn } from '@/lib/cn';
+import * as BrandIcons from '@/components/ui/BrandIcons';
+
 
 /* ─── Company Logos Matrix with Authentic SVG Brand Icons ───── */
 const companyLogos = [
@@ -269,199 +271,30 @@ const useCases = [
 
 /* ─── Tools Matrix with Authentic Brand SVG Icons ─────────── */
 const toolsListWithIcons = [
-  {
-    name: 'GitHub',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-      </svg>
-    ),
-  },
-  {
-    name: 'GitLab',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 01-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 015.5 2a.43.43 0 01.4.27L8.34 9.8h7.32l2.44-7.53a.43.43 0 01.4-.27.42.42 0 01.39.21l2.44 7.51 1.22 3.78a.84.84 0 01-.3.94z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Docker',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185zm-2.954-5.43h2.118a.185.185 0 00.186-.186V3.574a.185.185 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185zm0 2.716h2.118a.186.186 0 00.186-.186V6.29a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.186v1.887c0 .102.082.186.185.186zm-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.186H8.1a.185.185 0 00-.185.186v1.887c0 .102.083.186.185.186zm-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.186H5.136a.186.186 0 00-.186.186v1.887c0 .102.084.186.186.186zm5.893 2.714h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.186v1.887c0 .102.082.185.185.185zm-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185zm-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H5.136a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185zm-2.928 0h2.12a.185.185 0 00.185-.185V9.006a.185.185 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.887c0 .102.083.185.185.185zm0 2.715h2.12a.186.186 0 00.185-.186v-1.887a.186.186 0 00-.186-.185h-2.119a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186zm18.398-1.572c-.52-.375-1.517-.47-2.34-.23-1.077.308-2.023.95-2.613 1.838-.47-.07-.946-.07-1.417 0-.306-.827-1.127-1.39-2.02-1.39h-1.637v2.715h2.118c.63 0 1.15.52 1.15 1.15 0 .63-.52 1.15-1.15 1.15H.775a.775.775 0 00-.775.775c0 4.195 3.392 7.587 7.587 7.587 4.196 0 7.82-3.155 8.167-7.332 1.63-.443 3.42-1.85 4.388-3.951z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'VS Code',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M23.15 2.587L18.21.21a1.494 1.494 0 00-1.705.29l-9.46 8.63L3.54 6.325a.997.997 0 00-1.285.088L.36 8.188a.998.998 0 000 1.455l3.96 3.65-3.96 3.65a.998.998 0 000 1.455l1.895 1.775a.997.997 0 001.285.088l3.505-2.805 9.46 8.63c.484.44 1.18.555 1.705.29l4.94-2.377a1.5 1.5 0 00.85-1.352V3.939a1.5 1.5 0 00-.85-1.352z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Terminal',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-[#0F0F11]">
-        <polyline points="4 17 10 11 4 5"></polyline>
-        <line x1="12" y1="19" x2="20" y2="19"></line>
-      </svg>
-    ),
-  },
-  {
-    name: 'AWS',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Vercel',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2L24 22H0L12 2Z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Postgres',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-5h2v5zm0-7h-2V7.5h2V9.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Redis',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2l10 5v10l-10 5-10-5V7l10-5zm0 3.5L5 9v6l7 3.5 7-3.5V9l-7-3.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Supabase',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M13.35 2.1a1 1 0 00-1.7 0L2.83 16.48a1 1 0 00.85 1.52H11v4a1 1 0 001.7 0l8.82-14.38a1 1 0 00-.85-1.52H13.35v-4z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Linear',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M3.2 12A8.8 8.8 0 0112 3.2v3.2A5.6 5.6 0 006.4 12H3.2zm8.8 8.8A8.8 8.8 0 013.2 12h3.2a5.6 5.6 0 005.6 5.6v3.2zm8.8-8.8A8.8 8.8 0 0112 20.8v-3.2a5.6 5.6 0 005.6-5.6h3.2zm-8.8-8.8A8.8 8.8 0 0120.8 12h-3.2A5.6 5.6 0 0012 6.4V3.2z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Slack',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M5.042 15.165a2.528 2.528 0 01-2.52 2.523A2.528 2.528 0 010 15.165a2.527 2.527 0 012.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 012.521-2.52 2.527 2.527 0 012.521 2.52v6.313A2.528 2.528 0 018.834 24a2.528 2.528 0 01-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 01-2.521-2.52A2.528 2.528 0 018.834 0a2.528 2.528 0 012.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 012.521 2.521 2.528 2.528 0 01-2.521 2.521H2.522A2.528 2.528 0 010 8.834a2.528 2.528 0 012.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 012.522-2.521A2.528 2.528 0 0124 8.834a2.528 2.528 0 01-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 01-2.523 2.521 2.527 2.527 0 01-2.52-2.521V2.522A2.527 2.527 0 0115.165 0a2.528 2.528 0 012.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 012.523 2.52A2.528 2.528 0 0115.165 24a2.527 2.527 0 01-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 01-2.52-2.523 2.527 2.527 0 012.52-2.52h6.313A2.528 2.528 0 0124 15.165a2.528 2.528 0 01-2.522 2.523h-6.313z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Jira',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M11.53 2C6.45 7.08 6.45 15.3 11.53 20.38L20.38 11.53C15.3 6.45 15.3 2 11.53 2zM3.62 9.91C1.08 12.45 1.08 16.56 3.62 19.1L9.1 13.62C6.56 11.08 6.56 9.91 3.62 9.91z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Figma',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zM4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4zM4 4c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4zM12 0h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4V0zM20 12c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Python',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M11.898 0C5.32 0 5.75 2.85 5.75 2.85l.01 2.95H12v.83H3.63S0 6.2 0 12.82c0 6.63 3.16 6.39 3.16 6.39h1.89v-2.67s-.1-3.2 3.16-3.2h5.4s3.04.05 3.04-2.95V5.75S17.15 0 11.898 0zm-2.4 1.76a1.05 1.05 0 110 2.1 1.05 1.05 0 010-2.1zM12.1 24c6.58 0 6.15-2.85 6.15-2.85l-.01-2.95H12v-.83h8.37S24 17.8 24 11.18c0-6.63-3.16-6.39-3.16-6.39h-1.89v2.67s.1 3.2-3.16 3.2h-5.4s-3.04-.05-3.04 2.95v4.64S6.85 24 12.1 24zm2.4-1.76a1.05 1.05 0 110-2.1 1.05 1.05 0 010 2.1z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'TypeScript',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zm17.864 12.658c.84 0 1.5.21 1.98.63.48.42.72 1.03.72 1.83 0 .52-.12.98-.36 1.38s-.6.72-1.08.96c-.48.24-1.08.36-1.8.36-.6 0-1.14-.09-1.62-.27a4.94 4.94 0 01-1.38-.75l.84-1.38c.4.3.82.52 1.26.66.44.14.86.21 1.26.21.52 0 .91-.1 1.17-.3.26-.2.39-.47.39-.81 0-.28-.1-.5-.3-.66-.2-.16-.54-.3-1.02-.42-.66-.18-1.18-.36-1.56-.54-.38-.18-.68-.42-.9-.72-.22-.3-.33-.68-.33-1.14 0-.48.13-.9.39-1.26.26-.36.63-.64 1.11-.84.48-.2 1.05-.3 1.71-.3.56 0 1.08.08 1.56.24.48.16.9.38 1.26.66l-.78 1.35c-.34-.24-.69-.42-1.05-.54-.36-.12-.72-.18-1.08-.18-.46 0-.82.09-1.08.27-.26.18-.39.42-.39.72 0 .26.1.47.3.63.2.16.54.3 1.02.42zM7.2 10.35h2.82v8.55H7.2v-8.55zm.18-1.65V7.2h2.46v1.5H7.38z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'React',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 9a3 3 0 100 6 3 3 0 000-6zm0-7C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Next.js',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M18.665 21.978l-7.39-10.428h-.123v10.428H9.37V2.022h2.203l7.359 10.398h.123V2.022h1.782v19.956h-2.172z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Node.js',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 1.608l10.392 6v12L12 25.608l-10.392-6v-12L12 1.608z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Tailwind',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 6c-3.314 0-5.523 1.657-6.627 4.97 1.104-1.656 2.43-2.209 3.976-1.656 1.139.407 1.953 1.234 2.855 2.15C13.67 12.923 15.34 14.627 20.4 14.627c3.314 0 5.523-1.657 6.627-4.97-1.104 1.657-2.43 2.21-3.976 1.657-1.139-.407-1.953-1.234-2.855-2.151C18.73 7.704 17.06 6 12 6zm-8.4 6c-3.314 0-5.523 1.657-6.627 4.97 1.104-1.656 2.43-2.209 3.976-1.656 1.139.407 1.953 1.234 2.855 2.15C5.27 18.923 6.94 20.627 12 20.627c3.314 0 5.523-1.657 6.627-4.97-1.104 1.657-2.43 2.21-3.976 1.657-1.139-.407-1.953-1.234-2.855-2.151C10.33 13.704 8.66 12 3.6 12z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Kubernetes',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.5l7.5 3.75v7.5L12 19.5l-7.5-3.75v-7.5L12 4.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Terraform',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M1.44 0v7.584l6.568 3.791V3.791L1.44 0zm7.26 4.19v7.585l6.567 3.792V7.982L8.7 4.19zm0 8.35v7.584l6.567 3.792v-7.585L8.7 12.54zM15.96 8.38v7.585l6.568 3.792V12.17L15.96 8.38z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Datadog',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 14.5v-9l7 4.5-7 4.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Sentry',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
-        <path d="M12 2L2 22h20L12 2zm0 6l5.5 11h-11L12 8z" />
-      </svg>
-    ),
-  },
+  { name: 'GitHub', icon: <BrandIcons.GitHubIcon className="h-4 w-4" /> },
+  { name: 'GitLab', icon: <BrandIcons.GitLabIcon className="h-4 w-4" /> },
+  { name: 'Docker', icon: <BrandIcons.DockerIcon className="h-4 w-4" /> },
+  { name: 'VS Code', icon: <BrandIcons.VSCodeIcon className="h-4 w-4" /> },
+  { name: 'Terminal', icon: <BrandIcons.TerminalIcon className="h-4 w-4" /> },
+  { name: 'AWS', icon: <BrandIcons.AWSIcon className="h-4 w-4" /> },
+  { name: 'Vercel', icon: <BrandIcons.VercelIcon className="h-4 w-4" /> },
+  { name: 'Postgres', icon: <BrandIcons.PostgresIcon className="h-4 w-4" /> },
+  { name: 'Redis', icon: <BrandIcons.RedisIcon className="h-4 w-4" /> },
+  { name: 'Supabase', icon: <BrandIcons.SupabaseIcon className="h-4 w-4" /> },
+  { name: 'Linear', icon: <BrandIcons.LinearIcon className="h-4 w-4" /> },
+  { name: 'Slack', icon: <BrandIcons.SlackIcon className="h-4 w-4" /> },
+  { name: 'Jira', icon: <BrandIcons.JiraIcon className="h-4 w-4" /> },
+  { name: 'Figma', icon: <BrandIcons.FigmaIcon className="h-4 w-4" /> },
+  { name: 'Python', icon: <BrandIcons.PythonIcon className="h-4 w-4" /> },
+  { name: 'TypeScript', icon: <BrandIcons.TypeScriptIcon className="h-4 w-4" /> },
+  { name: 'React', icon: <BrandIcons.ReactIcon className="h-4 w-4" /> },
+  { name: 'Next.js', icon: <BrandIcons.NextjsIcon className="h-4 w-4" /> },
+  { name: 'Node.js', icon: <BrandIcons.NodejsIcon className="h-4 w-4" /> },
+  { name: 'Tailwind', icon: <BrandIcons.TailwindIcon className="h-4 w-4" /> },
+  { name: 'Kubernetes', icon: <BrandIcons.KubernetesIcon className="h-4 w-4" /> },
+  { name: 'Terraform', icon: <BrandIcons.TerraformIcon className="h-4 w-4" /> },
+  { name: 'Datadog', icon: <BrandIcons.DatadogIcon className="h-4 w-4" /> },
+  { name: 'Sentry', icon: <BrandIcons.SentryIcon className="h-4 w-4" /> },
 ];
 
 export default function Home() {
@@ -553,30 +386,30 @@ export default function Home() {
               
               {/* Left Pane: Explorer & Task steps */}
               <div className="md:col-span-4 p-5 border-b md:border-b-0 md:border-r border-[#E5E5E8] bg-[#FAFAFC] text-[13px]">
-                <div className="text-[11px] font-mono uppercase tracking-wider text-[#888888] mb-3">Puku Agent Plan</div>
+                <div className="text-[11px] font-mono uppercase tracking-wider text-[#333338] font-bold mb-3">Puku Agent Plan</div>
                 
                 <div className="space-y-2">
                   <div className="p-3 bg-white rounded-[2px] border border-[#E5E5E8] shadow-none flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-[#6E56CF] shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-semibold text-black">Read 34 repository files</div>
-                      <div className="text-[11px] text-[#666666] font-mono mt-0.5">Parsed auth & middleware dependencies</div>
+                      <div className="font-bold text-[#0F0F11]">Read 34 repository files</div>
+                      <div className="text-[11px] text-[#333338] font-mono font-medium mt-0.5">Parsed auth & middleware dependencies</div>
                     </div>
                   </div>
 
                   <div className="p-3 bg-white rounded-[2px] border border-[#6E56CF]/40 shadow-none flex items-start gap-2.5">
                     <div className="h-3.5 w-3.5 rounded-full bg-[#6E56CF] animate-pulse shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-semibold text-black">Fixing JWT Session Expiry</div>
-                      <div className="text-[11px] text-[#6E56CF] font-mono mt-0.5">Editing src/auth/session.ts...</div>
+                      <div className="font-bold text-[#0F0F11]">Fixing JWT Session Expiry</div>
+                      <div className="text-[11px] text-[#6E56CF] font-mono font-bold mt-0.5">Editing src/auth/session.ts...</div>
                     </div>
                   </div>
 
-                  <div className="p-3 bg-[#F3F3F5] rounded-[2px] border border-[#E5E5E8] flex items-start gap-2.5 text-[#888888]">
-                    <div className="h-3.5 w-3.5 rounded-full border border-[#AAA] shrink-0 mt-0.5" />
+                  <div className="p-3 bg-[#F3F3F5] rounded-[2px] border border-[#E5E5E8] flex items-start gap-2.5 text-[#333338]">
+                    <div className="h-3.5 w-3.5 rounded-full border border-[#0F0F11] shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-medium">Run pytest & end-to-end suite</div>
-                      <div className="text-[11px] font-mono mt-0.5">Queued</div>
+                      <div className="font-bold text-[#0F0F11]">Run pytest & end-to-end suite</div>
+                      <div className="text-[11px] font-mono font-semibold mt-0.5 text-[#333338]">Queued</div>
                     </div>
                   </div>
                 </div>
@@ -584,37 +417,37 @@ export default function Home() {
 
               {/* Center Pane: Prompt & Code Execution */}
               <div className="md:col-span-5 p-5 border-b md:border-b-0 md:border-r border-[#E5E5E8] bg-white font-mono text-[12px] leading-relaxed">
-                <div className="text-[11px] text-[#888888] mb-1.5">// User Request</div>
-                <div className="p-2.5 bg-[#F3F3F5] rounded-[2px] border border-[#E5E5E8] text-[#0F0F11] font-sans text-[13px] mb-3">
+                <div className="text-[11px] text-[#333338] font-bold mb-1.5">// User Request</div>
+                <div className="p-2.5 bg-[#F3F3F5] rounded-[2px] border border-[#E5E5E8] text-[#0F0F11] font-sans text-[13px] font-medium mb-3">
                   "Fix unhandled JWT session invalidation during high concurrent load."
                 </div>
 
-                <div className="text-[11px] text-[#888888] mb-1">// Puku Diff Patch</div>
+                <div className="text-[11px] text-[#333338] font-bold mb-1">// Puku Diff Patch</div>
                 <div className="p-3 bg-[#09090C] text-[#F8FAFC] rounded-[2px] overflow-x-auto space-y-1">
-                  <div className="text-[#6E56CF]">+ export class SessionHandler &#123;</div>
-                  <div className="text-[#6E56CF]">+   private cache = new Map&lt;string, WeakRef&lt;Token&gt;&gt;();</div>
-                  <div className="text-[#888888]">    public validateToken(token: string) &#123;</div>
-                  <div className="text-[#6E56CF]">+     return this.cache.has(token);</div>
-                  <div className="text-[#888888]">    &#125;</div>
+                  <div className="text-[#6E56CF] font-bold">+ export class SessionHandler &#123;</div>
+                  <div className="text-[#6E56CF] font-bold">+   private cache = new Map&lt;string, WeakRef&lt;Token&gt;&gt;();</div>
+                  <div className="text-zinc-300">    public validateToken(token: string) &#123;</div>
+                  <div className="text-[#6E56CF] font-bold">+     return this.cache.has(token);</div>
+                  <div className="text-zinc-300">    &#125;</div>
                 </div>
               </div>
 
               {/* Right Pane: Security & Feature Badges */}
               <div className="md:col-span-3 p-5 bg-[#FAFAFC] flex flex-col justify-between">
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#888888] mb-3">Puku Features</div>
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#333338] font-bold mb-3">Puku Features</div>
                   
                   <div className="grid grid-cols-2 gap-2">
                     {['Secure', 'Private', 'Verified', 'Enterprise'].map((badge, idx) => (
-                      <div key={idx} className="p-2.5 bg-white rounded-[2px] border border-[#E5E5E8] text-center font-bold text-[12.5px] text-[#0F0F11]">
+                      <div key={idx} className="p-2.5 bg-white rounded-[2px] border border-[#E5E5E8] text-center font-extrabold text-[12.5px] text-[#0F0F11]">
                         {badge}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-[#E5E5E8] text-[12px] text-[#666666]">
-                  Status: <span className="font-semibold text-[#6E56CF]">Active Execution</span>
+                <div className="pt-3 border-t border-[#E5E5E8] text-[12px] text-[#1A1A1E] font-medium">
+                  Status: <span className="font-bold text-[#6E56CF]">Active Execution</span>
                 </div>
               </div>
             </div>
@@ -626,13 +459,13 @@ export default function Home() {
         ════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 max-w-6xl mx-auto border-t border-[#E5E5E8]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#6E56CF] px-3 py-1 rounded-[2px] bg-[#F4F2FF] border border-[#E4DDFE]">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#6E56CF] px-3 py-1 rounded-[2px] bg-[#F4F2FF] border border-[#E4DDFE]">
               PUKU PRODUCT SUITE
             </span>
-            <h2 className="mt-4 text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
+            <h2 className="mt-4 text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
               Six products. <span className="text-purple-highlight">One platform.</span>
             </h2>
-            <p className="mt-2.5 text-[16px] text-[#666666]">
+            <p className="mt-2.5 text-[16px] text-[#1A1A1E] font-medium">
               A complete autonomous software suite designed to accelerate engineering workflows across your entire stack.
             </p>
           </div>
@@ -650,17 +483,17 @@ export default function Home() {
                   <div>
                     {/* ICON BG: Neutral Grey Shade (#F3F3F5) */}
                     <div className="h-10 w-10 rounded-[2px] bg-[#F3F3F5] border border-[#E5E5E8] text-[#0F0F11] flex items-center justify-center mb-5 group-hover:bg-[#6E56CF] group-hover:border-[#6E56CF] group-hover:text-white transition-colors">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="h-5 w-5 text-[#0F0F11] group-hover:text-white" />
                     </div>
 
                     <h3 className="text-[19px] font-bold text-[#0F0F11] font-display group-hover:text-[#6E56CF] transition-colors flex items-center justify-between mb-1">
                       <span>{prod.name}</span>
-                      <ArrowRight className="h-4 w-4 text-[#888888] group-hover:translate-x-1 group-hover:text-[#6E56CF] transition-all" />
+                      <ArrowRight className="h-4 w-4 text-[#0F0F11] group-hover:translate-x-1 group-hover:text-[#6E56CF] transition-all" />
                     </h3>
 
-                    <div className="text-[12.5px] font-mono font-medium text-[#6E56CF] mb-3">{prod.tagline}</div>
+                    <div className="text-[12.5px] font-mono font-bold text-[#6E56CF] mb-3">{prod.tagline}</div>
 
-                    <p className="text-[14px] text-[#666666] leading-relaxed mb-6">
+                    <p className="text-[14px] text-[#1A1A1E] font-medium leading-relaxed mb-6">
                       {prod.desc}
                     </p>
                   </div>
@@ -679,11 +512,11 @@ export default function Home() {
             SECTION 3 — BUILD WITH PUKU & LOGO MATRIX
         ════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 text-center max-w-6xl mx-auto border-t border-[#E5E5E8]">
-          <div className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#888888] mb-2.5">
+          <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#333338] mb-2.5">
             TRUSTED BY LEADING TEAMS
           </div>
           
-          <h2 className="text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
+          <h2 className="text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
             Build with <span className="text-purple-highlight">Puku</span>
           </h2>
 
@@ -703,7 +536,7 @@ export default function Home() {
                 <div className="h-7.5 w-7.5 rounded-[2px] bg-[#F3F3F5] border border-[#E5E5E8] flex items-center justify-center text-[#0F0F11] group-hover:bg-[#6E56CF] group-hover:border-[#6E56CF] group-hover:text-white transition-colors shrink-0">
                   {c.icon}
                 </div>
-                <span className="text-[13.5px] font-semibold text-[#0F0F11] font-display truncate">{c.name}</span>
+                <span className="text-[13.5px] font-bold text-[#0F0F11] font-display truncate">{c.name}</span>
               </div>
             ))}
           </div>
@@ -714,10 +547,10 @@ export default function Home() {
         ════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 max-w-6xl mx-auto border-t border-[#E5E5E8]">
           <div className="text-left mb-12">
-            <h2 className="text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
+            <h2 className="text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
               Use cases
             </h2>
-            <p className="mt-2 text-[16px] font-normal text-[#666666] max-w-xl">
+            <p className="mt-2 text-[16px] font-medium text-[#1A1A1E] max-w-xl">
               Assign Puku to tickets, migrations, code reviews, and background chores.
             </p>
           </div>
@@ -732,13 +565,13 @@ export default function Home() {
                 )}
               >
                 <div>
-                  <div className="inline-block px-2.5 py-1 rounded-[2px] bg-[#F4F2FF] text-[11.5px] font-mono font-semibold text-[#6E56CF] mb-4 border border-[#E4DDFE]">
+                  <div className="inline-block px-2.5 py-1 rounded-[2px] bg-[#F4F2FF] text-[11.5px] font-mono font-bold text-[#6E56CF] mb-4 border border-[#E4DDFE]">
                     {uc.badge}
                   </div>
-                  <h3 className="text-[20px] font-bold text-[#0F0F11] font-display mb-2">{uc.title}</h3>
-                  <p className="text-[14px] text-[#666666] leading-relaxed mb-4">{uc.desc}</p>
+                  <h3 className="text-[20px] font-extrabold text-[#0F0F11] font-display mb-2">{uc.title}</h3>
+                  <p className="text-[14px] text-[#1A1A1E] font-medium leading-relaxed mb-4">{uc.desc}</p>
                   
-                  <ul className="space-y-2 text-[13px] text-[#0F0F11] mb-6">
+                  <ul className="space-y-2 text-[13px] text-[#0F0F11] font-medium mb-6">
                     {uc.bullets.map((b, i) => (
                       <li key={i} className="flex items-center gap-2">
                         <Check className="h-3.5 w-3.5 text-[#6E56CF] shrink-0" />
@@ -750,11 +583,11 @@ export default function Home() {
 
                 {/* Mock Card Preview Graphic */}
                 <div className="p-3.5 bg-[#FAFAFC] rounded-[2px] border border-[#E5E5E8]">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[#888888] mb-2">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#333338] font-bold mb-2">
                     <span>Puku Preview</span>
-                    <span className="text-[#6E56CF] font-semibold">✓ Verified</span>
+                    <span className="text-[#6E56CF] font-bold">✓ Verified</span>
                   </div>
-                  <div className="h-12 bg-white rounded-[2px] border border-[#E5E5E8] px-3 flex items-center justify-between text-[12.5px] font-medium text-black">
+                  <div className="h-12 bg-white rounded-[2px] border border-[#E5E5E8] px-3 flex items-center justify-between text-[12.5px] font-bold text-[#0F0F11]">
                     <span>{uc.title} automated task</span>
                     <ArrowRight className="h-4 w-4 text-[#6E56CF]" />
                   </div>

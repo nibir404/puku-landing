@@ -1,3 +1,4 @@
-import clsx, { ClassValue } from 'clsx';
+import { cn } from './utils';
 
-export const cn = (...args: ClassValue[]) => clsx(args);
+export { cn };
+

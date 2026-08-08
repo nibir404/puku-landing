@@ -143,22 +143,22 @@ export default function Changelog() {
           <div className="mx-auto max-w-3xl text-center relative z-10">
             {/* Elegant Header similar to mynaui */}
             <div className="flex flex-col items-center">
-              <h1 className="font-sans text-display-xl font-bold text-ink tracking-tight">
+              <h1 className="font-sans text-display-xl font-bold text-[#0F0F11] tracking-tight">
                 Changelog
               </h1>
-              <p className="mt-4 text-sm font-sans leading-relaxed text-ink-muted">
+              <p className="mt-4 text-sm font-sans leading-relaxed text-[#1A1A1E] font-medium">
                 New updates, improvements, and fixes to Puku.
               </p>
               {/* Header Actions / Social Row */}
               <div className="flex items-center gap-4 mt-6">
                 <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-                  <Twitter className="h-4 w-4 text-ink-dim hover:text-accent transition-colors" />
+                  <Twitter className="h-4 w-4 text-[#0F0F11] hover:text-[#6E56CF] transition-colors" />
                 </a>
                 <a href="/rss.xml" aria-label="RSS Feed">
-                  <Rss className="h-4 w-4 text-ink-dim hover:text-accent transition-colors" />
+                  <Rss className="h-4 w-4 text-[#0F0F11] hover:text-[#6E56CF] transition-colors" />
                 </a>
                 <a href="/newsletter" aria-label="Newsletter">
-                  <Mail className="h-4 w-4 text-ink-dim hover:text-accent transition-colors" />
+                  <Mail className="h-4 w-4 text-[#0F0F11] hover:text-[#6E56CF] transition-colors" />
                 </a>
               </div>
             </div>
@@ -172,18 +172,18 @@ export default function Changelog() {
           <div className="mx-auto max-w-4xl mb-20 space-y-6">
             {/* Search Input */}
             <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3.5 top-3 h-4 w-4 text-ink-dim" />
+              <Search className="absolute left-3.5 top-3 h-4 w-4 text-[#0F0F11]" />
               <input
                 type="text"
                 placeholder="Search updates by keyword..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 rounded-full border border-border/80 bg-[#f5f5f7]/50 pl-10 pr-4 text-[13.5px] text-ink placeholder-ink-dim focus:outline-none focus:border-accent transition-colors"
+                className="w-full h-10 rounded-full border border-[#E5E5E8] bg-[#FAFAFC] pl-10 pr-4 text-[13.5px] text-[#0F0F11] font-medium placeholder-[#4A4A52] focus:outline-none focus:border-[#6E56CF] transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-2.5 text-xs text-ink-muted hover:text-ink font-semibold"
+                  className="absolute right-3.5 top-2.5 text-xs text-[#0F0F11] hover:text-[#6E56CF] font-bold"
                 >
                   Clear
                 </button>
@@ -191,7 +191,7 @@ export default function Changelog() {
             </div>
 
             {/* Product Filter tabs */}
-            <div className="flex flex-wrap items-center justify-center gap-2 select-none">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 max-w-full justify-start sm:justify-center select-none">
               {PRODUCTS.map((p) => {
                 const count = getProductCount(p.id);
                 return (
@@ -199,18 +199,18 @@ export default function Changelog() {
                     key={p.id}
                     onClick={() => setSelectedProduct(p.id)}
                     className={cn(
-                      "px-4 py-2 text-[13px] font-semibold rounded-full border transition-all duration-200 flex items-center gap-1.5",
+                      "px-4 py-2 text-[13px] font-bold rounded-full border transition-all duration-200 flex items-center gap-1.5 min-h-[44px]",
                       selectedProduct === p.id
-                        ? "bg-accent border-accent text-white shadow-sm"
-                        : "bg-bg border-border text-ink-muted hover:border-accent/40 hover:text-ink"
+                        ? "bg-[#6E56CF] border-[#6E56CF] text-white shadow-sm"
+                        : "bg-white border-[#E5E5E8] text-[#1A1A1E] hover:border-[#6E56CF] hover:text-[#6E56CF]"
                     )}
                   >
                     <span>{p.name}</span>
                     <span className={cn(
-                      "px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-full",
+                      "px-1.5 py-0.5 text-[10px] font-mono font-extrabold rounded-full",
                       selectedProduct === p.id
                         ? "bg-white/20 text-white"
-                        : "bg-slate-100 text-slate-500"
+                        : "bg-[#F3F3F5] text-[#0F0F11]"
                     )}>
                       {count}
                     </span>
@@ -228,7 +228,7 @@ export default function Changelog() {
                 return (
                   <div key={r.version} className="relative flex md:grid md:grid-cols-[120px_auto_1fr] gap-x-4 md:gap-x-6 pb-16 last:pb-0">
                     {/* Left: Date (Desktop only) */}
-                    <div className="hidden md:block text-right text-[12.5px] font-semibold pt-1 font-sans select-none tracking-tight" style={{ color: themeColor }}>
+                    <div className="hidden md:block text-right text-[12.5px] font-bold pt-1 font-sans select-none tracking-tight" style={{ color: themeColor }}>
                       {r.date}
                     </div>
 
@@ -239,7 +239,7 @@ export default function Changelog() {
                         style={{ backgroundColor: themeColor }}
                       />
                       {/* Connection Line */}
-                      <div className="absolute top-4 bottom-0 w-px bg-border/80 -mb-16" />
+                      <div className="absolute top-4 bottom-0 w-px bg-[#E5E5E8] -mb-16" />
                     </div>
 
                     {/* Right: Content */}
@@ -250,14 +250,14 @@ export default function Changelog() {
                         <span className="block md:hidden text-[11px] font-bold tracking-wider uppercase font-mono" style={{ color: themeColor }}>
                           {r.date}
                         </span>
-                        <h2 className="font-sans text-[17.5px] font-bold text-ink leading-tight">
+                        <h2 className="font-sans text-[17.5px] font-bold text-[#0F0F11] leading-tight">
                           {r.title}
                         </h2>
                       </div>
 
                       {/* Cover Preview Image */}
                       {r.image && (
-                        <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-border/80 shadow-sm bg-[#f5f5f7] mt-3">
+                        <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-[#E5E5E8] shadow-sm bg-[#FAFAFC] mt-3">
                           <img
                             src={r.image}
                             alt={`Release v${r.version} overview`}
@@ -270,7 +270,7 @@ export default function Changelog() {
                       {/* Highlights Details */}
                       <ul className="mt-5 space-y-4">
                         {r.highlights.map((h, i) => (
-                          <li key={i} className="flex items-start gap-3.5 text-[14px] text-ink-muted">
+                          <li key={i} className="flex items-start gap-3.5 text-[14px] text-[#1A1A1E] font-medium">
                             <span className={cn(
                               "px-2 py-0.5 rounded text-[9.5px] font-bold uppercase tracking-wider flex-none mt-0.5 border",
                               badgeClasses[h.type]
@@ -278,7 +278,7 @@ export default function Changelog() {
                               {badgeLabel[h.type]}
                             </span>
                             <span className="leading-relaxed">
-                              <span className="font-mono text-[10.5px] bg-[#f5f5f7] border border-border/60 px-1.5 py-0.5 rounded text-slate-700 mr-2.5 uppercase tracking-wide">
+                              <span className="font-mono text-[10.5px] bg-[#F3F3F5] border border-[#E5E5E8] px-1.5 py-0.5 rounded text-[#0F0F11] font-bold mr-2.5 uppercase tracking-wide">
                                 {h.product}
                               </span>
                               {h.text}
@@ -291,8 +291,8 @@ export default function Changelog() {
                 );
               })
             ) : (
-              <div className="text-center py-16 border border-border border-dashed rounded-xl bg-bg/50">
-                <p className="text-sm text-ink-muted">No updates found matching your filter criteria.</p>
+              <div className="text-center py-16 border border-[#E5E5E8] border-dashed rounded-xl bg-[#FAFAFC]">
+                <p className="text-sm text-[#1A1A1E] font-medium">No updates found matching your filter criteria.</p>
               </div>
             )}
           </div>

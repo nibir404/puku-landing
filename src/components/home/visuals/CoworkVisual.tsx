@@ -6,10 +6,10 @@ export const CoworkVisual = () => {
   ];
   return (
     <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-[#0E0E11] p-6 shadow-card relative">
-      <div className="flex items-center justify-between text-[12px] text-zinc-400">
+      <div className="flex items-center justify-between text-[12px] text-zinc-200 font-semibold">
         <div>checkout-flow · live</div>
-        <div className="flex items-center gap-2 font-semibold text-accent">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+        <div className="flex items-center gap-2 font-bold text-[#6E56CF]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#6E56CF] animate-pulse" />
           3 humans · 2 agents
         </div>
       </div>
@@ -38,11 +38,11 @@ export const CoworkVisual = () => {
         </svg>
 
         <div className="absolute left-4 top-4 rounded-lg border border-zinc-800 bg-zinc-900/90 backdrop-blur p-3 text-[12px] shadow-sm">
-          <div className="text-[10.5px] uppercase tracking-wider text-zinc-500 font-semibold">Puku Agent</div>
+          <div className="text-[10.5px] uppercase tracking-wider text-zinc-300 font-bold">Puku Agent</div>
           <div className="mt-1 text-white font-medium">Suggested fix for race condition</div>
         </div>
         <div className="absolute right-4 bottom-4 rounded-lg border border-zinc-800 bg-zinc-900/90 backdrop-blur p-3 text-[12px] max-w-[220px] shadow-sm">
-          <div className="text-[10.5px] uppercase tracking-wider text-zinc-500 font-semibold">Comment</div>
+          <div className="text-[10.5px] uppercase tracking-wider text-zinc-300 font-bold">Comment</div>
           <div className="mt-1 text-white font-medium">Mira: can we move this into a hook?</div>
         </div>
       </div>

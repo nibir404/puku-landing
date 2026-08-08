@@ -6,27 +6,27 @@ export const EditorVisual = () => (
         <span className="h-2.5 w-2.5 rounded-full bg-[#d4d4d8]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#d4d4d8]" />
       </div>
-      <div className="font-mono text-[12px] text-ink-muted">services/checkout.ts · Puku</div>
-      <div className="font-mono text-[11px] text-accent font-semibold flex items-center gap-1">
-        <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+      <div className="font-mono text-[12px] text-[#0F0F11] font-semibold">services/checkout.ts · Puku</div>
+      <div className="font-mono text-[11px] text-[#6E56CF] font-bold flex items-center gap-1">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#6E56CF] animate-pulse" />
         ai editing
       </div>
     </div>
     <div className="grid grid-cols-12">
-      <aside className="col-span-3 hidden md:flex flex-col gap-0.5 border-r border-border bg-[#f4f4f5] p-3 text-[12px]">
-        <div className="mb-1 text-[10.5px] uppercase tracking-wider text-ink-dim font-semibold">Files</div>
+      <aside className="col-span-3 hidden md:flex flex-col gap-0.5 border-r border-[#E5E5E8] bg-[#f4f4f5] p-3 text-[12px]">
+        <div className="mb-1 text-[10.5px] uppercase tracking-wider text-[#4A4A52] font-bold">Files</div>
         {['app/', 'services/', 'lib/', 'tests/', 'designs/'].map((f) => (
           <div
             key={f}
             className={`rounded-md px-2 py-1 ${
-              f === 'services/' ? 'bg-ink/5 text-ink font-semibold' : 'text-ink-muted'
+              f === 'services/' ? 'bg-black/10 text-[#0F0F11] font-bold' : 'text-[#333338] font-medium'
             }`}
           >
             ▸ {f}
           </div>
         ))}
       </aside>
-      <div className="col-span-12 md:col-span-9 p-5 font-mono text-[12.5px] leading-[1.75] bg-surface">
+      <div className="col-span-12 md:col-span-9 p-5 font-mono text-[12.5px] leading-[1.75] bg-white">
         {[
           ['1', 'import', ' { stripe, db } ', 'from', " '@/lib'", ''],
           ['2', '', '', '', '', ''],
@@ -37,23 +37,23 @@ export const EditorVisual = () => (
           ['7', '}', '', '', '', ''],
         ].map((row, i) => (
           <div key={i} className="flex">
-            <span className="mr-3 w-5 text-right text-ink-dim/60">{row[0]}</span>
+            <span className="mr-3 w-5 text-right text-slate-600 font-bold select-none">{row[0]}</span>
             {row.slice(1).map((seg, j) => (
               <span
                 key={j}
                 className={
                   ['export', 'const', 'return', 'await', 'from', 'import'].includes(seg.trim())
-                    ? 'text-accent-secondary font-semibold'
+                    ? 'text-[#6E56CF] font-bold'
                     : seg.includes('createCheckout')
-                    ? 'text-accent font-semibold'
-                    : 'text-ink'
+                    ? 'text-[#6E56CF] font-bold'
+                    : 'text-[#0F0F11]'
                 }
               >
                 {seg}
               </span>
             ))}
             {i === 3 && (
-              <span className="ml-1 inline-block h-4 w-1.5 self-center bg-accent animate-cursor-blink" />
+              <span className="ml-1 inline-block h-4 w-1.5 self-center bg-[#6E56CF] animate-cursor-blink" />
             )}
           </div>
         ))}

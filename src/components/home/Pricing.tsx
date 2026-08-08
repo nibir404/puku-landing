@@ -87,29 +87,29 @@ export const Pricing = () => {
               key={t.name}
               className={`relative flex flex-col rounded-2xl border p-6 transition-all duration-300 ${
                 t.accent
-                  ? 'border-accent/50 bg-surface shadow-glow'
-                  : 'border-border bg-surface text-ink'
+                  ? 'border-[#6E56CF] bg-white shadow-md'
+                  : 'border-[#E5E5E8] bg-white text-[#0F0F11]'
               }`}
             >
               {t.accent && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider text-bg border border-accent/20">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#6E56CF] px-3 py-1 text-[10.5px] font-extrabold uppercase tracking-wider text-white shadow-sm">
                   Most popular
                 </div>
               )}
-              <div className="font-mono text-base font-semibold uppercase tracking-wider text-ink">{t.name}</div>
-              <div className="mt-1 text-[13.5px] text-ink-muted">{t.desc}</div>
+              <div className="font-mono text-base font-extrabold uppercase tracking-wider text-[#0F0F11]">{t.name}</div>
+              <div className="mt-1 text-[13.5px] font-medium text-[#4A4A52] leading-snug">{t.desc}</div>
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-mono text-3xl font-bold text-accent">
+                <span className="font-mono text-3xl font-extrabold text-[#6E56CF]">
                   {t.price}
                 </span>
-                <span className="text-[13px] text-ink-muted">{t.period}</span>
+                <span className="text-[13px] font-medium text-[#4A4A52]">{t.period}</span>
               </div>
               <ButtonLink
                 to={t.cta.href}
                 variant={t.accent ? 'primary' : 'secondary'}
                 size="md"
                 arrow="none"
-                className="mt-6"
+                className="mt-6 w-full"
               >
                 {t.cta.label}
               </ButtonLink>
@@ -117,9 +117,9 @@ export const Pricing = () => {
                 {t.features.map((f) => (
                   <li
                     key={f}
-                    className="flex items-start gap-2.5 text-[13.5px] text-ink-muted"
+                    className="flex items-start gap-2.5 text-[13.5px] font-medium text-[#333338]"
                   >
-                    <Check className="mt-0.5 h-4 w-4 text-accent" strokeWidth={2.2} />
+                    <Check className="mt-0.5 h-4 w-4 text-[#6E56CF] shrink-0" strokeWidth={2.5} />
                     {f}
                   </li>
                 ))}
@@ -128,9 +128,9 @@ export const Pricing = () => {
           ))}
         </div>
 
-        <div className="mt-10 text-center text-[13px] text-ink-muted">
+        <div className="mt-10 text-center text-[13.5px] font-medium text-[#4A4A52]">
           Need academic or non-profit pricing?{' '}
-          <Link to="/contact" className="text-ink underline-offset-4 hover:underline">
+          <Link to="/contact" className="text-[#6E56CF] font-bold underline-offset-4 hover:underline">
             Get in touch
           </Link>
           .

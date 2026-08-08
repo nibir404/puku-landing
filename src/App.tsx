@@ -15,6 +15,7 @@ import About from './pages/About';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Download from './pages/Download';
+import AuthPage from './pages/Auth';
 
 import BlogPostDetail from './pages/BlogPostDetail';
 import CaseStudyDetail from './pages/CaseStudyDetail';
@@ -67,6 +68,9 @@ export default function App() {
           {/* <Route path="/careers/:slug" element={<CareersDetail />} /> */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/download" element={<Download />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/signup" element={<AuthPage />} />
+
 
           <Route
             path="*"

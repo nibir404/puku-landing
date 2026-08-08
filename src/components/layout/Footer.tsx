@@ -32,18 +32,19 @@ const columns = [
     ],
   },
   {
-    title: 'Legal',
+    title: 'Account',
     links: [
+      { label: 'Log In', href: '/login' },
+      { label: 'Create Account', href: '/signup' },
       { label: 'Privacy Policy', href: '/about' },
       { label: 'Terms of Service', href: '/about' },
-      { label: 'Security Whitepaper', href: '/solutions/security' },
     ],
   },
 ];
 
 export const Footer = () => {
   return (
-    <footer className="bg-white border-t border-[#E5E5E8] text-[#666666]">
+    <footer className="bg-white border-t border-[#E5E5E8] text-[#4A4A52]">
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-12">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-12">
           {/* Brand col */}
@@ -54,7 +55,7 @@ export const Footer = () => {
               <span className="text-[18px] font-extrabold text-[#0F0F11] font-display">Puku</span>
             </Link>
 
-            <p className="text-[14px] leading-relaxed text-[#666666] max-w-[280px]">
+            <p className="text-[14px] leading-relaxed text-[#4A4A52] max-w-[280px]">
               The autonomous AI software engineer. Building, testing, and shipping code alongside engineering teams worldwide.
             </p>
 
@@ -71,9 +72,9 @@ export const Footer = () => {
                   aria-label={label}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex h-8 w-8 items-center justify-center rounded-[2px] bg-[#FAFAFC] border border-[#E5E5E8] text-[#666666] hover:text-[#6E56CF] hover:border-[#6E56CF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
+                  className="flex h-8 w-8 items-center justify-center rounded-[2px] bg-[#FAFAFC] border border-[#E5E5E8] text-[#0F0F11] hover:text-[#6E56CF] hover:border-[#6E56CF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                 >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-[#0F0F11]">
                     {icon}
                   </svg>
                 </a>
@@ -85,7 +86,7 @@ export const Footer = () => {
           <div className="col-span-2 md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
             {columns.map((col) => (
               <div key={col.title}>
-                <div className="mb-3.5 text-[12px] font-mono font-semibold uppercase tracking-wider text-[#6E56CF]">
+                <div className="mb-3.5 text-[12px] font-mono font-bold uppercase tracking-wider text-[#6E56CF]">
                   {col.title}
                 </div>
                 <ul className="flex flex-col gap-2.5">
@@ -93,7 +94,7 @@ export const Footer = () => {
                     <li key={link.label}>
                       <Link
                         to={link.href}
-                        className="text-[14px] text-[#666666] hover:text-[#6E56CF] transition-colors"
+                        className="text-[14px] font-medium text-[#1A1A1E] hover:text-[#6E56CF] transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -106,10 +107,10 @@ export const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-14 flex flex-col gap-4 border-t border-[#E5E5E8] pt-6 text-[13px] text-[#888888] md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-[#E5E5E8] pt-6 text-[13px] font-medium text-[#1A1A1E] md:flex-row md:items-center md:justify-between">
           <div>© 2026 Puku AI, Inc. All rights reserved.</div>
           <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[#6E56CF] bg-[#F4F2FF] px-3 py-1 rounded-[2px] border border-[#E4DDFE]">
+            <span className="inline-flex items-center gap-2 font-mono text-[12px] text-[#6E56CF] bg-[#F4F2FF] px-3 py-1 rounded-[2px] border border-[#E4DDFE] font-bold">
               <span className="h-2 w-2 rounded-full bg-[#6E56CF] animate-pulse" />
               All Systems Operational
             </span>
@@ -117,9 +118,9 @@ export const Footer = () => {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-[#666666] hover:text-[#6E56CF] transition-colors"
+              className="inline-flex items-center gap-1 font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors"
             >
-              GitHub <ArrowUpRight className="h-3.5 w-3.5" />
+              GitHub <ArrowUpRight className="h-3.5 w-3.5 text-[#0F0F11]" />
             </a>
           </div>
         </div>

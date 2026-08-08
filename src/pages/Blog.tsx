@@ -100,12 +100,12 @@ export default function Blog() {
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="aspect-[5/3] bg-pixel-dots" />
               <div className="p-8 md:p-10">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-accent">{featured.category}</div>
-                <h2 className="mt-3 font-mono text-lg font-bold leading-tight text-ink md:text-xl uppercase tracking-wider">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E56CF]">{featured.category}</div>
+                <h2 className="mt-3 font-mono text-lg font-bold leading-tight text-[#0F0F11] md:text-xl uppercase tracking-wider">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-[14.5px] leading-relaxed text-ink-muted">{featured.excerpt}</p>
-                <div className="mt-6 flex items-center gap-3 text-[12.5px] text-ink-muted">
+                <p className="mt-4 text-[14.5px] leading-relaxed text-[#333338]">{featured.excerpt}</p>
+                <div className="mt-6 flex items-center gap-3 text-[12.5px] font-medium text-[#4A4A52]">
                   <span>{featured.author}</span>
                   <span>·</span>
                   <span>{featured.date}</span>
@@ -125,12 +125,12 @@ export default function Blog() {
               <Link
                 key={p.title}
                 to={p.href}
-                className="group block overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/40 hover:shadow-card"
+                className="group block overflow-hidden rounded-2xl border border-[#E5E5E8] bg-white p-6 transition-all duration-200 hover:border-[#6E56CF]"
               >
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-accent">{p.category}</div>
-                <h3 className="mt-3 font-mono text-sm font-semibold leading-snug text-ink uppercase tracking-wider">{p.title}</h3>
-                <p className="mt-3 text-[13.5px] leading-relaxed text-ink-muted">{p.excerpt}</p>
-                <div className="mt-5 flex items-center gap-2 text-[11.5px] text-ink-muted">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E56CF]">{p.category}</div>
+                <h3 className="mt-3 font-mono text-sm font-bold leading-snug text-[#0F0F11] uppercase tracking-wider">{p.title}</h3>
+                <p className="mt-3 text-[13.5px] leading-relaxed text-[#333338]">{p.excerpt}</p>
+                <div className="mt-5 flex items-center gap-2 text-[12px] font-medium text-[#4A4A52]">
                   <span>{p.author}</span>
                   <span>·</span>
                   <span>{p.readTime}</span>

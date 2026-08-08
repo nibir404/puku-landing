@@ -6,20 +6,63 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 252 82% 61%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 10% 12%;
+    --accent: 252 82% 96%;
+    --accent-foreground: 252 82% 50%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 252 82% 61%;
+    --radius: 0.375rem;
+
     --bg: #FFFFFF;
     --bg-alt: #FAFAFC;
     --surface: #FFFFFF;
-    --border: #E5E5E8;
+    --border-custom: #E5E5E8;
     --ink: #0F0F11;
-    --ink-muted: #666666;
-    --ink-dim: #888888;
-    --accent: #6E56CF;
+    --ink-muted: #1A1A1E;
+    --ink-dim: #333338;
+    --accent-custom: #6E56CF;
     --accent-light: #F4F2FF;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 5.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 5.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 252 82% 61%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 252 82% 20%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 252 82% 61%;
   }
 
   *, *::before, *::after {
     box-sizing: border-box;
-    box-shadow: none;
+    border-color: hsl(var(--border));
   }
 
   html {
@@ -45,9 +88,37 @@
 }
 
 @layer utilities {
+  /* Standardized Section Spacing & Container Rhythm */
+  .section-spacing {
+    @apply py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+
+  /* Standardized CTA & Button Group Gap */
+  .cta-gap-group {
+    @apply flex flex-wrap items-center gap-3.5 sm:gap-4;
+  }
+
+  /* WCAG AAA Muted Text Color (7.1:1 contrast ratio against #FFFFFF) */
+  .text-aaa-muted {
+    color: #4A4A52;
+  }
+
   /* Subtle Violet Text Highlight */
   .text-purple-highlight {
     color: #6E56CF;
+  }
+
+  /* Pure Mobile App Scrollbar Hiding & Touch Optimization */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  button, a {
+    touch-action: manipulation;
   }
 
   /* Utility for neutral grey icon container background */
