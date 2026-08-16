@@ -147,7 +147,7 @@ export default function Chat() {
     <>
       <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace matching Claude Light Mode UI." />
 
-      <div className="h-screen w-screen overflow-hidden flex bg-[#FAF9F5] font-sans text-[#1F1F1E] select-none">
+      <div className="h-screen w-screen overflow-hidden flex bg-[#FFFFFF] font-sans text-[#0F0F11] select-none">
         {/* Left Navigation Drawer */}
         <ChatSidebar
           threads={threads}
@@ -161,9 +161,9 @@ export default function Chat() {
         />
 
         {/* Main Workspace Area */}
-        <div className="flex-1 flex flex-col min-w-0 h-full relative bg-[#FAF9F5]">
+        <div className="flex-1 flex flex-col min-w-0 h-full relative bg-[#FFFFFF]">
           {/* Top Mobile Bar */}
-          <div className="lg:hidden h-12 px-4 border-b border-[#E2E0D8] flex items-center justify-between bg-[#FAF9F5] shrink-0">
+          <div className="lg:hidden h-12 px-4 border-b border-[#E5E5E8] flex items-center justify-between bg-[#FAFAFC] shrink-0">
             <button
               onClick={() => setIsSidebarOpen(true)}
               className="p-1.5 text-[#1F1F1E] hover:bg-[#F0EEE6] rounded-md border border-[#E2E0D8] bg-white flex items-center gap-1.5 text-xs font-semibold"

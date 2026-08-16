@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowUp,
   Plus,
-  Mic,
-  AudioWaveform,
   ChevronDown,
-  Bot,
   Sparkles,
   Code2,
   ShieldAlert,
@@ -71,31 +68,35 @@ export const WebChatLandingSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-[#FAF9F5] border-y border-[#E2E0D8] select-none font-sans">
+    <section className="py-16 px-4 bg-[#FFFFFF] border-y border-[#E5E5E8] select-none font-sans">
       <div className="max-w-4xl mx-auto space-y-8 text-center">
-        {/* Section Header */}
+        {/* Section Header with Official Puku Logo Mark */}
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF0EC] border border-[#DA7756]/20 text-[#DA7756] text-xs font-bold font-mono">
-            <span>✳️</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[2px] bg-[#F4F2FF] border border-[#6E56CF]/30 text-[#6E56CF] text-xs font-bold font-mono">
+            <Sparkles className="h-3.5 w-3.5" />
             <span>PUKU WEB CHAT WORKSPACE</span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#1F1F1E] tracking-tight">
-            Try Puku Web Chat right here
-          </h2>
-          <p className="text-sm sm:text-base text-[#66645E] max-w-xl mx-auto font-normal leading-relaxed">
+          <div className="flex items-center justify-center gap-3">
+            <img src="/puku-mark.svg" alt="Puku Logo" className="h-8 w-auto object-contain" />
+            <h2 className="font-puku font-brand text-3xl sm:text-4xl font-extrabold text-[#0F0F11] tracking-tight">
+              Try Puku Web Chat right here
+            </h2>
+          </div>
+
+          <p className="text-sm sm:text-base text-[#4A4A52] max-w-xl mx-auto font-normal leading-relaxed">
             Type your coding prompt below to launch an autonomous AI engineering workspace directly in your browser.
           </p>
         </div>
 
-        {/* Dedicated Interactive Claude Light Mode Prompt Input Box */}
+        {/* Dedicated Interactive Prompt Input Box */}
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto bg-white border border-[#E2E0D8] rounded-2xl shadow-md p-4 space-y-4 text-left focus-within:border-[#DA7756] focus-within:ring-2 focus-within:ring-[#DA7756]/15 transition-all relative"
+          className="max-w-2xl mx-auto bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] shadow-none p-4 space-y-4 text-left focus-within:border-[#6E56CF] focus-within:ring-2 focus-within:ring-[#6E56CF]/15 transition-all relative"
         >
-          {/* Top Right Green Robot Icon Badge */}
-          <div className="absolute top-4 right-4 h-6 w-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs">
-            <Bot className="h-3.5 w-3.5 text-white" />
+          {/* Top Right Logo Badge */}
+          <div className="absolute top-4 right-4 h-6 w-6 rounded-[2px] bg-[#6E56CF] text-white flex items-center justify-center shadow-none">
+            <Sparkles className="h-3.5 w-3.5 text-white" />
           </div>
 
           {/* Text Area */}
@@ -105,31 +106,31 @@ export const WebChatLandingSection = () => {
             onChange={(e) => setPromptInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type / for skills or describe a React component..."
-            className="w-full resize-none bg-transparent border-0 text-sm text-[#1F1F1E] placeholder-[#88857C] focus:outline-none font-normal leading-relaxed pr-10"
+            className="w-full resize-none bg-transparent border-0 text-sm text-[#0F0F11] placeholder-[#4A4A52] focus:outline-none font-normal leading-relaxed pr-10"
           />
 
-          {/* Bottom Toolbar: + [ Chat | Cowork ] ... Sonnet 5 High ∨ 🎤 🎙️ */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#F2F0E8]">
+          {/* Bottom Toolbar: + [ Chat | Cowork ] ... Sonnet 5 High ∨ Send */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#E5E5E8]">
             {/* Left Controls: + Button & Mode Pill Switcher */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 title="Add attachment or skill"
-                className="p-1.5 text-[#66645E] hover:text-[#1F1F1E] hover:bg-[#FAF9F5] rounded-lg transition-colors"
+                className="p-1.5 text-[#4A4A52] hover:text-[#6E56CF] hover:bg-white rounded-[2px] transition-colors"
               >
                 <Plus className="h-4 w-4" />
               </button>
 
               {/* Pill Toggle: [ Chat | Cowork ] */}
-              <div className="p-1 bg-[#F0EEE6] rounded-xl flex items-center gap-1 text-xs font-semibold">
+              <div className="p-1 bg-[#E5E5E8]/60 rounded-[2px] flex items-center gap-1 text-xs font-semibold">
                 <button
                   type="button"
                   onClick={() => setActiveMode('Chat')}
                   className={cn(
-                    'px-3 py-1 rounded-lg transition-all',
+                    'px-3 py-1 rounded-[2px] transition-all',
                     activeMode === 'Chat'
-                      ? 'bg-white text-[#1F1F1E] shadow-xs font-bold'
-                      : 'text-[#66645E] hover:text-[#1F1F1E]'
+                      ? 'bg-white text-[#6E56CF] shadow-none font-bold'
+                      : 'text-[#4A4A52] hover:text-[#0F0F11]'
                   )}
                 >
                   Chat
@@ -139,10 +140,10 @@ export const WebChatLandingSection = () => {
                   type="button"
                   onClick={() => setActiveMode('Cowork')}
                   className={cn(
-                    'px-3 py-1 rounded-lg transition-all',
+                    'px-3 py-1 rounded-[2px] transition-all',
                     activeMode === 'Cowork'
-                      ? 'bg-white text-[#1F1F1E] shadow-xs font-bold'
-                      : 'text-[#66645E] hover:text-[#1F1F1E]'
+                      ? 'bg-white text-[#6E56CF] shadow-none font-bold'
+                      : 'text-[#4A4A52] hover:text-[#0F0F11]'
                   )}
                 >
                   Cowork
@@ -156,14 +157,14 @@ export const WebChatLandingSection = () => {
                 <button
                   type="button"
                   onClick={() => setModelMenuOpen(!modelMenuOpen)}
-                  className="flex items-center gap-1 text-xs font-semibold text-[#1F1F1E] hover:text-[#DA7756] transition-colors"
+                  className="flex items-center gap-1 text-xs font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors"
                 >
                   <span>{activeModel.name}</span>
-                  <ChevronDown className="h-3.5 w-3.5 text-[#66645E]" />
+                  <ChevronDown className="h-3.5 w-3.5 text-[#4A4A52]" />
                 </button>
 
                 {modelMenuOpen && (
-                  <div className="absolute bottom-full right-0 mb-1.5 w-56 bg-white border border-[#E2E0D8] rounded-xl shadow-xl p-1.5 z-50 space-y-1">
+                  <div className="absolute bottom-full right-0 mb-1.5 w-56 bg-white border border-[#E5E5E8] rounded-[2px] shadow-none p-1.5 z-50 space-y-1">
                     {MODEL_OPTIONS.map((m) => (
                       <button
                         key={m.id}
@@ -173,14 +174,14 @@ export const WebChatLandingSection = () => {
                           setModelMenuOpen(false);
                         }}
                         className={cn(
-                          'w-full text-left p-2 rounded-lg text-xs transition-colors flex flex-col',
+                          'w-full text-left p-2 rounded-[2px] text-xs transition-colors flex flex-col',
                           m.id === activeModelId
-                            ? 'bg-[#FAF9F5] text-[#DA7756] font-bold'
-                            : 'hover:bg-[#F5F3ED] text-[#1F1F1E]'
+                            ? 'bg-[#F4F2FF] text-[#6E56CF] font-bold'
+                            : 'hover:bg-[#FAFAFC] text-[#0F0F11]'
                         )}
                       >
                         <span>{m.name}</span>
-                        <span className="text-[10.5px] text-[#66645E] font-normal">{m.description}</span>
+                        <span className="text-[10.5px] text-[#4A4A52] font-normal">{m.description}</span>
                       </button>
                     ))}
                   </div>
@@ -189,7 +190,7 @@ export const WebChatLandingSection = () => {
 
               <button
                 type="submit"
-                className="h-8 w-8 rounded-full bg-[#DA7756] hover:bg-[#C26242] text-white flex items-center justify-center transition-colors shadow-xs"
+                className="h-8 w-8 rounded-[2px] bg-[#6E56CF] hover:bg-[#5B42F3] text-white flex items-center justify-center transition-colors shadow-none"
                 aria-label="Launch Web Chat"
               >
                 <ArrowUp className="h-4 w-4" />
@@ -206,16 +207,16 @@ export const WebChatLandingSection = () => {
               <button
                 key={i}
                 onClick={() => handleLaunchChat(card.prompt)}
-                className="p-3 bg-white border border-[#E2E0D8] hover:border-[#DA7756] rounded-xl transition-all group hover:shadow-xs flex items-start gap-3"
+                className="p-3 bg-[#FAFAFC] border border-[#E5E5E8] hover:border-[#6E56CF] hover:bg-[#F4F2FF] rounded-[2px] transition-all group shadow-none flex items-start gap-3"
               >
-                <div className="p-2 rounded-lg bg-[#FAF9F5] border border-[#E2E0D8] group-hover:bg-[#FAF0EC] group-hover:border-[#DA7756]/30 text-[#DA7756] shrink-0 transition-colors">
+                <div className="p-2 rounded-[2px] bg-white border border-[#E5E5E8] group-hover:border-[#6E56CF]/40 text-[#6E56CF] shrink-0 transition-colors">
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xs font-bold text-[#1F1F1E] group-hover:text-[#DA7756] transition-colors truncate">
+                  <div className="text-xs font-bold text-[#0F0F11] group-hover:text-[#6E56CF] transition-colors truncate">
                     {card.title}
                   </div>
-                  <div className="text-[11px] text-[#66645E] font-normal truncate mt-0.5">
+                  <div className="text-[11px] text-[#4A4A52] font-normal truncate mt-0.5">
                     {card.desc}
                   </div>
                 </div>
