@@ -5,6 +5,7 @@ const columns = [
   {
     title: 'Products',
     links: [
+      { label: 'Puku Web Chat', href: '/chat' },
       { label: 'Puku Editor', href: '/products/editor' },
       { label: 'Puku CLI', href: '/products/cli' },
       { label: 'Puku Cloud', href: '/products/cloud' },

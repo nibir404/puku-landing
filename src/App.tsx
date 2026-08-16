@@ -28,6 +28,8 @@ import Design from './pages/products/Design';
 import Cowork from './pages/products/Cowork';
 import AppProduct from './pages/products/App';
 
+import Chat from './pages/Chat';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -37,6 +39,20 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isChatRoute = location.pathname === '/chat';
+
+  if (isChatRoute) {
+    return (
+      <>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/chat" element={<Chat />} />
+        </Routes>
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen relative flex flex-col justify-between">
       <ScrollToTop />
@@ -44,6 +60,7 @@ export default function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/chat" element={<Chat />} />
 
           <Route path="/products/editor" element={<Editor />} />
           <Route path="/products/cli" element={<CLI />} />

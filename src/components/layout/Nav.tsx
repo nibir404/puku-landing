@@ -117,6 +117,9 @@ export const Nav = () => {
             )}
           </div>
 
+          <NavLink to="/chat" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
+            Web Chat
+          </NavLink>
           <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Enterprise
           </NavLink>
@@ -191,6 +194,7 @@ export const Nav = () => {
               </div>
 
               <div className="pt-4 border-t border-[#E5E5E8] space-y-1">
+                <NavLink to="/chat" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Web Chat</NavLink>
                 <NavLink to="/docs" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Documentation</NavLink>
                 <NavLink to="/enterprise" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Enterprise</NavLink>
                 <NavLink to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Pricing</NavLink>
