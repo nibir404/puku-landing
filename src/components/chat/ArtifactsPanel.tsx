@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import {
   X,
-  Copy,
   Check,
-  Download,
-  Code,
-  Eye,
-  Terminal,
-  ExternalLink,
+  ChevronDown,
+  Globe,
+  FileCode,
   Layers,
-  Maximize2,
+  Sparkles,
+  BarChart3,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Artifact } from '@/lib/chatStore';
@@ -20,132 +18,113 @@ interface ArtifactsPanelProps {
 }
 
 export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
-  const [activeTab, setActiveTab] = useState<'preview' | 'code' | 'console'>('preview');
-  const [copied, setCopied] = useState(false);
-
-  if (!artifact) return null;
-
-  const copyCode = () => {
-    navigator.clipboard.writeText(artifact.code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const downloadFile = () => {
-    const blob = new Blob([artifact.code], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = artifact.title;
-    link.click();
-    URL.revokeObjectURL(url);
-  };
+  const [progressOpen, setProgressOpen] = useState(true);
+  const [outputsOpen, setOutputsOpen] = useState(true);
+  const [contextOpen, setContextOpen] = useState(true);
 
   return (
-    <div className="w-full lg:w-[50%] xl:w-[52%] h-full bg-white border-l border-[#E2E0D8] flex flex-col justify-between shrink-0 z-30 select-none shadow-2xl font-sans">
-      {/* Top Panel Header */}
-      <div className="h-14 px-4 border-b border-[#E2E0D8] flex items-center justify-between bg-[#FAF9F5] shrink-0">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="p-1.5 rounded-lg bg-[#FAF0EC] border border-[#DA7756]/20 text-[#DA7756] shrink-0">
-            <Code className="h-4 w-4" />
-          </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
-              <h3 className="text-xs font-bold text-[#1F1F1E] truncate">{artifact.title}</h3>
-              <span className="text-[9.5px] font-mono text-[#66645E] bg-[#EAE7DC] px-1.5 py-0.2 rounded font-semibold">
-                v{artifact.version || 1}
-              </span>
-            </div>
-            <span className="text-[10px] font-mono text-[#DA7756] uppercase font-bold">
-              {artifact.type} • {artifact.language}
-            </span>
-          </div>
-        </div>
-
-        {/* Tab Switcher & Action Tools */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-white border border-[#E2E0D8] p-0.5 rounded-lg">
-            <button
-              onClick={() => setActiveTab('preview')}
-              className={cn(
-                'px-2.5 py-1 text-xs font-semibold rounded-md transition-colors flex items-center gap-1',
-                activeTab === 'preview'
-                  ? 'bg-[#1F1F1E] text-white'
-                  : 'text-[#66645E] hover:text-[#1F1F1E]'
-              )}
-            >
-              <Eye className="h-3 w-3" />
-              <span>Preview</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('code')}
-              className={cn(
-                'px-2.5 py-1 text-xs font-semibold rounded-md transition-colors flex items-center gap-1',
-                activeTab === 'code'
-                  ? 'bg-[#1F1F1E] text-white'
-                  : 'text-[#66645E] hover:text-[#1F1F1E]'
-              )}
-            >
-              <Code className="h-3 w-3" />
-              <span>Code</span>
-            </button>
-          </div>
-
-          <button
-            onClick={copyCode}
-            title="Copy code"
-            className="p-1.5 text-[#66645E] hover:text-[#DA7756] rounded-md border border-[#E2E0D8] bg-white transition-colors"
-          >
-            {copied ? <Check className="h-3.5 w-3.5 text-[#DA7756]" /> : <Copy className="h-3.5 w-3.5" />}
-          </button>
-
-          <button
-            onClick={downloadFile}
-            title="Download file"
-            className="p-1.5 text-[#66645E] hover:text-[#DA7756] rounded-md border border-[#E2E0D8] bg-white transition-colors"
-          >
-            <Download className="h-3.5 w-3.5" />
-          </button>
-
-          <button
-            onClick={onClose}
-            title="Close artifact inspector"
-            className="p-1.5 text-[#66645E] hover:text-[#1F1F1E] rounded-md hover:bg-[#EAE7DC] transition-colors ml-1"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
+    <div className="w-[300px] sm:w-[320px] h-full bg-[#FAF9F5] border-l border-[#E2E0D8] flex flex-col justify-between shrink-0 z-30 select-none font-sans text-[#1F1F1E]">
+      {/* Top Header */}
+      <div className="p-3.5 border-b border-[#E2E0D8] flex items-center justify-between">
+        <span className="text-xs font-bold text-[#1F1F1E]">Task Memory & Context</span>
+        <button
+          onClick={onClose}
+          className="p-1 text-[#66645E] hover:text-[#1F1F1E] rounded hover:bg-[#F0EEE6]"
+        >
+          <X className="h-4 w-4" />
+        </button>
       </div>
 
-      {/* Main Viewer Area */}
-      <div className="flex-1 overflow-y-auto min-h-0 bg-[#171715] text-[#E5E5E8] p-4">
-        {activeTab === 'preview' ? (
-          artifact.previewHtml ? (
-            <div
-              className="w-full h-full bg-[#FAF9F5] text-[#1F1F1E] rounded-xl p-3 overflow-auto"
-              dangerouslySetInnerHTML={{ __html: artifact.previewHtml }}
-            />
-          ) : (
-            <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-3 text-[#88857C]">
-              <Layers className="h-8 w-8 text-[#DA7756]" />
-              <div className="text-sm font-serif font-bold text-white">Interactive Component Rendered</div>
-              <p className="text-xs max-w-xs">
-                Code artifact is compiled. Switch to the <strong>Code</strong> tab to inspect the source code.
+      {/* Accordions Matching Screenshot 2: Progress, Outputs, Context */}
+      <div className="flex-1 overflow-y-auto p-3.5 space-y-4 text-xs font-medium">
+        {/* Progress Accordion matching Screenshot 2 */}
+        <div className="space-y-2 border-b border-[#E2E0D8] pb-3.5">
+          <button
+            onClick={() => setProgressOpen(!progressOpen)}
+            className="w-full flex items-center justify-between font-bold text-[#1F1F1E]"
+          >
+            <div className="flex items-center gap-1.5">
+              <span>Progress</span>
+              <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', !progressOpen && '-rotate-90')} />
+            </div>
+          </button>
+
+          {progressOpen && (
+            <div className="space-y-2 pt-1">
+              <div className="flex items-center gap-2 text-emerald-600 font-mono text-sm">
+                <div className="h-5 w-5 rounded-full border border-emerald-600 flex items-center justify-center text-[10px] font-bold">
+                  ✓
+                </div>
+                <span>—</span>
+                <div className="h-5 w-5 rounded-full border border-emerald-600 flex items-center justify-center text-[10px] font-bold">
+                  ✓
+                </div>
+                <span>—</span>
+                <div className="h-5 w-5 rounded-full border border-neutral-300 text-neutral-400 flex items-center justify-center text-[10px]" />
+              </div>
+              <p className="text-[11px] text-[#66645E] font-normal leading-relaxed">
+                See task progress for longer tasks.
               </p>
             </div>
-          )
-        ) : activeTab === 'code' ? (
-          <pre className="font-mono text-xs leading-relaxed text-[#E5E5E8] whitespace-pre-wrap overflow-x-auto">
-            <code>{artifact.code}</code>
-          </pre>
-        ) : (
-          <div className="font-mono text-xs text-emerald-400 space-y-1">
-            <div>[Puku Fleet] Artifact compiled successfully.</div>
-            <div>[Puku Fleet] Memory: 14.2MB • Latency: 120ms</div>
-            <div>[Puku Fleet] Zero errors or warnings detected.</div>
-          </div>
-        )}
+          )}
+        </div>
+
+        {/* Outputs Accordion matching Screenshot 2 */}
+        <div className="space-y-2 border-b border-[#E2E0D8] pb-3.5">
+          <button
+            onClick={() => setOutputsOpen(!outputsOpen)}
+            className="w-full flex items-center justify-between font-bold text-[#1F1F1E]"
+          >
+            <div className="flex items-center gap-1.5">
+              <span>Outputs</span>
+              <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', !outputsOpen && '-rotate-90')} />
+            </div>
+          </button>
+
+          {outputsOpen && (
+            <div className="space-y-2 pt-1">
+              {artifact ? (
+                <div className="p-3 bg-white border border-[#E2E0D8] rounded-xl space-y-1">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#1F1F1E]">
+                    <FileCode className="h-4 w-4 text-[#DA7756]" />
+                    <span className="truncate">{artifact.title}</span>
+                  </div>
+                  <div className="text-[10.5px] font-mono text-[#66645E]">
+                    {artifact.type} • {artifact.language}
+                  </div>
+                </div>
+              ) : (
+                <div className="p-3 bg-white border border-[#E2E0D8] rounded-xl flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4 text-[#66645E]" />
+                  <span className="text-[11px] text-[#66645E]">View and open files created during this task.</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Context Accordion matching Screenshot 2 */}
+        <div className="space-y-2">
+          <button
+            onClick={() => setContextOpen(!contextOpen)}
+            className="w-full flex items-center justify-between font-bold text-[#1F1F1E]"
+          >
+            <div className="flex items-center gap-1.5">
+              <span>Context</span>
+              <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', !contextOpen && '-rotate-90')} />
+            </div>
+          </button>
+
+          {contextOpen && (
+            <div className="space-y-2 pt-1">
+              <div className="text-[11px] text-[#66645E]">Connectors</div>
+              <div className="inline-flex items-center gap-1.5 bg-white border border-[#E2E0D8] px-2.5 py-1 rounded-xl text-xs text-[#1F1F1E] font-semibold">
+                <Globe className="h-3.5 w-3.5 text-[#66645E]" />
+                <span>Web Search</span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

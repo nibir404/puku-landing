@@ -1,4 +1,4 @@
-export type ModelId = 'puku-3.5-sonnet' | 'puku-3.0-opus' | 'puku-3.5-haiku' | 'puku-swarm-fleet';
+export type ModelId = 'sonnet-5-high' | 'opus-4.8-high' | 'fast-agent';
 
 export type ModelOption = {
   id: ModelId;
@@ -10,39 +10,32 @@ export type ModelOption = {
 
 export const MODEL_OPTIONS: ModelOption[] = [
   {
-    id: 'puku-3.5-sonnet',
-    name: 'Puku 3.5 Sonnet',
-    badge: 'Most Intelligent',
-    description: 'Optimal balance of reasoning, speed, and coding capabilities.',
-    tag: '3.5 Sonnet',
+    id: 'sonnet-5-high',
+    name: 'Sonnet 5 High',
+    badge: 'Recommended',
+    description: 'Optimal balance of deep reasoning, speed, and coding capabilities.',
+    tag: 'Sonnet 5 High',
   },
   {
-    id: 'puku-3.0-opus',
-    name: 'Puku 3.0 Opus',
-    badge: 'Deep Reasoning',
-    description: 'Maximum intelligence for complex architecture & security audits.',
-    tag: '3.0 Opus',
+    id: 'opus-4.8-high',
+    name: 'Opus 4.8 High',
+    badge: 'Maximum Reasoning',
+    description: 'Highest intelligence for complex architecture & multi-file coding.',
+    tag: 'Opus 4.8 High',
   },
   {
-    id: 'puku-3.5-haiku',
-    name: 'Puku 3.5 Haiku',
-    badge: 'Fast & Light',
-    description: 'Ultra-fast response model for quick edits & terminal scripts.',
-    tag: '3.5 Haiku',
-  },
-  {
-    id: 'puku-swarm-fleet',
-    name: 'Puku Swarm Fleet',
-    badge: 'Multi-Agent',
-    description: 'Parallel multi-agent cloud execution fleet for monorepos.',
-    tag: 'Swarm Fleet',
+    id: 'fast-agent',
+    name: 'Fast Agent',
+    badge: 'Ultra Fast',
+    description: 'Lightning-fast model for quick edits and terminal scripts.',
+    tag: 'Fast Agent',
   },
 ];
 
 export type Artifact = {
   id: string;
   title: string;
-  type: 'code' | 'component' | 'markdown' | 'svg';
+  type: 'code' | 'component' | 'markdown' | 'document';
   language: string;
   code: string;
   previewHtml?: string;
@@ -56,200 +49,122 @@ export type Message = {
   timestamp: string;
   artifact?: Artifact;
   modelUsed?: string;
-};
-
-export type ProjectSpace = {
-  id: string;
-  name: string;
-  description: string;
-  iconName: string;
+  sources?: { title: string; url: string }[];
 };
 
 export type Thread = {
   id: string;
   title: string;
   updatedAt: string;
-  category: 'Today' | 'Yesterday' | 'Previous 7 Days';
+  category: 'Chats and tasks';
   modelId: ModelId;
   messages: Message[];
   starred?: boolean;
-  projectId?: string;
+  activeMode?: 'Chat' | 'Cowork';
 };
-
-export const MOCK_PROJECTS: ProjectSpace[] = [
-  { id: 'proj-1', name: 'Web Analytics App', description: 'React dashboard & telemetry', iconName: 'BarChart' },
-  { id: 'proj-2', name: 'TypeScript Monorepo', description: 'Shared types & API clients', iconName: 'FolderGit2' },
-];
 
 export const INITIAL_THREADS: Thread[] = [
   {
-    id: 'thread-1',
-    title: 'React Analytics Dashboard Component',
+    id: 'thread-puku-info',
+    title: 'Puku information',
     updatedAt: '10 mins ago',
-    category: 'Today',
-    modelId: 'puku-3.5-sonnet',
+    category: 'Chats and tasks',
+    modelId: 'sonnet-5-high',
     starred: true,
-    projectId: 'proj-1',
+    activeMode: 'Chat',
     messages: [
       {
-        id: 'msg-1',
+        id: 'msg-puku-1',
         role: 'user',
-        content: 'Create a full React Analytics Dashboard UI component with stat metrics, interactive charts, and Tailwind CSS styling.',
-        timestamp: '10:40 AM',
+        content: 'Tell me about Puku and whatcommon uses or classifications exist for it.',
+        timestamp: '11:20 AM',
       },
       {
-        id: 'msg-2',
+        id: 'msg-puku-2',
         role: 'assistant',
-        content: `I've created a complete **React Analytics Dashboard Component** with high-contrast metrics cards, live activity feeds, and interactive status badges.
+        content: `A few common uses of the name: there's a Puku language (a minor language classification), a "Puku" entry in some animated wiki fandoms, and Puku is also the name of a Go code-generation tool used with the Please build system on GitHub. If you meant one of those instead of the antelope, let me know and I can dig into that specifically.
 
-Click **Click to open artifact ↗** below to view the interactive live preview or inspect the full source code side-by-side.`,
-        timestamp: '10:41 AM',
-        modelUsed: 'Puku 3.5 Sonnet',
+Sources:
+• Puku - Wikipedia
+• Puku - World Land Trust
+• Puku - Facts, Diet, Habitat & Pictures on Animalia.bio
+• Kobus vardonii (puku) - Animal Diversity Web
+• Puku (Kobus vardonii) - Quick facts - Ultimate Ungulate
+• GitHub - please-build/puku`,
+        timestamp: '11:21 AM',
+        modelUsed: 'Sonnet 5 High',
+        sources: [
+          { title: 'Puku - Wikipedia', url: '#' },
+          { title: 'Puku - World Land Trust', url: '#' },
+          { title: 'Puku - Facts, Diet, Habitat & Pictures on Animalia.bio', url: '#' },
+          { title: 'Kobus vardonii (puku) - Animal Diversity Web', url: '#' },
+          { title: 'Puku (Kobus vardonii) - Quick facts - Ultimate Ungulate', url: '#' },
+          { title: 'GitHub - please-build/puku', url: '#' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'thread-medistick',
+    title: 'Medistick content creation',
+    updatedAt: '1 hour ago',
+    category: 'Chats and tasks',
+    modelId: 'opus-4.8-high',
+    activeMode: 'Chat',
+    messages: [
+      {
+        id: 'msg-med-1',
+        role: 'user',
+        content: 'i want a single product page where all product will be listed so i need the body and heading for this specific page',
+        timestamp: '10:14 AM',
+      },
+      {
+        id: 'msg-med-2',
+        role: 'assistant',
+        content: `You already have that page — it's the Products overview I built, which lists all 8 products on one page. You just need the heading and body text for it, pulled out cleanly. Here it is:
+
+Page heading (hero)
+Tag: THE MEDISTACK PLATFORM
+Heading: One Platform for Your Whole Practice
+Body: Prescriptions, records, scheduling, and patient care — built to work together, not scattered across separate apps.
+
+The 8 products (heading + body for each card):
+Prescription Builder — The daily workhorse, where most doctors spend their time.`,
+        timestamp: '10:15 AM',
+        modelUsed: 'Opus 4.8 High',
         artifact: {
-          id: 'art-dashboard',
-          title: 'AnalyticsDashboard.tsx',
-          type: 'component',
-          language: 'tsx',
+          id: 'art-medistack',
+          title: 'Medistack product pages final',
+          type: 'document',
+          language: 'markdown',
           version: 1,
-          code: `import React, { useState } from 'react';
-import { Activity, ArrowUpRight, DollarSign, Users, CheckCircle2 } from 'lucide-react';
-
-export default function AnalyticsDashboard() {
-  const [timeRange, setTimeRange] = useState('7d');
-
-  const stats = [
-    { title: 'Total Revenue', value: '$48,294.00', change: '+14.2%', icon: DollarSign },
-    { title: 'Active Agents', value: '1,284', change: '+28.4%', icon: Users },
-    { title: 'Cloud Executions', value: '94,102', change: '+8.1%', icon: Activity },
-    { title: 'Pass Rate', value: '99.94%', change: '+0.04%', icon: CheckCircle2 },
-  ];
-
-  return (
-    <div className="p-6 bg-[#FAF9F5] border border-[#E2E0D8] rounded-2xl font-sans max-w-4xl mx-auto space-y-6">
-      <div className="flex items-center justify-between border-b border-[#E2E0D8] pb-4">
-        <div>
-          <h2 className="text-xl font-serif font-semibold text-[#1F1F1E]">Telemetry & Analytics</h2>
-          <p className="text-xs text-[#66645E] mt-0.5">Real-time Puku Cloud Fleet performance telemetry.</p>
-        </div>
-        <div className="flex items-center gap-1.5 bg-white border border-[#E2E0D8] p-1 rounded-lg">
-          {['24h', '7d', '30d'].map((r) => (
-            <button
-              key={r}
-              onClick={() => setTimeRange(r)}
-              className={\`px-2.5 py-1 text-xs font-medium rounded-md transition-all \${
-                timeRange === r ? 'bg-[#1F1F1E] text-white' : 'text-[#66645E] hover:text-[#1F1F1E]'
-              }\`}
-            >
-              {r}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <div key={i} className="p-4 bg-white border border-[#E2E0D8] rounded-xl space-y-2">
-              <div className="flex items-center justify-between text-xs text-[#66645E]">
-                <span>{s.title}</span>
-                <Icon className="h-4 w-4 text-[#DA7756]" />
-              </div>
-              <div className="text-2xl font-extrabold text-[#1F1F1E] tracking-tight">{s.value}</div>
-              <div className="text-xs font-bold text-emerald-600 flex items-center gap-0.5">
-                <ArrowUpRight className="h-3 w-3" /> {s.change}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}`,
-          previewHtml: `
-            <div style="font-family: serif; padding: 24px; background: #FAF9F5; border: 1px solid #E2E0D8; border-radius: 16px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E0D8; padding-bottom: 16px; margin-bottom: 20px;">
-                <div>
-                  <h3 style="margin: 0; font-size: 20px; color: #1F1F1E; font-weight: 600;">Puku System Telemetry</h3>
-                  <p style="margin: 4px 0 0 0; font-size: 12px; color: #66645E;">Live Puku Cloud Fleet telemetry</p>
-                </div>
-                <span style="background: #DA7756; color: white; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 6px;">Live 7d</span>
-              </div>
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                <div style="background: white; padding: 16px; border: 1px solid #E2E0D8; border-radius: 12px;">
-                  <div style="font-size: 11px; color: #66645E; font-weight: 600;">TOTAL REVENUE</div>
-                  <div style="font-size: 22px; font-weight: 800; color: #1F1F1E; margin-top: 4px;">$48,294.00</div>
-                  <div style="font-size: 11px; color: #16a34a; font-weight: bold; margin-top: 4px;">↑ +14.2%</div>
-                </div>
-                <div style="background: white; padding: 16px; border: 1px solid #E2E0D8; border-radius: 12px;">
-                  <div style="font-size: 11px; color: #66645E; font-weight: 600;">ACTIVE AGENTS</div>
-                  <div style="font-size: 22px; font-weight: 800; color: #1F1F1E; margin-top: 4px;">1,284</div>
-                  <div style="font-size: 11px; color: #16a34a; font-weight: bold; margin-top: 4px;">↑ +28.4%</div>
-                </div>
-              </div>
-            </div>
-          `,
+          code: `# THE MEDISTACK PLATFORM\n## One Platform for Your Whole Practice\nPrescriptions, records, scheduling, and patient care — built to work together.`,
         },
       },
     ],
   },
   {
-    id: 'thread-2',
-    title: 'TypeScript Monorepo Type Refactor',
-    updatedAt: '2 hours ago',
-    category: 'Today',
-    modelId: 'puku-3.0-opus',
-    messages: [
-      {
-        id: 'msg-3',
-        role: 'user',
-        content: 'Refactor our TypeScript workspace types to enforce strict discriminated unions across API payloads.',
-        timestamp: '08:15 AM',
-      },
-      {
-        id: 'msg-4',
-        role: 'assistant',
-        content: 'Here is the refactored strict type architecture with type guard utilities and exhaustive matching.',
-        timestamp: '08:16 AM',
-        modelUsed: 'Puku 3.0 Opus',
-        artifact: {
-          id: 'art-types',
-          title: 'types.ts',
-          type: 'code',
-          language: 'typescript',
-          version: 1,
-          code: `export type ApiResponse<T> =
-  | { status: 'success'; data: T; timestamp: number }
-  | { status: 'error'; code: string; message: string }
-  | { status: 'loading'; progressPercentage: number };
-
-export function isSuccess<T>(res: ApiResponse<T>): res is { status: 'success'; data: T; timestamp: number } {
-  return res.status === 'success';
-}`,
-        },
-      },
-    ],
-  },
-  {
-    id: 'thread-3',
-    title: 'WCAG AAA Accessibility Audit',
+    id: 'thread-betopia-brand',
+    title: 'Betopia Group brand identity separation',
     updatedAt: 'Yesterday',
-    category: 'Yesterday',
-    modelId: 'puku-3.5-sonnet',
-    messages: [
-      {
-        id: 'msg-5',
-        role: 'user',
-        content: 'Audit our landing page buttons and navigation bar for WCAG 2.1 & 2.2 AAA accessibility compliance.',
-        timestamp: 'Yesterday',
-      },
-      {
-        id: 'msg-6',
-        role: 'assistant',
-        content: 'Completed WCAG AAA accessibility audit. All interactive elements satisfy minimum contrast (>7:1) and touch target size (>=44px).',
-        timestamp: 'Yesterday',
-        modelUsed: 'Puku 3.5 Sonnet',
-      },
-    ],
+    category: 'Chats and tasks',
+    modelId: 'sonnet-5-high',
+    messages: [],
+  },
+  {
+    id: 'thread-no-content',
+    title: 'No content provided',
+    updatedAt: 'Yesterday',
+    category: 'Chats and tasks',
+    modelId: 'sonnet-5-high',
+    messages: [],
+  },
+  {
+    id: 'thread-design',
+    title: 'Design',
+    updatedAt: '2 days ago',
+    category: 'Chats and tasks',
+    modelId: 'sonnet-5-high',
+    messages: [],
   },
 ];

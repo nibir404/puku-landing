@@ -77,17 +77,16 @@ export const Hero = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 w-full mx-auto px-4 sm:px-0"
         >
           <a
-            href="/signup"
+            href="/chat"
             className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
-            Get Started
+            Open Web Workspace ↗
           </a>
           <a
-            href="#workflow"
-            className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center gap-3 bg-[#F3F3F5] border border-[#E5E5E8] hover:bg-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            href="/signup"
+            className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center gap-2 bg-[#F3F3F5] border border-[#E5E5E8] hover:bg-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
-            <Play className="h-4 w-4 fill-current shrink-0" />
-            <span>See It in Action</span>
+            <span>Get Started</span>
           </a>
         </motion.div>
 

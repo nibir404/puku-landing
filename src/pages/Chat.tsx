@@ -3,7 +3,6 @@ import { SEO } from '@/components/layout/SEO';
 import { ChatSidebar } from '@/components/chat/ChatSidebar';
 import { ChatWelcome } from '@/components/chat/ChatWelcome';
 import { ChatMessageFeed } from '@/components/chat/ChatMessageFeed';
-import { ChatInputBox } from '@/components/chat/ChatInputBox';
 import { ArtifactsPanel } from '@/components/chat/ArtifactsPanel';
 import {
   Thread,
@@ -13,14 +12,15 @@ import {
   INITIAL_THREADS,
   MODEL_OPTIONS,
 } from '@/lib/chatStore';
-import { PanelLeft, Bot } from 'lucide-react';
+import { PanelLeft } from 'lucide-react';
 
 export default function Chat() {
   const [threads, setThreads] = useState<Thread[]>(INITIAL_THREADS);
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
-  const [activeModelId, setActiveModelId] = useState<ModelId>('puku-3.5-sonnet');
+  const [activeModelId, setActiveModelId] = useState<ModelId>('sonnet-5-high');
   const [activeArtifact, setActiveArtifact] = useState<Artifact | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const activeThread = threads.find((t) => t.id === activeThreadId) || null;
@@ -47,17 +47,18 @@ export default function Chat() {
     }
   };
 
-  const handleSendMessage = (userText: string) => {
+  const handleSendMessage = (userText: string, mode: 'Chat' | 'Cowork' = 'Chat') => {
     let currentThreadId = activeThreadId;
     let updatedThreads = [...threads];
 
     if (!currentThreadId) {
       const newThread: Thread = {
         id: `thread-${Date.now()}`,
-        title: userText.slice(0, 36) + (userText.length > 36 ? '...' : ''),
+        title: userText.slice(0, 32) + (userText.length > 32 ? '...' : ''),
         updatedAt: 'Just now',
-        category: 'Today',
+        category: 'Chats and tasks',
         modelId: activeModelId,
+        activeMode: mode,
         messages: [
           {
             id: `msg-${Date.now()}`,
@@ -94,37 +95,20 @@ export default function Chat() {
 
     setIsGenerating(true);
     setTimeout(() => {
-      const modelName = MODEL_OPTIONS.find((m) => m.id === activeModelId)?.name || 'Puku Assistant';
+      const modelName = MODEL_OPTIONS.find((m) => m.id === activeModelId)?.name || 'Sonnet 5 High';
       const mockArtifact: Artifact = {
         id: `art-${Date.now()}`,
-        title: 'GeneratedComponent.tsx',
-        type: 'component',
-        language: 'tsx',
+        title: 'Puku_system_overview.md',
+        type: 'document',
+        language: 'markdown',
         version: 1,
-        code: `import React from 'react';
-
-export default function GeneratedComponent() {
-  return (
-    <div className="p-6 bg-white border border-[#E2E0D8] rounded-xl shadow-xs font-sans">
-      <h3 className="text-lg font-serif font-bold text-[#1F1F1E]">Claude-Style Output Generated</h3>
-      <p className="text-sm text-[#66645E] mt-2">
-        Generated response for query: "${userText}"
-      </p>
-    </div>
-  );
-}`,
-        previewHtml: `
-          <div style="font-family: serif; padding: 24px; background: white; border: 1px solid #E2E0D8; border-radius: 12px;">
-            <h3 style="margin: 0; font-size: 18px; color: #1F1F1E; font-weight: 600;">Claude-Style Output Generated</h3>
-            <p style="margin: 8px 0 0 0; font-size: 13px; color: #66645E;">Processed by ${modelName}</p>
-          </div>
-        `,
+        code: `# PUKU WORKSPACE SYSTEM OVERVIEW\nQuery processed by ${modelName}.\nAll task requirements compiled cleanly.`,
       };
 
       const assistantMsg: Message = {
         id: `msg-${Date.now() + 1}`,
         role: 'assistant',
-        content: `I've analyzed your prompt and generated the code solution.\n\nKey highlights:\n• Optimized type definitions and clean component structure\n• Standardized WCAG AAA accessibility compliance\n• Zero-dependency implementation`,
+        content: `Here is the requested information for: "${userText}"\n\nAll tasks and outputs compiled cleanly.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         modelUsed: modelName,
         artifact: mockArtifact,
@@ -147,22 +131,9 @@ export default function GeneratedComponent() {
     }, 1200);
   };
 
-  const handleClearThread = () => {
-    if (activeThreadId) {
-      setThreads((prev) =>
-        prev.map((t) => {
-          if (t.id === activeThreadId) {
-            return { ...t, messages: [] };
-          }
-          return t;
-        })
-      );
-    }
-  };
-
   return (
     <>
-      <SEO title="Claude Style Puku Web Chat" description="Interactive AI engineering web chat directly in your browser with live split-pane code artifacts." />
+      <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace matching Claude Light Mode UI." />
 
       <div className="h-screen w-screen overflow-hidden flex bg-[#FAF9F5] font-sans text-[#1F1F1E] select-none">
         {/* Left Navigation Drawer */}
@@ -173,32 +144,26 @@ export default function GeneratedComponent() {
           onSelectThread={handleSelectThread}
           onNewChat={handleNewChat}
           onDeleteThread={handleDeleteThread}
-          onSelectModel={setActiveModelId}
           isOpen={isSidebarOpen}
           onCloseMobile={() => setIsSidebarOpen(false)}
         />
 
         {/* Main Workspace Area */}
-        <div className="flex-1 flex flex-col min-w-0 h-full relative">
+        <div className="flex-1 flex flex-col min-w-0 h-full relative bg-[#FAF9F5]">
           {/* Top Mobile Bar */}
           <div className="lg:hidden h-12 px-4 border-b border-[#E2E0D8] flex items-center justify-between bg-[#FAF9F5] shrink-0">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="p-1.5 text-[#1F1F1E] hover:bg-[#F2F0E8] rounded-md border border-[#E2E0D8] bg-white flex items-center gap-1.5 text-xs font-semibold"
+              className="p-1.5 text-[#1F1F1E] hover:bg-[#F0EEE6] rounded-md border border-[#E2E0D8] bg-white flex items-center gap-1.5 text-xs font-semibold"
             >
               <PanelLeft className="h-4 w-4" />
               <span>Menu</span>
             </button>
 
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-[#DA7756] text-white flex items-center justify-center text-[9px] font-bold">
-                P
-              </div>
-              <span className="text-xs font-serif font-bold">Puku Chat</span>
-            </div>
+            <span className="font-serif text-sm font-bold">Puku</span>
           </div>
 
-          {/* Conditional View */}
+          {/* Main Content Area */}
           {!activeThread || activeThread.messages.length === 0 ? (
             <ChatWelcome
               activeModelId={activeModelId}
@@ -206,35 +171,27 @@ export default function GeneratedComponent() {
               onSendPrompt={handleSendMessage}
             />
           ) : (
-            <div className="flex-1 flex flex-col min-h-0">
-              <ChatMessageFeed
-                thread={activeThread}
-                isGenerating={isGenerating}
-                onOpenArtifact={setActiveArtifact}
-                onClearThread={handleClearThread}
-                onRegenerate={() => {
-                  if (activeThread.messages.length > 0) {
-                    const lastUserMsg = [...activeThread.messages].reverse().find((m) => m.role === 'user');
-                    if (lastUserMsg) handleSendMessage(lastUserMsg.content);
-                  }
-                }}
-                onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-              />
-              <ChatInputBox
-                activeModelId={activeModelId}
-                isGenerating={isGenerating}
-                onSendMessage={handleSendMessage}
-                onStopGenerating={() => setIsGenerating(false)}
-              />
-            </div>
+            <ChatMessageFeed
+              thread={activeThread}
+              isGenerating={isGenerating}
+              onOpenArtifact={(art) => {
+                setActiveArtifact(art);
+                setIsRightDrawerOpen(true);
+              }}
+              onSendMessage={(txt) => handleSendMessage(txt, activeThread.activeMode || 'Chat')}
+              onToggleRightDrawer={() => setIsRightDrawerOpen(!isRightDrawerOpen)}
+              onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+            />
           )}
         </div>
 
-        {/* Split Side-by-Side Artifact Inspector Panel */}
-        <ArtifactsPanel
-          artifact={activeArtifact}
-          onClose={() => setActiveArtifact(null)}
-        />
+        {/* Right Task Drawer matching Screenshot 2 */}
+        {isRightDrawerOpen && (
+          <ArtifactsPanel
+            artifact={activeArtifact}
+            onClose={() => setIsRightDrawerOpen(false)}
+          />
+        )}
       </div>
     </>
   );
