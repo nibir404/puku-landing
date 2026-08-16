@@ -336,13 +336,13 @@ export default function Home() {
           <div className="mt-8 flex items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="px-6 py-2.5 bg-[#0F0F11] text-white font-semibold text-[15px] rounded-[2px] hover:bg-[#6E56CF] transition-colors flex items-center justify-center shadow-none"
+              className="px-6 py-2.5 bg-[#0F0F11] text-white font-semibold text-[15px] rounded-[2px] hover:bg-[#6E56CF] transition-colors flex items-center justify-center shadow-none whitespace-nowrap"
             >
               Try Puku
             </Link>
             <Link
               to="/contact"
-              className="px-6 py-2.5 bg-white border border-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] rounded-[2px] hover:bg-[#F3F3F5] transition-colors flex items-center justify-center shadow-none"
+              className="px-6 py-2.5 bg-white border border-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] rounded-[2px] hover:bg-[#F3F3F5] transition-colors flex items-center justify-center shadow-none whitespace-nowrap"
             >
               Contact sales
             </Link>

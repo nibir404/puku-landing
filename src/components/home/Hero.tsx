@@ -74,17 +74,17 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 w-full max-w-md mx-auto px-4 sm:px-0"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 w-full mx-auto px-4 sm:px-0"
         >
           <a
             href="/signup"
-            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
             Get Started
           </a>
           <a
             href="#workflow"
-            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center gap-3 bg-[#F3F3F5] border border-[#E5E5E8] hover:bg-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center gap-3 bg-[#F3F3F5] border border-[#E5E5E8] hover:bg-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
             <Play className="h-4 w-4 fill-current shrink-0" />
             <span>See It in Action</span>

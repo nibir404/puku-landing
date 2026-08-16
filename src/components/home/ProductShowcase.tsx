@@ -48,13 +48,13 @@ export const ProductShowcase = (p: ShowcaseProps) => {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm">
-              <ButtonLink to={p.cta.href} variant="primary" size="md" arrow="right" className="w-full sm:w-[180px] shrink-0">
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full">
+              <ButtonLink to={p.cta.href} variant="primary" size="md" arrow="right" className="w-full sm:w-auto min-w-[150px] shrink-0">
                 {p.cta.label}
               </ButtonLink>
               <Link
                 to={p.cta.href}
-                className={cn("w-full sm:w-[160px] min-h-[44px] inline-flex items-center justify-center gap-1 text-[14px] font-bold rounded-md border border-transparent transition-colors", p.dark ? "text-zinc-200 hover:text-white bg-zinc-800/60" : "text-[#0F0F11] hover:text-[#6E56CF] bg-[#F3F3F5] border-[#E5E5E8]")}
+                className={cn("w-full sm:w-auto min-w-[140px] px-5 min-h-[44px] inline-flex items-center justify-center gap-1.5 text-[14px] font-semibold rounded-[2px] border border-transparent transition-colors whitespace-nowrap", p.dark ? "text-zinc-200 hover:text-white bg-zinc-800/60" : "text-[#0F0F11] hover:text-[#6E56CF] bg-[#F3F3F5] border-[#E5E5E8]")}
               >
                 Learn more <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
