@@ -70,8 +70,18 @@
     font-size: 16px;
   }
 
+  @font-face {
+    font-family: 'nbInternationalPro';
+    src: local('nbInternationalPro'), local('NB International Pro'), local('NB International');
+    font-display: swap;
+  }
+
+  .font-puku, .font-brand {
+    font-family: 'nbInternationalPro', 'NB International Pro', 'NB International', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'nbInternationalPro', 'NB International Pro', 'NB International', 'Inter', sans-serif;
     background-color: #FFFFFF;
     color: #0F0F11;
     line-height: 1.5;

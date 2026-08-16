@@ -53,7 +53,7 @@ export const Footer = () => {
             {/* Actual Puku Logo */}
             <Link to="/" className="inline-flex items-center gap-2.5 mb-5" aria-label="Puku AI">
               <img src="/puku-mark.svg" alt="Puku Logo" className="h-7 w-auto object-contain" />
-              <span className="text-[18px] font-extrabold text-[#0F0F11] font-display">Puku</span>
+              <span className="text-[18px] font-extrabold text-[#0F0F11] font-puku font-brand">Puku</span>
             </Link>
 
             <p className="text-[14px] leading-relaxed text-[#4A4A52] max-w-[280px]">

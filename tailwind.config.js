@@ -68,8 +68,10 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Inter"', 'sans-serif'],
-        sans: ['"Inter"', 'sans-serif'],
+        puku: ['"nbInternationalPro"', '"NB International Pro"', '"NB International"', 'Inter', 'sans-serif'],
+        brand: ['"nbInternationalPro"', '"NB International Pro"', '"NB International"', 'Inter', 'sans-serif'],
+        display: ['"nbInternationalPro"', '"NB International Pro"', '"NB International"', 'Inter', 'sans-serif'],
+        sans: ['"nbInternationalPro"', '"NB International Pro"', '"NB International"', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       fontSize: {

@@ -62,7 +62,7 @@ export const Nav = () => {
         <div className="flex-1 flex items-center justify-start">
           <Link to="/" className="flex items-center gap-2.5" aria-label="Puku">
             <img src="/puku-mark.svg" alt="Puku Logo" className="h-7 w-auto object-contain" />
-            <span className="text-[18px] font-extrabold tracking-tight text-[#0F0F11] font-display">
+            <span className="text-[18px] font-extrabold tracking-tight text-[#0F0F11] font-puku font-brand">
               Puku
             </span>
           </Link>

@@ -160,7 +160,7 @@ export default function Chat() {
               <span>Menu</span>
             </button>
 
-            <span className="font-serif text-sm font-bold">Puku</span>
+            <span className="font-puku font-brand text-sm font-bold">Puku</span>
           </div>
 
           {/* Main Content Area */}

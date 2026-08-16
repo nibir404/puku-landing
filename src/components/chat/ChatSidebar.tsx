@@ -70,7 +70,7 @@ export const ChatSidebar = ({
           {/* Logo & Sidebar Controls */}
           <div className="flex items-center justify-between px-1">
             <Link to="/" className="flex items-center gap-2" aria-label="Puku Home">
-              <span className="font-serif text-xl font-medium tracking-tight text-[#1F1F1E]">Puku</span>
+              <span className="font-puku font-brand text-xl font-bold tracking-tight text-[#1F1F1E]">Puku</span>
             </Link>
 
             <div className="flex items-center gap-1.5 text-[#66645E]">
