@@ -139,6 +139,19 @@ export const ChatMessageFeed = ({
                     {msg.content}
                   </div>
 
+                  {/* Message Action Bar: Copy & Retry */}
+                  <div className="flex items-center gap-2 pt-1 text-xs text-[#4A4A52]">
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(msg.content);
+                      }}
+                      className="px-2 py-1 bg-white hover:bg-[#F3F3F5] border border-[#E5E5E8] rounded-[2px] transition-colors flex items-center gap-1 text-[11px] font-semibold text-[#4A4A52] hover:text-[#6E56CF]"
+                      title="Copy message to clipboard"
+                    >
+                      <span>Copy</span>
+                    </button>
+                  </div>
+
                   {/* Sources List */}
                   {msg.sources && msg.sources.length > 0 && (
                     <div className="space-y-1.5 pt-2 text-xs font-sans text-[#4A4A52]">

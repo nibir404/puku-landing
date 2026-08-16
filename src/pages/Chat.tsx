@@ -10,14 +10,14 @@ import {
   Message,
   Artifact,
   ModelId,
-  INITIAL_THREADS,
-  MODEL_OPTIONS,
+  loadStoredThreads,
+  saveStoredThreads,
+  generateAssistantResponse,
 } from '@/lib/chatStore';
-import { PanelLeft } from 'lucide-react';
 
 export default function Chat() {
   const location = useLocation();
-  const [threads, setThreads] = useState<Thread[]>(INITIAL_THREADS);
+  const [threads, setThreads] = useState<Thread[]>(() => loadStoredThreads());
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const [activeModelId, setActiveModelId] = useState<ModelId>('sonnet-5-high');
   const [activeArtifact, setActiveArtifact] = useState<Artifact | null>(null);
@@ -25,7 +25,12 @@ export default function Chat() {
   const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Check if an initial prompt was passed from the landing page Web Chat section
+  // Save to local storage whenever threads change
+  useEffect(() => {
+    saveStoredThreads(threads);
+  }, [threads]);
+
+  // Check if an initial prompt was passed from landing page WebChatLandingSection
   useEffect(() => {
     const state = location.state as { initialPrompt?: string; modelId?: ModelId } | null;
     if (state?.initialPrompt) {
@@ -52,100 +57,96 @@ export default function Chat() {
   };
 
   const handleDeleteThread = (threadId: string) => {
-    setThreads((prev) => prev.filter((t) => t.id !== threadId));
+    setThreads((prev) => {
+      const updated = prev.filter((t) => t.id !== threadId);
+      return updated;
+    });
     if (activeThreadId === threadId) {
       setActiveThreadId(null);
       setActiveArtifact(null);
     }
   };
 
-  const handleSendMessage = (userText: string, mode: 'Chat' | 'Cowork' = 'Chat') => {
-    let currentThreadId = activeThreadId;
-    let updatedThreads = [...threads];
+  const handleToggleStar = (threadId: string) => {
+    setThreads((prev) =>
+      prev.map((t) => (t.id === threadId ? { ...t, starred: !t.starred } : t))
+    );
+  };
 
-    if (!currentThreadId) {
+  const handleSendMessage = (userText: string, mode: 'Chat' | 'Cowork' = 'Chat') => {
+    if (!userText.trim()) return;
+
+    const userMessage: Message = {
+      id: `msg-${Date.now()}`,
+      role: 'user',
+      content: userText,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    };
+
+    let targetThreadId = activeThreadId;
+
+    if (!targetThreadId || !threads.some((t) => t.id === targetThreadId)) {
+      // Create new thread
+      const newThreadId = `thread-${Date.now()}`;
       const newThread: Thread = {
-        id: `thread-${Date.now()}`,
-        title: userText.slice(0, 32) + (userText.length > 32 ? '...' : ''),
+        id: newThreadId,
+        title: userText.length > 30 ? `${userText.slice(0, 30)}...` : userText,
         updatedAt: 'Just now',
         category: 'Chats and tasks',
         modelId: activeModelId,
         activeMode: mode,
-        messages: [
-          {
-            id: `msg-${Date.now()}`,
-            role: 'user',
-            content: userText,
-            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          },
-        ],
+        messages: [userMessage],
       };
-      updatedThreads = [newThread, ...threads];
-      currentThreadId = newThread.id;
-      setThreads(updatedThreads);
-      setActiveThreadId(currentThreadId);
+
+      setThreads((prev) => [newThread, ...prev]);
+      setActiveThreadId(newThreadId);
+      targetThreadId = newThreadId;
     } else {
-      updatedThreads = threads.map((t) => {
-        if (t.id === currentThreadId) {
-          return {
-            ...t,
-            messages: [
-              ...t.messages,
-              {
-                id: `msg-${Date.now()}`,
-                role: 'user',
-                content: userText,
-                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-              },
-            ],
-          };
-        }
-        return t;
-      });
-      setThreads(updatedThreads);
+      // Append to active thread
+      setThreads((prev) =>
+        prev.map((t) =>
+          t.id === targetThreadId
+            ? { ...t, updatedAt: 'Just now', messages: [...t.messages, userMessage] }
+            : t
+        )
+      );
     }
 
+    // Trigger AI response generation telemetry
     setIsGenerating(true);
-    setTimeout(() => {
-      const modelName = MODEL_OPTIONS.find((m) => m.id === activeModelId)?.name || 'Sonnet 5 High';
-      const mockArtifact: Artifact = {
-        id: `art-${Date.now()}`,
-        title: 'Puku_system_overview.md',
-        type: 'document',
-        language: 'markdown',
-        version: 1,
-        code: `# PUKU WORKSPACE SYSTEM OVERVIEW\nQuery processed by ${modelName}.\nAll task requirements compiled cleanly.`,
-      };
 
-      const assistantMsg: Message = {
+    setTimeout(() => {
+      const assistantData = generateAssistantResponse(userText, activeModelId);
+      const assistantMessage: Message = {
         id: `msg-${Date.now() + 1}`,
         role: 'assistant',
-        content: `Here is the requested information for: "${userText}"\n\nAll tasks and outputs compiled cleanly.`,
+        content: assistantData.content,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        modelUsed: modelName,
-        artifact: mockArtifact,
+        modelUsed: activeModelId,
+        artifact: assistantData.artifact,
+        sources: assistantData.sources,
       };
 
       setThreads((prev) =>
-        prev.map((t) => {
-          if (t.id === currentThreadId) {
-            return {
-              ...t,
-              messages: [...t.messages, assistantMsg],
-            };
-          }
-          return t;
-        })
+        prev.map((t) =>
+          t.id === targetThreadId
+            ? { ...t, messages: [...t.messages, assistantMessage] }
+            : t
+        )
       );
 
-      setActiveArtifact(mockArtifact);
       setIsGenerating(false);
-    }, 1200);
+
+      if (assistantData.artifact) {
+        setActiveArtifact(assistantData.artifact);
+        setIsRightDrawerOpen(true);
+      }
+    }, 800);
   };
 
   return (
     <>
-      <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace matching Claude Light Mode UI." />
+      <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace." />
 
       <div className="h-screen w-screen overflow-hidden flex bg-[#f5f5f7] font-sans text-[#0F0F11] select-none">
         {/* Left Navigation Drawer */}
@@ -156,6 +157,7 @@ export default function Chat() {
           onSelectThread={handleSelectThread}
           onNewChat={handleNewChat}
           onDeleteThread={handleDeleteThread}
+          onToggleStar={handleToggleStar}
           isOpen={isSidebarOpen}
           onCloseMobile={() => setIsSidebarOpen(false)}
         />
@@ -166,16 +168,15 @@ export default function Chat() {
           <div className="lg:hidden h-12 px-4 border-b border-[#E5E5E8] flex items-center justify-between bg-[#FAFAFC] shrink-0">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="p-1.5 text-[#1F1F1E] hover:bg-[#F0EEE6] rounded-md border border-[#E2E0D8] bg-white flex items-center gap-1.5 text-xs font-semibold"
+              className="p-1.5 text-[#0F0F11] hover:bg-[#F3F3F5] rounded-[2px] border border-[#E5E5E8] bg-white flex items-center gap-1.5 text-xs font-semibold"
             >
-              <PanelLeft className="h-4 w-4" />
               <span>Menu</span>
             </button>
 
             <span className="font-puku font-brand text-sm font-bold">Puku</span>
           </div>
 
-          {/* Main Content Area */}
+          {/* Main Content View */}
           {!activeThread || activeThread.messages.length === 0 ? (
             <ChatWelcome
               activeModelId={activeModelId}
@@ -197,7 +198,7 @@ export default function Chat() {
           )}
         </div>
 
-        {/* Right Task Drawer matching Screenshot 2 */}
+        {/* Right Task & Artifact Drawer */}
         {isRightDrawerOpen && (
           <ArtifactsPanel
             artifact={activeArtifact}

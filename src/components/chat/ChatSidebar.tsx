@@ -27,6 +27,7 @@ interface ChatSidebarProps {
   onSelectThread: (threadId: string) => void;
   onNewChat: () => void;
   onDeleteThread: (threadId: string) => void;
+  onToggleStar?: (threadId: string) => void;
   isOpen: boolean;
   onCloseMobile: () => void;
 }
@@ -37,6 +38,7 @@ export const ChatSidebar = ({
   onSelectThread,
   onNewChat,
   onDeleteThread,
+  onToggleStar,
   isOpen,
   onCloseMobile,
 }: ChatSidebarProps) => {
