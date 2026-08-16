@@ -9,6 +9,10 @@ import {
   Download,
   Share2,
   Sparkles,
+  Copy,
+  Check,
+  X,
+  Volume2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Thread, Message, Artifact, MODEL_OPTIONS } from '@/lib/chatStore';
@@ -31,6 +35,11 @@ export const ChatMessageFeed = ({
   onToggleSidebar,
 }: ChatMessageFeedProps) => {
   const [input, setInput] = useState('');
+  const [copiedMsgId, setCopiedMsgId] = useState<string | null>(null);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
+  const [voiceToast, setVoiceToast] = useState(false);
+
   const activeModel = MODEL_OPTIONS.find((m) => m.id === thread.modelId) || MODEL_OPTIONS[0];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -48,8 +57,58 @@ export const ChatMessageFeed = ({
     }
   };
 
+  const handleCopyMessage = (msgId: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedMsgId(msgId);
+    setTimeout(() => setCopiedMsgId(null), 2000);
+  };
+
+  const handleToggleVoice = () => {
+    setIsVoiceListening(!isVoiceListening);
+    setVoiceToast(true);
+    setTimeout(() => setVoiceToast(false), 3000);
+  };
+
   return (
-    <div className="flex-1 flex flex-col min-h-0 bg-[#f5f5f7] font-sans text-[#0F0F11]">
+    <div className="flex-1 flex flex-col min-h-0 bg-[#f5f5f7] font-sans text-[#0F0F11] relative">
+      {/* Share Modal Dialog */}
+      {showShareModal && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-[#E5E5E8] rounded-[2px] p-6 max-w-md w-full space-y-4 shadow-xl">
+            <div className="flex items-center justify-between">
+              <h3 className="font-puku font-brand font-bold text-base text-[#0F0F11]">Share Conversation</h3>
+              <button onClick={() => setShowShareModal(false)} className="text-[#4A4A52] hover:text-[#0F0F11]">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <p className="text-xs text-[#4A4A52]">
+              Anyone with this secret share link can view this thread and its generated artifacts.
+            </p>
+            <div className="p-2.5 bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] font-mono text-xs text-[#6E56CF] truncate">
+              https://puku.ai/share/thread-{thread.id}
+            </div>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(`https://puku.ai/share/thread-${thread.id}`);
+                setShowShareModal(false);
+                alert('Share link copied to clipboard!');
+              }}
+              className="w-full py-2 bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-xs rounded-[2px] transition-colors"
+            >
+              Copy Share Link
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Voice Mode Toast Indicator */}
+      {voiceToast && (
+        <div className="absolute top-14 left-1/2 -translate-x-1/2 z-40 bg-[#0F0F11] text-white px-4 py-2 rounded-[2px] text-xs font-mono flex items-center gap-2 shadow-lg animate-bounce">
+          <Volume2 className="h-4 w-4 text-[#6E56CF]" />
+          <span>{isVoiceListening ? 'Voice Mode Active — Listening... Speak now.' : 'Voice Mode Off'}</span>
+        </div>
+      )}
+
       {/* Top Header Bar */}
       <div className="h-12 px-4 sm:px-6 border-b border-[#E5E5E8] flex items-center justify-between shrink-0 bg-white select-none">
         <div className="flex items-center gap-2 min-w-0">
@@ -70,6 +129,7 @@ export const ChatMessageFeed = ({
 
         <div className="flex items-center gap-2 text-[#4A4A52]">
           <button
+            onClick={() => setShowShareModal(true)}
             title="Share thread"
             className="p-1.5 hover:text-[#6E56CF] rounded-[2px] hover:bg-[#F3F3F5] transition-colors"
           >
@@ -93,8 +153,8 @@ export const ChatMessageFeed = ({
           return (
             <div key={msg.id} className="space-y-3">
               {isUser ? (
-                /* User Chat Bubble */
-                <div className="bg-[#0F0F11] text-white p-4 rounded-[2px] max-w-xl ml-auto text-sm leading-relaxed font-normal shadow-none">
+                /* USER CHAT BUBBLE — ASH / LIGHT GREY WITH DARK TEXT */
+                <div className="bg-[#E5E5E8] border border-[#D5D5D8] text-[#0F0F11] p-4 rounded-[2px] max-w-xl ml-auto text-sm leading-relaxed font-normal shadow-none">
                   {msg.content}
                 </div>
               ) : (
@@ -139,16 +199,24 @@ export const ChatMessageFeed = ({
                     {msg.content}
                   </div>
 
-                  {/* Message Action Bar: Copy & Retry */}
+                  {/* Message Action Bar: Copy & Actions */}
                   <div className="flex items-center gap-2 pt-1 text-xs text-[#4A4A52]">
                     <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(msg.content);
-                      }}
-                      className="px-2 py-1 bg-white hover:bg-[#F3F3F5] border border-[#E5E5E8] rounded-[2px] transition-colors flex items-center gap-1 text-[11px] font-semibold text-[#4A4A52] hover:text-[#6E56CF]"
+                      onClick={() => handleCopyMessage(msg.id, msg.content)}
+                      className="px-2.5 py-1 bg-white hover:bg-[#F3F3F5] border border-[#E5E5E8] rounded-[2px] transition-colors flex items-center gap-1 text-[11px] font-semibold text-[#4A4A52] hover:text-[#6E56CF]"
                       title="Copy message to clipboard"
                     >
-                      <span>Copy</span>
+                      {copiedMsgId === msg.id ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 text-emerald-600" />
+                          <span className="text-emerald-600">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3.5 w-3.5" />
+                          <span>Copy</span>
+                        </>
+                      )}
                     </button>
                   </div>
 
@@ -160,7 +228,7 @@ export const ChatMessageFeed = ({
                         {msg.sources.map((s, idx) => (
                           <li key={idx} className="flex items-center gap-1.5">
                             <span className="text-[#6E56CF] font-bold">•</span>
-                            <a href={s.url} className="underline hover:text-[#6E56CF] transition-colors">
+                            <a href={s.url} target="_blank" rel="noreferrer" className="underline hover:text-[#6E56CF] transition-colors">
                               {s.title}
                             </a>
                           </li>
@@ -205,7 +273,12 @@ export const ChatMessageFeed = ({
 
           <div className="flex items-center justify-between pt-2 border-t border-[#E5E5E8] text-xs font-semibold text-[#4A4A52]">
             <div className="flex items-center gap-2">
-              <button type="button" className="p-1 hover:text-[#6E56CF]">
+              <button
+                type="button"
+                onClick={() => alert('Attachment file browser opened')}
+                className="p-1 hover:text-[#6E56CF]"
+                title="Add attachment"
+              >
                 <Plus className="h-4 w-4" />
               </button>
 
@@ -222,7 +295,12 @@ export const ChatMessageFeed = ({
                 <ChevronDown className="h-3 w-3" />
               </div>
 
-              <button type="button" className="p-1 hover:text-[#6E56CF]">
+              <button
+                type="button"
+                onClick={handleToggleVoice}
+                className={cn('p-1 transition-colors', isVoiceListening ? 'text-[#6E56CF] font-bold' : 'hover:text-[#6E56CF]')}
+                title="Toggle Voice Mode"
+              >
                 <Mic className="h-4 w-4" />
               </button>
             </div>

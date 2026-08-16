@@ -18,9 +18,16 @@ import { Artifact } from '@/lib/chatStore';
 interface ArtifactsPanelProps {
   artifact: Artifact | null;
   onClose: () => void;
+  width?: number;
+  onStartDragResize?: () => void;
 }
 
-export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
+export const ArtifactsPanel = ({
+  artifact,
+  onClose,
+  width = 320,
+  onStartDragResize,
+}: ArtifactsPanelProps) => {
   const [activeTab, setActiveTab] = useState<'preview' | 'code' | 'console'>('code');
   const [copied, setCopied] = useState(false);
   const [progressOpen, setProgressOpen] = useState(true);
@@ -49,7 +56,17 @@ export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
   };
 
   return (
-    <div className="w-[300px] sm:w-[340px] h-full bg-white border-l border-[#E5E5E8] flex flex-col justify-between shrink-0 z-30 select-none font-sans text-[#0F0F11]">
+    <div
+      style={{ width: `${width}px` }}
+      className="h-full bg-white border-l border-[#E5E5E8] flex flex-col justify-between shrink-0 z-30 select-none font-sans text-[#0F0F11] relative group/panel"
+    >
+      {/* Left Drag Resize Handle Bar */}
+      <div
+        onMouseDown={onStartDragResize}
+        title="Drag to resize panel"
+        className="hidden lg:block absolute top-0 left-0 w-1.5 h-full cursor-col-resize hover:bg-[#6E56CF]/40 active:bg-[#6E56CF] transition-colors z-50"
+      />
+
       {/* Top Header Bar */}
       <div className="p-3.5 bg-[#f5f5f7] border-b border-[#E5E5E8] flex items-center justify-between">
         <div className="flex items-center gap-2 min-w-0">

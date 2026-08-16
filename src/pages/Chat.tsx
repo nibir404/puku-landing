@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SEO } from '@/components/layout/SEO';
 import { ChatSidebar } from '@/components/chat/ChatSidebar';
@@ -25,7 +25,14 @@ export default function Chat() {
   const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Save to local storage whenever threads change
+  // Draggable Sidebar Width States
+  const [leftWidth, setLeftWidth] = useState<number>(270);
+  const [rightWidth, setRightWidth] = useState<number>(320);
+
+  const isDraggingLeftRef = useRef(false);
+  const isDraggingRightRef = useRef(false);
+
+  // Save threads to local storage
   useEffect(() => {
     saveStoredThreads(threads);
   }, [threads]);
@@ -39,6 +46,32 @@ export default function Chat() {
       window.history.replaceState({}, document.title);
     }
   }, [location.state]);
+
+  // Handle Drag Resizing for Both Sidebars
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingLeftRef.current) {
+        const newWidth = Math.min(Math.max(e.clientX, 200), 480);
+        setLeftWidth(newWidth);
+      } else if (isDraggingRightRef.current) {
+        const newWidth = Math.min(Math.max(window.innerWidth - e.clientX, 260), 540);
+        setRightWidth(newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      isDraggingLeftRef.current = false;
+      isDraggingRightRef.current = false;
+      document.body.style.cursor = 'default';
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   const activeThread = threads.find((t) => t.id === activeThreadId) || null;
 
@@ -62,6 +95,18 @@ export default function Chat() {
       setActiveThreadId(null);
       setActiveArtifact(null);
     }
+  };
+
+  const handleToggleStar = (threadId: string) => {
+    setThreads((prev) =>
+      prev.map((t) => (t.id === threadId ? { ...t, starred: !t.starred } : t))
+    );
+  };
+
+  const handleRenameThread = (threadId: string, newTitle: string) => {
+    setThreads((prev) =>
+      prev.map((t) => (t.id === threadId ? { ...t, title: newTitle } : t))
+    );
   };
 
   const handleSendMessage = (userText: string, mode: 'Chat' | 'Cowork' = 'Chat') => {
@@ -137,7 +182,7 @@ export default function Chat() {
       <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace matching Claude Light Mode UI." />
 
       <div className="h-screen w-screen overflow-hidden flex bg-[#f5f5f7] font-sans text-[#0F0F11] select-none">
-        {/* Left Navigation Drawer */}
+        {/* Left Navigation Drawer with Drag Handle */}
         <ChatSidebar
           threads={threads}
           activeThreadId={activeThreadId}
@@ -145,8 +190,15 @@ export default function Chat() {
           onSelectThread={handleSelectThread}
           onNewChat={handleNewChat}
           onDeleteThread={handleDeleteThread}
+          onToggleStar={handleToggleStar}
+          onRenameThread={handleRenameThread}
           isOpen={isSidebarOpen}
           onCloseMobile={() => setIsSidebarOpen(false)}
+          width={leftWidth}
+          onStartDragResize={() => {
+            isDraggingLeftRef.current = true;
+            document.body.style.cursor = 'col-resize';
+          }}
         />
 
         {/* Main Workspace Area */}
@@ -185,11 +237,16 @@ export default function Chat() {
           )}
         </div>
 
-        {/* Right Task Drawer matching Screenshot 2 */}
+        {/* Right Task Drawer with Drag Handle */}
         {isRightDrawerOpen && (
           <ArtifactsPanel
             artifact={activeArtifact}
             onClose={() => setIsRightDrawerOpen(false)}
+            width={rightWidth}
+            onStartDragResize={() => {
+              isDraggingRightRef.current = true;
+              document.body.style.cursor = 'col-resize';
+            }}
           />
         )}
       </div>
