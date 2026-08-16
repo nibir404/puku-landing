@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import * as BrandIcons from '@/components/ui/BrandIcons';
+import { WebChatLandingSection } from '@/components/home/WebChatLandingSection';
 
 
 /* ─── Company Logos Matrix with Authentic SVG Brand Icons ───── */
@@ -453,6 +454,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ════════════════════════════════════════════════════
+            DEDICATED WEB CHAT INTERACTIVE SECTION
+        ════════════════════════════════════════════════════ */}
+        <WebChatLandingSection />
 
         {/* ════════════════════════════════════════════════════
             SECTION 2 — SIX INTEGRATED PRODUCTS OF PUKU

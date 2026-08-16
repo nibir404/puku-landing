@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SEO } from '@/components/layout/SEO';
 import { ChatSidebar } from '@/components/chat/ChatSidebar';
 import { ChatWelcome } from '@/components/chat/ChatWelcome';
@@ -15,6 +16,7 @@ import {
 import { PanelLeft } from 'lucide-react';
 
 export default function Chat() {
+  const location = useLocation();
   const [threads, setThreads] = useState<Thread[]>(INITIAL_THREADS);
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
   const [activeModelId, setActiveModelId] = useState<ModelId>('sonnet-5-high');
@@ -22,6 +24,16 @@ export default function Chat() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // Check if an initial prompt was passed from the landing page Web Chat section
+  useEffect(() => {
+    const state = location.state as { initialPrompt?: string; modelId?: ModelId } | null;
+    if (state?.initialPrompt) {
+      if (state.modelId) setActiveModelId(state.modelId);
+      handleSendMessage(state.initialPrompt, 'Chat');
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const activeThread = threads.find((t) => t.id === activeThreadId) || null;
 
