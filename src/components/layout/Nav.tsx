@@ -118,9 +118,6 @@ export const Nav = () => {
           </div>
 
           <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
-            Customers
-          </NavLink>
-          <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Enterprise
           </NavLink>
           <NavLink to="/pricing" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
