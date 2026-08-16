@@ -147,7 +147,7 @@ export default function Chat() {
     <>
       <SEO title="Puku Web Chat Workspace" description="Interactive AI engineering web workspace matching Claude Light Mode UI." />
 
-      <div className="h-screen w-screen overflow-hidden flex bg-[#FFFFFF] font-sans text-[#0F0F11] select-none">
+      <div className="h-screen w-screen overflow-hidden flex bg-[#f5f5f7] font-sans text-[#0F0F11] select-none">
         {/* Left Navigation Drawer */}
         <ChatSidebar
           threads={threads}
@@ -161,7 +161,7 @@ export default function Chat() {
         />
 
         {/* Main Workspace Area */}
-        <div className="flex-1 flex flex-col min-w-0 h-full relative bg-[#FFFFFF]">
+        <div className="flex-1 flex flex-col min-w-0 h-full relative bg-[#f5f5f7]">
           {/* Top Mobile Bar */}
           <div className="lg:hidden h-12 px-4 border-b border-[#E5E5E8] flex items-center justify-between bg-[#FAFAFC] shrink-0">
             <button

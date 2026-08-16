@@ -43,19 +43,19 @@ export const ChatWelcome = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 max-w-3xl mx-auto w-full select-none bg-[#FFFFFF] font-sans">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 max-w-3xl mx-auto w-full select-none bg-[#f5f5f7] font-sans">
       {/* Official Puku Logo Greeting */}
       <div className="flex items-center gap-3 mb-8">
-        <img src="/puku-mark.svg" alt="Puku Logo" className="h-10 w-auto object-contain" />
+        <img src="/puku-mark.svg" alt="Puku Logo" className="h-9 w-auto object-contain" />
         <h1 className="font-puku font-brand text-3xl sm:text-4xl font-extrabold text-[#0F0F11] tracking-tight">
           Puku Web Workspace
         </h1>
       </div>
 
-      {/* Interactive Input Box Container in Native Light Theme */}
+      {/* Interactive Input Box Container in Standard Puku Site Theme */}
       <form
         onSubmit={handleSubmit}
-        className="w-full bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] shadow-none p-4 space-y-4 focus-within:border-[#6E56CF] focus-within:ring-2 focus-within:ring-[#6E56CF]/15 transition-all relative"
+        className="w-full bg-white border border-[#E5E5E8] rounded-[2px] shadow-none p-4 space-y-4 focus-within:border-[#6E56CF] focus-within:ring-2 focus-within:ring-[#6E56CF]/15 transition-all relative"
       >
         {/* Top Right Logo Badge */}
         <div className="absolute top-4 right-4 h-6 w-6 rounded-[2px] bg-[#6E56CF] text-white flex items-center justify-center shadow-none">
@@ -72,14 +72,14 @@ export const ChatWelcome = ({
           className="w-full resize-none bg-transparent border-0 text-sm text-[#0F0F11] placeholder-[#4A4A52] focus:outline-none font-normal leading-relaxed pr-10"
         />
 
-        {/* Bottom Toolbar: + [ Chat | Cowork ] ... Sonnet 5 High ∨ 🎤 🎙️ */}
+        {/* Bottom Toolbar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#E5E5E8]">
           {/* Left Controls: + Button & Mode Pill Switcher */}
           <div className="flex items-center gap-2">
             <button
               type="button"
               title="Add attachment or skill"
-              className="p-1.5 text-[#4A4A52] hover:text-[#6E56CF] hover:bg-white rounded-[2px] transition-colors"
+              className="p-1.5 text-[#4A4A52] hover:text-[#6E56CF] hover:bg-[#F3F3F5] rounded-[2px] transition-colors"
             >
               <Plus className="h-4 w-4" />
             </button>
@@ -140,7 +140,7 @@ export const ChatWelcome = ({
                         'w-full text-left p-2 rounded-[2px] text-xs transition-colors flex flex-col',
                         m.id === activeModelId
                           ? 'bg-[#F4F2FF] text-[#6E56CF] font-bold'
-                          : 'hover:bg-[#FAFAFC] text-[#0F0F11]'
+                          : 'hover:bg-[#F3F3F5] text-[#0F0F11]'
                       )}
                     >
                       <span>{m.name}</span>

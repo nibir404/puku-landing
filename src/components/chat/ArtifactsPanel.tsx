@@ -20,13 +20,13 @@ export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
   const [contextOpen, setContextOpen] = useState(true);
 
   return (
-    <div className="w-[300px] sm:w-[320px] h-full bg-[#FAFAFC] border-l border-[#E5E5E8] flex flex-col justify-between shrink-0 z-30 select-none font-sans text-[#0F0F11]">
+    <div className="w-[300px] sm:w-[320px] h-full bg-white border-l border-[#E5E5E8] flex flex-col justify-between shrink-0 z-30 select-none font-sans text-[#0F0F11]">
       {/* Top Header */}
-      <div className="p-3.5 border-b border-[#E5E5E8] flex items-center justify-between">
+      <div className="p-3.5 bg-[#f5f5f7] border-b border-[#E5E5E8] flex items-center justify-between">
         <span className="text-xs font-bold text-[#0F0F11]">Task Memory & Context</span>
         <button
           onClick={onClose}
-          className="p-1 text-[#4A4A52] hover:text-[#6E56CF] rounded-[2px] hover:bg-[#F3F3F5]"
+          className="p-1 text-[#4A4A52] hover:text-[#6E56CF] rounded-[2px] hover:bg-[#E5E5E8]"
         >
           <X className="h-4 w-4" />
         </button>
@@ -81,7 +81,7 @@ export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
           {outputsOpen && (
             <div className="space-y-2 pt-1">
               {artifact ? (
-                <div className="p-3 bg-white border border-[#E5E5E8] rounded-[2px] space-y-1">
+                <div className="p-3 bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] space-y-1">
                   <div className="flex items-center gap-2 text-xs font-bold text-[#0F0F11]">
                     <FileCode className="h-4 w-4 text-[#6E56CF]" />
                     <span className="truncate">{artifact.title}</span>
@@ -91,7 +91,7 @@ export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
                   </div>
                 </div>
               ) : (
-                <div className="p-3 bg-white border border-[#E5E5E8] rounded-[2px] flex items-center gap-2">
+                <div className="p-3 bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] flex items-center gap-2">
                   <BarChart3 className="h-4 w-4 text-[#4A4A52]" />
                   <span className="text-[11px] text-[#4A4A52]">View and open files created during this task.</span>
                 </div>
@@ -115,7 +115,7 @@ export const ArtifactsPanel = ({ artifact, onClose }: ArtifactsPanelProps) => {
           {contextOpen && (
             <div className="space-y-2 pt-1">
               <div className="text-[11px] text-[#4A4A52]">Connectors</div>
-              <div className="inline-flex items-center gap-1.5 bg-white border border-[#E5E5E8] px-2.5 py-1 rounded-[2px] text-xs text-[#0F0F11] font-semibold">
+              <div className="inline-flex items-center gap-1.5 bg-[#FAFAFC] border border-[#E5E5E8] px-2.5 py-1 rounded-[2px] text-xs text-[#0F0F11] font-semibold">
                 <Globe className="h-3.5 w-3.5 text-[#6E56CF]" />
                 <span>Web Search</span>
               </div>

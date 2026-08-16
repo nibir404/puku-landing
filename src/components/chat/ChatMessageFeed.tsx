@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  Cloud,
   ChevronDown,
   PanelLeft,
   Plus,
@@ -50,9 +49,9 @@ export const ChatMessageFeed = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-0 bg-[#FFFFFF] font-sans text-[#0F0F11]">
+    <div className="flex-1 flex flex-col min-h-0 bg-[#f5f5f7] font-sans text-[#0F0F11]">
       {/* Top Header Bar */}
-      <div className="h-12 px-4 sm:px-6 border-b border-[#E5E5E8] flex items-center justify-between shrink-0 bg-[#FAFAFC] select-none">
+      <div className="h-12 px-4 sm:px-6 border-b border-[#E5E5E8] flex items-center justify-between shrink-0 bg-white select-none">
         <div className="flex items-center gap-2 min-w-0">
           <button
             onClick={onToggleSidebar}
@@ -64,7 +63,7 @@ export const ChatMessageFeed = ({
 
           <div className="flex items-center gap-2 cursor-pointer hover:text-[#6E56CF] transition-colors">
             <img src="/puku-mark.svg" alt="Puku Logo" className="h-5 w-auto object-contain" />
-            <h2 className="text-sm font-semibold text-[#0F0F11] truncate">{thread.title}</h2>
+            <h2 className="text-sm font-semibold text-[#0F0F11] font-puku font-brand truncate">{thread.title}</h2>
             <ChevronDown className="h-3.5 w-3.5 text-[#4A4A52]" />
           </div>
         </div>
@@ -103,15 +102,15 @@ export const ChatMessageFeed = ({
                 <div className="space-y-4">
                   {/* Document Artifact Card */}
                   {msg.artifact && (
-                    <div className="p-4 bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] space-y-3 max-w-md select-none">
+                    <div className="p-4 bg-white border border-[#E5E5E8] rounded-[2px] space-y-3 max-w-md select-none">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-[2px] bg-white border border-[#E5E5E8] text-[#6E56CF]">
+                          <div className="p-2 rounded-[2px] bg-[#F4F2FF] border border-[#6E56CF]/20 text-[#6E56CF]">
                             <FileText className="h-5 w-5" />
                           </div>
                           <div>
                             <div className="text-xs font-bold text-[#0F0F11]">{msg.artifact.title}</div>
-                            <div className="text-[11px] text-[#4A4A52]">Document • MD</div>
+                            <div className="text-[11px] font-mono text-[#4A4A52]">Document • MD</div>
                           </div>
                         </div>
 
@@ -127,7 +126,7 @@ export const ChatMessageFeed = ({
 
                       <button
                         onClick={() => onOpenArtifact(msg.artifact!)}
-                        className="w-full py-1.5 bg-white hover:bg-[#FAFAFC] border border-[#E5E5E8] text-[#0F0F11] font-semibold text-xs rounded-[2px] transition-colors flex items-center justify-center gap-1.5"
+                        className="w-full py-1.5 bg-white hover:bg-[#F3F3F5] border border-[#E5E5E8] text-[#0F0F11] font-semibold text-xs rounded-[2px] transition-colors flex items-center justify-center gap-1.5"
                       >
                         <Download className="h-3.5 w-3.5" />
                         <span>Download all</span>
@@ -172,10 +171,10 @@ export const ChatMessageFeed = ({
       </div>
 
       {/* Floating Bottom Input Container */}
-      <div className="p-4 bg-gradient-to-t from-[#FFFFFF] via-[#FFFFFF] to-transparent shrink-0">
+      <div className="p-4 bg-gradient-to-t from-[#f5f5f7] via-[#f5f5f7] to-transparent shrink-0">
         <form
           onSubmit={handleSubmit}
-          className="max-w-3xl mx-auto bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] shadow-none p-3.5 space-y-3 relative focus-within:border-[#6E56CF] transition-all"
+          className="max-w-3xl mx-auto bg-white border border-[#E5E5E8] rounded-[2px] shadow-none p-3.5 space-y-3 relative focus-within:border-[#6E56CF] transition-all"
         >
           {/* Top Right Logo Badge */}
           <div className="absolute top-3.5 right-4 h-5 w-5 rounded-[2px] bg-[#6E56CF] text-white flex items-center justify-center shadow-none">
@@ -218,7 +217,7 @@ export const ChatMessageFeed = ({
         </form>
 
         {/* Footer Disclaimer */}
-        <div className="text-[11px] font-sans text-center text-[#4A4A52] mt-2 select-none">
+        <div className="text-[11px] font-mono text-center text-[#4A4A52] mt-2 select-none">
           Puku is AI and can make mistakes. Please double-check responses.
         </div>
       </div>

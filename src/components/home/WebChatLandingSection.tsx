@@ -68,9 +68,9 @@ export const WebChatLandingSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-[#FFFFFF] border-y border-[#E5E5E8] select-none font-sans">
+    <section className="py-16 px-4 bg-[#f5f5f7] border-y border-[#E5E5E8] select-none font-sans">
       <div className="max-w-4xl mx-auto space-y-8 text-center">
-        {/* Section Header with Official Puku Logo Mark */}
+        {/* Section Header */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[2px] bg-[#F4F2FF] border border-[#6E56CF]/30 text-[#6E56CF] text-xs font-bold font-mono">
             <Sparkles className="h-3.5 w-3.5" />
@@ -92,7 +92,7 @@ export const WebChatLandingSection = () => {
         {/* Dedicated Interactive Prompt Input Box */}
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto bg-[#FAFAFC] border border-[#E5E5E8] rounded-[2px] shadow-none p-4 space-y-4 text-left focus-within:border-[#6E56CF] focus-within:ring-2 focus-within:ring-[#6E56CF]/15 transition-all relative"
+          className="max-w-2xl mx-auto bg-white border border-[#E5E5E8] rounded-[2px] shadow-none p-4 space-y-4 text-left focus-within:border-[#6E56CF] focus-within:ring-2 focus-within:ring-[#6E56CF]/15 transition-all relative"
         >
           {/* Top Right Logo Badge */}
           <div className="absolute top-4 right-4 h-6 w-6 rounded-[2px] bg-[#6E56CF] text-white flex items-center justify-center shadow-none">
@@ -109,19 +109,19 @@ export const WebChatLandingSection = () => {
             className="w-full resize-none bg-transparent border-0 text-sm text-[#0F0F11] placeholder-[#4A4A52] focus:outline-none font-normal leading-relaxed pr-10"
           />
 
-          {/* Bottom Toolbar: + [ Chat | Cowork ] ... Sonnet 5 High ∨ Send */}
+          {/* Bottom Toolbar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#E5E5E8]">
-            {/* Left Controls: + Button & Mode Pill Switcher */}
+            {/* Left Controls */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 title="Add attachment or skill"
-                className="p-1.5 text-[#4A4A52] hover:text-[#6E56CF] hover:bg-white rounded-[2px] transition-colors"
+                className="p-1.5 text-[#4A4A52] hover:text-[#6E56CF] hover:bg-[#F3F3F5] rounded-[2px] transition-colors"
               >
                 <Plus className="h-4 w-4" />
               </button>
 
-              {/* Pill Toggle: [ Chat | Cowork ] */}
+              {/* Pill Toggle */}
               <div className="p-1 bg-[#E5E5E8]/60 rounded-[2px] flex items-center gap-1 text-xs font-semibold">
                 <button
                   type="button"
@@ -151,7 +151,7 @@ export const WebChatLandingSection = () => {
               </div>
             </div>
 
-            {/* Right Controls: Model Selector & Send Button */}
+            {/* Right Controls */}
             <div className="flex items-center gap-3">
               <div className="relative">
                 <button
@@ -177,7 +177,7 @@ export const WebChatLandingSection = () => {
                           'w-full text-left p-2 rounded-[2px] text-xs transition-colors flex flex-col',
                           m.id === activeModelId
                             ? 'bg-[#F4F2FF] text-[#6E56CF] font-bold'
-                            : 'hover:bg-[#FAFAFC] text-[#0F0F11]'
+                            : 'hover:bg-[#F3F3F5] text-[#0F0F11]'
                         )}
                       >
                         <span>{m.name}</span>
@@ -199,7 +199,7 @@ export const WebChatLandingSection = () => {
           </div>
         </form>
 
-        {/* Preset Starter Prompt Cards */}
+        {/* Starter Prompt Cards */}
         <div className="max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
           {STARTER_PROMPTS.map((card, i) => {
             const Icon = card.icon;
@@ -207,9 +207,9 @@ export const WebChatLandingSection = () => {
               <button
                 key={i}
                 onClick={() => handleLaunchChat(card.prompt)}
-                className="p-3 bg-[#FAFAFC] border border-[#E5E5E8] hover:border-[#6E56CF] hover:bg-[#F4F2FF] rounded-[2px] transition-all group shadow-none flex items-start gap-3"
+                className="p-3 bg-white border border-[#E5E5E8] hover:border-[#6E56CF] hover:bg-[#F4F2FF] rounded-[2px] transition-all group shadow-none flex items-start gap-3"
               >
-                <div className="p-2 rounded-[2px] bg-white border border-[#E5E5E8] group-hover:border-[#6E56CF]/40 text-[#6E56CF] shrink-0 transition-colors">
+                <div className="p-2 rounded-[2px] bg-[#F3F3F5] border border-[#E5E5E8] group-hover:border-[#6E56CF]/40 text-[#6E56CF] shrink-0 transition-colors">
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
