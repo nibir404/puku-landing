@@ -43,7 +43,7 @@ export default function Careers() {
             <p className="mt-6 text-lg leading-relaxed text-ink-muted">
               We are a small, focused team shipping the platform we always wanted. If that sounds like the right kind of work, we want to hear from you.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <ButtonLink to="#open-roles" arrow="right">See open roles</ButtonLink>
               <ButtonLink to="/about" variant="secondary">About Puku</ButtonLink>
             </div>

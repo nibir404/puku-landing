@@ -77,7 +77,7 @@ export const ProductPage = (p: ProductPageProps) => {
               </motion.ul>
               <motion.div
                 variants={staggerChild}
-                className="mt-10 flex flex-col sm:flex-row items-center gap-6 w-full max-w-md"
+                className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full max-w-md"
               >
                 <ButtonLink to="/signup" size="lg" arrow="right" className="w-full sm:w-[190px] shrink-0">
                   {p.cta.primary}

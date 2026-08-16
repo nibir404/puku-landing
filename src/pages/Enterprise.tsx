@@ -57,7 +57,7 @@ export default function Enterprise() {
             <p className="mt-6 text-[16px] leading-relaxed text-[#4A4A52] font-normal">
               The same platform, deployed where you need it, governed the way you require it, and supported by people who have shipped at your scale.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <ButtonLink to="/contact" arrow="right">Talk to sales</ButtonLink>
               <ButtonLink to="/solutions/security" variant="secondary" arrow="none">Read security overview</ButtonLink>
             </div>

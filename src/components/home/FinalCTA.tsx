@@ -12,7 +12,7 @@ export const FinalCTA = () => {
         <p className="mx-auto mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-ink-muted">
           Download Puku and experience the next generation of AI-powered software engineering.
         </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <ButtonLink to="/download" size="lg" arrow="right">
             Download Now
           </ButtonLink>

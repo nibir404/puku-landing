@@ -36,7 +36,7 @@ export const CtaBanner = ({
             <span className="text-purple-highlight">{titleHighlight}</span>
           </h2>
 
-          <div className="mt-6 flex flex-col sm:flex-row items-center gap-6 w-full max-w-md">
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 w-full max-w-md">
             <Link
               to={primaryCtaHref}
               className="w-full sm:w-[180px] min-h-[44px] px-6 py-2.5 bg-[#0F0F11] text-white font-semibold text-[15px] rounded-[2px] hover:bg-[#6E56CF] transition-colors shadow-none flex items-center justify-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"

@@ -129,7 +129,7 @@ export const Nav = () => {
         </nav>
 
         {/* Right Column: Action Buttons */}
-        <div className="hidden md:flex flex-1 items-center justify-end gap-3.5">
+        <div className="hidden md:flex flex-1 items-center justify-end gap-4">
           <Link
             to="/login"
             className="min-h-[44px] px-5 py-2.5 text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors rounded-[2px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"

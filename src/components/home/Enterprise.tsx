@@ -29,7 +29,7 @@ export const Enterprise = () => {
               without slowing your engineers down. Deploy on our cloud, in your
               VPC, or fully air-gapped.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <ButtonLink to="/enterprise" variant="primary" size="md" arrow="right">
                 Talk to sales
               </ButtonLink>
