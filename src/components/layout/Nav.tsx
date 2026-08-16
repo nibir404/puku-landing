@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
-  Menu, ChevronDown, Code, Terminal, Cloud, Paintbrush, Users, Smartphone
+  Menu, ChevronDown, Code, Terminal, Cloud, Paintbrush, Users, Smartphone, MessageSquare, Sparkles
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
 
 const productItems = [
+  { name: 'Puku Web Chat', href: '/chat', icon: MessageSquare, desc: 'Claude-style browser web chat workspace', badge: 'New' },
   { name: 'Puku Editor', href: '/products/editor', icon: Code, desc: 'AI-native code workspace', badge: 'v2.4' },
   { name: 'Puku CLI', href: '/products/cli', icon: Terminal, desc: 'Autonomous terminal assistant', badge: null },
   { name: 'Puku Cloud', href: '/products/cloud', icon: Cloud, desc: 'Parallel GPU execution fleet', badge: 'New' },
   { name: 'Puku Design', href: '/products/design', icon: Paintbrush, desc: 'Figma layout & AI UI canvas', badge: null },
   { name: 'Puku Co-work', href: '/products/cowork', icon: Users, desc: 'Real-time team agent pair', badge: null },
-  { name: 'Puku App', href: '/products/app', icon: Smartphone, desc: 'Desktop & mobile workspace', badge: null },
 ];
 
 export const Nav = () => {
@@ -132,16 +132,23 @@ export const Nav = () => {
         </nav>
 
         {/* Right Column: Action Buttons */}
-        <div className="hidden md:flex flex-1 items-center justify-end gap-4">
+        <div className="hidden md:flex flex-1 items-center justify-end gap-3">
+          <Link
+            to="/chat"
+            className="min-h-[40px] px-4 py-2 text-[14px] font-semibold text-[#6E56CF] bg-[#F4F2FF] border border-[#6E56CF]/30 hover:bg-[#6E56CF] hover:text-white rounded-[2px] transition-all flex items-center gap-1.5 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Try Web Chat</span>
+          </Link>
           <Link
             to="/login"
-            className="min-h-[44px] px-5 py-2.5 text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors rounded-[2px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="min-h-[44px] px-4 py-2.5 text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors rounded-[2px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
           >
             Log in
           </Link>
           <Link
             to="/signup"
-            className="min-h-[44px] px-6 py-2.5 text-[15px] font-semibold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-[2px] transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="min-h-[44px] px-5 py-2.5 text-[15px] font-semibold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-[2px] transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
           >
             Get Started
           </Link>
@@ -194,6 +201,10 @@ export const Nav = () => {
               </div>
 
               <div className="pt-4 border-t border-[#E5E5E8] space-y-1">
+                <NavLink to="/chat" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-bold text-[#6E56CF] bg-[#F4F2FF] min-h-[44px] px-3 rounded-[2px] flex items-center justify-between">
+                  <span>Puku Web Chat</span>
+                  <Badge className="bg-[#6E56CF] text-white text-[10px]">Launch</Badge>
+                </NavLink>
                 <NavLink to="/docs" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Documentation</NavLink>
                 <NavLink to="/enterprise" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Enterprise</NavLink>
                 <NavLink to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Pricing</NavLink>

@@ -80,7 +80,7 @@ export const Hero = () => {
             href="/chat"
             className="w-full sm:w-auto min-w-[160px] whitespace-nowrap min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
-            Open Web Workspace ↗
+            Try Web Chat ↗
           </a>
           <a
             href="/signup"
