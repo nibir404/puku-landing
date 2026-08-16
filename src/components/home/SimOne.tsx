@@ -1,30 +1,31 @@
 import { Container } from '@/components/ui/Container';
-import { PixelHeading } from '@/components/ui/Pixel';
 import { LogoMark } from '@/components/ui/Logo';
+import { useEffect, useRef } from 'react';
+import { gsap } from '@/lib/gsap';
 
 export const SimOne = () => {
   return (
-    <section className="relative py-24 md:py-32">
+    <section className="relative py-24 md:py-32 border-t border-[#E5E5E8] bg-white">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <div className="max-w-xl">
-            <h2 className="font-display text-[44px] sm:text-[52px] md:text-[60px] font-medium tracking-tight leading-[1.05] text-ink">
+            <h2 className="font-display text-[44px] sm:text-[52px] md:text-[60px] font-semibold tracking-tight leading-[1.05] text-[#0F0F11]">
               Introducing{' '}
-              <span className="text-ink">Sim-1</span>
+              <span className="text-[#6E56CF]">Sim-1</span>
             </h2>
-            <p className="mt-4 font-display text-[26px] sm:text-[30px] md:text-[34px] font-medium tracking-tight leading-[1.15] text-ink-muted">
+            <p className="mt-4 font-display text-[24px] sm:text-[28px] font-semibold tracking-tight leading-[1.15] text-[#0F0F11]">
               Our smartest models capable of simulating how code runs
             </p>
-            <p className="mt-10 text-[15px] leading-relaxed text-ink-muted max-w-md">
+            <p className="mt-6 text-[16px] leading-relaxed text-[#4A4A52] font-normal max-w-md">
               A new category of models built to understand and predict how large
-              codebases behave in complex, real-world scenarios
+              codebases behave in complex, real-world scenarios.
             </p>
             <a
-              href="/blog/sim-1"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-[14px] font-medium text-white hover:bg-ink/85 transition-colors shadow-pill"
+              href="/blog"
+              className="mt-8 inline-flex items-center gap-3 rounded-[2px] bg-[#0F0F11] px-6 py-3 min-h-[44px] text-[15px] font-semibold text-white hover:bg-[#6E56CF] transition-colors shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
             >
-              <LogoMark tone="dark" className="!h-6 !w-6 !rounded !border-0 !bg-white/15 !text-white" />
-              Read More
+              <LogoMark tone="dark" className="!h-5 !w-5 !rounded-[2px] !border-0 !bg-white/15 !text-white" />
+              <span>Read More</span>
             </a>
           </div>
 
@@ -37,24 +38,35 @@ export const SimOne = () => {
   );
 };
 
-/**
- * A dot-matrix "cityscape" visual, drawn as an SVG <pattern> of dots at varying
- * densities to evoke the reference image's skyline of pixels.
- */
 const DotCityscape = () => {
-  // Build a grid of dots, varying radius/opacity to create skyline silhouette.
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.to('.sim-dot', {
+        y: '-=4',
+        stagger: {
+          amount: 1.5,
+          repeat: -1,
+          yoyo: true,
+        },
+        ease: 'sine.inOut',
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const W = 60;
   const H = 32;
   const dots: { cx: number; cy: number; r: number; o: number }[] = [];
 
   for (let y = 0; y < H; y++) {
     for (let x = 0; x < W; x++) {
-      // Skyline height function: vertical columns of "buildings" of varying height.
-      // Use a few overlapping rectangles + noise to look organic.
       const col = Math.sin(x * 0.3) * 4 + Math.sin(x * 0.13 + 1) * 6;
       const baseline = H - 6 - Math.floor(col + ((x * 7) % 5));
       if (y > baseline) continue;
-      // Sparse higher up, denser near baseline — gives skyline depth.
       const distFromTop = (H - y) / H;
       const o = 0.15 + distFromTop * 0.7;
       const r = 0.9 + distFromTop * 0.6;
@@ -63,27 +75,25 @@ const DotCityscape = () => {
   }
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className="w-full h-auto"
-      preserveAspectRatio="xMidYMid meet"
-      aria-hidden
-    >
-      <defs>
-        <pattern id="dotGrid" x="0" y="0" width="1" height="1" patternUnits="userSpaceOnUse">
-          <circle cx="0.5" cy="0.5" r="0.5" fill="#0B0B0B" />
-        </pattern>
-      </defs>
-      {dots.map((d, i) => (
-        <circle
-          key={i}
-          cx={d.cx + 0.5}
-          cy={d.cy + 0.5}
-          r={d.r * 0.7}
-          fill="#0B0B0B"
-          opacity={d.o}
-        />
-      ))}
-    </svg>
+    <div ref={containerRef} className="p-6 bg-[#FAFAFC] rounded-[2px] border border-[#E5E5E8]">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="w-full h-auto"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+      >
+        {dots.map((d, i) => (
+          <circle
+            key={i}
+            className="sim-dot"
+            cx={d.cx + 0.5}
+            cy={d.cy + 0.5}
+            r={d.r * 0.7}
+            fill="#6E56CF"
+            opacity={d.o}
+          />
+        ))}
+      </svg>
+    </div>
   );
 };

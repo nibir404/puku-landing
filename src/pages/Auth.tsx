@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import * as BrandIcons from "@/components/ui/BrandIcons";
-import { Mail, Lock, User, ArrowRight, CheckCircle2, ShieldCheck, Sparkles, Check } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, CheckCircle2, ShieldCheck, Check } from "lucide-react";
 
 export default function AuthPage() {
   const location = useLocation();
@@ -87,13 +87,13 @@ export default function AuthPage() {
             </Link>
 
             <div className="space-y-3">
-              <Badge variant="secondary" className="bg-accent/20 text-[#6E56CF] font-semibold text-xs px-2.5 py-1">
+              <Badge variant="secondary" className="bg-[#F4F2FF] text-[#6E56CF] font-semibold text-xs px-2.5 py-1 border border-[#E4DDFE]">
                 AI Pair Programmer
               </Badge>
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F0F11] tracking-tight font-display">
+              <h1 className="text-3xl sm:text-4xl font-semibold text-[#0F0F11] tracking-tight font-display leading-tight">
                 {tab === "login" ? "Ship software at 10x speed." : "Join thousands of AI-powered engineers."}
               </h1>
-              <p className="text-base text-[#4A4A52] leading-relaxed">
+              <p className="text-[16px] text-[#4A4A52] font-normal leading-relaxed">
                 Connect your IDE, terminal, and GPU fleet in seconds. Puku acts as your autonomous pair engineer.
               </p>
             </div>
@@ -106,8 +106,8 @@ export default function AuthPage() {
                 "SOC2 Type II certified enterprise security",
                 "100% WCAG AAA accessible workspace interface",
               ].map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-2.5 text-sm font-medium text-[#0F0F11]">
-                  <div className="h-5 w-5 rounded-full bg-[#6E56CF]/10 text-[#6E56CF] flex items-center justify-center shrink-0">
+                <li key={idx} className="flex items-center gap-2.5 text-sm font-semibold text-[#0F0F11]">
+                  <div className="h-5 w-5 rounded-full bg-[#F4F2FF] text-[#6E56CF] flex items-center justify-center shrink-0">
                     <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </div>
                   <span>{feature}</span>
@@ -118,14 +118,14 @@ export default function AuthPage() {
 
           {/* Right Column: Auth Card */}
           <div className="md:col-span-7">
-            <Card className="w-full bg-white border-[#E5E5E8] shadow-lg rounded-xl p-6 sm:p-8">
+            <Card className="w-full bg-white border-[#E5E5E8] shadow-none rounded-[2px] p-6 sm:p-8">
               <CardHeader className="p-0 mb-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-2xl font-bold text-[#0F0F11]">
+                    <CardTitle className="text-2xl font-semibold text-[#0F0F11]">
                       {tab === "login" ? "Sign in to Puku" : "Create Puku Account"}
                     </CardTitle>
-                    <CardDescription className="text-sm text-[#4A4A52] mt-1">
+                    <CardDescription className="text-[16px] font-normal text-[#4A4A52] mt-1">
                       {tab === "login"
                         ? "Enter your email credentials to access your workspace."
                         : "Start your 14-day full access trial. No credit card required."}
@@ -134,14 +134,14 @@ export default function AuthPage() {
                 </div>
 
                 {/* Navigation Pills between Login & Signup */}
-                <div className="grid grid-cols-2 gap-1 bg-[#F3F3F5] p-1 rounded-lg mt-5 border border-[#E5E5E8]">
+                <div className="grid grid-cols-2 gap-1 bg-[#FAFAFC] p-1 rounded-[2px] mt-5 border border-[#E5E5E8]">
                   <button
                     type="button"
                     onClick={() => handleTabChange("login")}
-                    className={`h-10 text-sm font-semibold rounded-md transition-all ${
+                    className={`min-h-[44px] text-sm font-semibold rounded-[2px] transition-all ${
                       tab === "login"
-                        ? "bg-white text-[#0F0F11] shadow-sm"
-                        : "text-[#666666] hover:text-[#0F0F11]"
+                        ? "bg-white text-[#0F0F11] border border-[#E5E5E8]"
+                        : "text-[#4A4A52] hover:text-[#0F0F11]"
                     }`}
                   >
                     Log In
@@ -149,10 +149,10 @@ export default function AuthPage() {
                   <button
                     type="button"
                     onClick={() => handleTabChange("signup")}
-                    className={`h-10 text-sm font-semibold rounded-md transition-all ${
+                    className={`min-h-[44px] text-sm font-semibold rounded-[2px] transition-all ${
                       tab === "signup"
-                        ? "bg-white text-[#0F0F11] shadow-sm"
-                        : "text-[#666666] hover:text-[#0F0F11]"
+                        ? "bg-white text-[#0F0F11] border border-[#E5E5E8]"
+                        : "text-[#4A4A52] hover:text-[#0F0F11]"
                     }`}
                   >
                     Sign Up
@@ -166,7 +166,7 @@ export default function AuthPage() {
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                       <CheckCircle2 className="h-7 w-7" />
                     </div>
-                    <p className="text-lg font-bold text-[#0F0F11]">{successMsg}</p>
+                    <p className="text-lg font-semibold text-[#0F0F11]">{successMsg}</p>
                   </div>
                 ) : (
                   <>
@@ -176,7 +176,7 @@ export default function AuthPage() {
                         type="button"
                         variant="outline"
                         onClick={() => handleSocialAuth("GitHub")}
-                        className="h-11 border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-2"
+                        className="min-h-[44px] border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-3 rounded-[2px]"
                         aria-label="Continue with GitHub"
                       >
                         <BrandIcons.GitHubIcon className="h-4 w-4" />
@@ -187,7 +187,7 @@ export default function AuthPage() {
                         type="button"
                         variant="outline"
                         onClick={() => handleSocialAuth("Google")}
-                        className="h-11 border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-2"
+                        className="min-h-[44px] border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-3 rounded-[2px]"
                         aria-label="Continue with Google"
                       >
                         <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0">
@@ -202,13 +202,13 @@ export default function AuthPage() {
 
                     <div className="relative my-5 flex items-center justify-center">
                       <Separator className="w-full" />
-                      <span className="absolute bg-white px-3 text-xs font-medium text-[#4A4A52] uppercase tracking-wider">
+                      <span className="absolute bg-white px-3 text-xs font-semibold text-[#4A4A52] uppercase tracking-wider">
                         Or continue with email
                       </span>
                     </div>
 
                     {errorMsg && (
-                      <div className="p-3 mb-4 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm font-medium" role="alert">
+                      <div className="p-3 mb-4 rounded-[2px] bg-red-50 border border-red-200 text-red-700 text-sm font-semibold" role="alert">
                         {errorMsg}
                       </div>
                     )}
@@ -216,7 +216,7 @@ export default function AuthPage() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                       {tab === "signup" && (
                         <div className="space-y-1.5">
-                          <label htmlFor="auth-name" className="text-sm font-bold text-[#0F0F11]">
+                          <label htmlFor="auth-name" className="text-sm font-semibold text-[#0F0F11]">
                             Full Name
                           </label>
                           <div className="relative">
@@ -227,7 +227,7 @@ export default function AuthPage() {
                               placeholder="Alex Mercer"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
-                              className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                              className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                               required
                             />
                           </div>
@@ -235,7 +235,7 @@ export default function AuthPage() {
                       )}
 
                       <div className="space-y-1.5">
-                        <label htmlFor="auth-email" className="text-sm font-bold text-[#0F0F11]">
+                        <label htmlFor="auth-email" className="text-sm font-semibold text-[#0F0F11]">
                           Work Email
                         </label>
                         <div className="relative">
@@ -246,7 +246,7 @@ export default function AuthPage() {
                             placeholder="alex@company.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                            className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                             required
                           />
                         </div>
@@ -254,14 +254,14 @@ export default function AuthPage() {
 
                       <div className="space-y-1.5">
                         <div className="flex items-center justify-between">
-                          <label htmlFor="auth-password" className="text-sm font-bold text-[#0F0F11]">
+                          <label htmlFor="auth-password" className="text-sm font-semibold text-[#0F0F11]">
                             Password
                           </label>
                           {tab === "login" && (
                             <button
                               type="button"
                               onClick={() => alert("Password reset link sent to your email!")}
-                              className="text-xs font-bold text-[#6E56CF] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6E56CF]"
+                              className="text-xs font-semibold text-[#6E56CF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                             >
                               Forgot password?
                             </button>
@@ -275,7 +275,7 @@ export default function AuthPage() {
                             placeholder="••••••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                            className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                             required
                           />
                         </div>
@@ -284,7 +284,7 @@ export default function AuthPage() {
                       <ShadcnButton
                         type="submit"
                         disabled={loading}
-                        className="w-full h-11 bg-[#0F0F11] hover:bg-[#6E56CF] text-white font-semibold text-base transition-colors flex items-center justify-center gap-2 rounded-lg"
+                        className="w-full min-h-[44px] bg-[#0F0F11] hover:bg-[#6E56CF] text-white font-semibold text-base transition-colors flex items-center justify-center gap-3 rounded-[2px] shadow-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
                       >
                         {loading ? (
                           <span>Processing...</span>

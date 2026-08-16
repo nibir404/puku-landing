@@ -462,10 +462,10 @@ export default function Home() {
             <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#6E56CF] px-3 py-1 rounded-[2px] bg-[#F4F2FF] border border-[#E4DDFE]">
               PUKU PRODUCT SUITE
             </span>
-            <h2 className="mt-4 text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
+            <h2 className="mt-4 text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
               Six products. <span className="text-purple-highlight">One platform.</span>
             </h2>
-            <p className="mt-2.5 text-[16px] text-[#1A1A1E] font-medium">
+            <p className="mt-2.5 text-[16px] text-[#4A4A52] font-normal leading-relaxed">
               A complete autonomous software suite designed to accelerate engineering workflows across your entire stack.
             </p>
           </div>
@@ -478,7 +478,7 @@ export default function Home() {
                 <Link
                   key={idx}
                   to={prod.href}
-                  className="puku-light-card p-6 rounded-[2px] flex flex-col justify-between h-full group transition-all"
+                  className="puku-light-card p-6 rounded-[2px] flex flex-col justify-between h-full group transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                 >
                   <div>
                     {/* ICON BG: Neutral Grey Shade (#F3F3F5) */}
@@ -486,14 +486,14 @@ export default function Home() {
                       <Icon className="h-5 w-5 text-[#0F0F11] group-hover:text-white" />
                     </div>
 
-                    <h3 className="text-[19px] font-bold text-[#0F0F11] font-display group-hover:text-[#6E56CF] transition-colors flex items-center justify-between mb-1">
+                    <h3 className="text-[19px] font-semibold text-[#0F0F11] font-display group-hover:text-[#6E56CF] transition-colors flex items-center justify-between mb-1">
                       <span>{prod.name}</span>
                       <ArrowRight className="h-4 w-4 text-[#0F0F11] group-hover:translate-x-1 group-hover:text-[#6E56CF] transition-all" />
                     </h3>
 
                     <div className="text-[12.5px] font-mono font-bold text-[#6E56CF] mb-3">{prod.tagline}</div>
 
-                    <p className="text-[14px] text-[#1A1A1E] font-medium leading-relaxed mb-6">
+                    <p className="text-[16px] text-[#4A4A52] font-normal leading-relaxed mb-6">
                       {prod.desc}
                     </p>
                   </div>
@@ -512,16 +512,16 @@ export default function Home() {
             SECTION 3 — BUILD WITH PUKU & LOGO MATRIX
         ════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 text-center max-w-6xl mx-auto border-t border-[#E5E5E8]">
-          <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#333338] mb-2.5">
+          <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#4A4A52] mb-2.5">
             TRUSTED BY LEADING TEAMS
           </div>
           
-          <h2 className="text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
+          <h2 className="text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
             Build with <span className="text-purple-highlight">Puku</span>
           </h2>
 
-          <div className="mt-4 mb-10">
-            <Link to="/enterprise" className="px-5 py-2 bg-[#0F0F11] text-white text-[15px] font-semibold rounded-[2px] hover:bg-[#6E56CF] transition-colors inline-block shadow-none">
+          <div className="mt-6 mb-10">
+            <Link to="/enterprise" className="px-6 py-2.5 min-h-[44px] bg-[#0F0F11] text-white text-[15px] font-semibold rounded-[2px] hover:bg-[#6E56CF] transition-colors inline-flex items-center justify-center shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]">
               See customer stories
             </Link>
           </div>
@@ -536,7 +536,7 @@ export default function Home() {
                 <div className="h-7.5 w-7.5 rounded-[2px] bg-[#F3F3F5] border border-[#E5E5E8] flex items-center justify-center text-[#0F0F11] group-hover:bg-[#6E56CF] group-hover:border-[#6E56CF] group-hover:text-white transition-colors shrink-0">
                   {c.icon}
                 </div>
-                <span className="text-[13.5px] font-bold text-[#0F0F11] font-display truncate">{c.name}</span>
+                <span className="text-[13.5px] font-semibold text-[#0F0F11] font-display truncate">{c.name}</span>
               </div>
             ))}
           </div>
@@ -547,10 +547,10 @@ export default function Home() {
         ════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 max-w-6xl mx-auto border-t border-[#E5E5E8]">
           <div className="text-left mb-12">
-            <h2 className="text-[32px] sm:text-[44px] font-bold text-[#0F0F11] font-display tracking-tight">
+            <h2 className="text-[32px] sm:text-[44px] font-semibold text-[#0F0F11] font-display tracking-tight">
               Use cases
             </h2>
-            <p className="mt-2 text-[16px] font-medium text-[#1A1A1E] max-w-xl">
+            <p className="mt-2 text-[16px] font-normal text-[#4A4A52] max-w-xl leading-relaxed">
               Assign Puku to tickets, migrations, code reviews, and background chores.
             </p>
           </div>
@@ -568,13 +568,13 @@ export default function Home() {
                   <div className="inline-block px-2.5 py-1 rounded-[2px] bg-[#F4F2FF] text-[11.5px] font-mono font-bold text-[#6E56CF] mb-4 border border-[#E4DDFE]">
                     {uc.badge}
                   </div>
-                  <h3 className="text-[20px] font-extrabold text-[#0F0F11] font-display mb-2">{uc.title}</h3>
-                  <p className="text-[14px] text-[#1A1A1E] font-medium leading-relaxed mb-4">{uc.desc}</p>
+                  <h3 className="text-[20px] font-semibold text-[#0F0F11] font-display mb-2">{uc.title}</h3>
+                  <p className="text-[16px] text-[#4A4A52] font-normal leading-relaxed mb-4">{uc.desc}</p>
                   
-                  <ul className="space-y-2 text-[13px] text-[#0F0F11] font-medium mb-6">
+                  <ul className="space-y-2 text-[14px] text-[#0F0F11] font-medium mb-6">
                     {uc.bullets.map((b, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <Check className="h-3.5 w-3.5 text-[#6E56CF] shrink-0" />
+                        <Check className="h-4 w-4 text-[#6E56CF] shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -583,11 +583,11 @@ export default function Home() {
 
                 {/* Mock Card Preview Graphic */}
                 <div className="p-3.5 bg-[#FAFAFC] rounded-[2px] border border-[#E5E5E8]">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[#333338] font-bold mb-2">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#4A4A52] font-bold mb-2">
                     <span>Puku Preview</span>
                     <span className="text-[#6E56CF] font-bold">✓ Verified</span>
                   </div>
-                  <div className="h-12 bg-white rounded-[2px] border border-[#E5E5E8] px-3 flex items-center justify-between text-[12.5px] font-bold text-[#0F0F11]">
+                  <div className="h-12 bg-white rounded-[2px] border border-[#E5E5E8] px-3 flex items-center justify-between text-[13.5px] font-semibold text-[#0F0F11]">
                     <span>{uc.title} automated task</span>
                     <ArrowRight className="h-4 w-4 text-[#6E56CF]" />
                   </div>
@@ -611,16 +611,16 @@ export default function Home() {
                   <br />
                   <span className="text-purple-highlight">together</span>
                 </h2>
-                <p className="mt-3.5 text-[16px] font-normal text-[#A0A0A6] leading-relaxed">
+                <p className="mt-3.5 text-[16px] font-normal text-[#C0C0C6] leading-relaxed">
                   Puku learns your codebase guidelines, team conventions, and institutional knowledge over time.
                 </p>
               </div>
 
               {/* Dark Card */}
               <div className="mt-8 puku-dark-card p-6 rounded-[2px]">
-                <div className="text-[11px] font-mono uppercase tracking-wider text-[#6E56CF] mb-2">Knowledge Engine</div>
-                <h4 className="text-[18px] font-bold text-white font-display mb-3">Learn your codebase & enterprise knowledge</h4>
-                <div className="p-3 bg-[#050508] rounded-[2px] border border-white/10 flex items-center gap-2 text-[13px] text-[#AAA] font-mono">
+                <div className="text-[11px] font-mono uppercase tracking-wider text-[#6E56CF] mb-2 font-bold">Knowledge Engine</div>
+                <h3 className="text-[18px] font-semibold text-white font-display mb-3">Learn your codebase & enterprise knowledge</h3>
+                <div className="p-3 bg-[#050508] rounded-[2px] border border-white/10 flex items-center gap-2 text-[13px] text-[#C0C0C6] font-mono">
                   <Search className="h-4 w-4 text-[#6E56CF]" />
                   <span>Index 1,420 repository specs...</span>
                 </div>
@@ -637,11 +637,11 @@ export default function Home() {
                     <Shield className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-[18px] font-bold text-white font-display">Data privacy & permissions</h3>
-                    <p className="text-[12.5px] text-[#AAA]">SOC 2 Type II, ISO 27001, Zero Data Retention</p>
+                    <h3 className="text-[18px] font-semibold text-white font-display">Data privacy & permissions</h3>
+                    <p className="text-[12.5px] text-[#C0C0C6] font-mono">SOC 2 Type II, ISO 27001, Zero Data Retention</p>
                   </div>
                 </div>
-                <p className="text-[14px] text-[#C0C0C6] leading-relaxed">
+                <p className="text-[16px] font-normal text-[#C0C0C6] leading-relaxed">
                   Puku operates in isolated single-tenant cloud sandboxes. Your proprietary source code is never used to train global AI models.
                 </p>
               </div>
@@ -653,8 +653,8 @@ export default function Home() {
                     <RefreshCw className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-[18px] font-bold text-white font-display">Self-correct & learn over time</h3>
-                    <p className="text-[12.5px] text-[#AAA]">Adapts to code reviews & linter rules automatically</p>
+                    <h3 className="text-[18px] font-semibold text-white font-display">Self-correct & learn over time</h3>
+                    <p className="text-[12.5px] text-[#C0C0C6] font-mono">Adapts to code reviews & linter rules automatically</p>
                   </div>
                 </div>
 
@@ -673,7 +673,7 @@ export default function Home() {
             SECTION 6 — TOOLS SECTION ("hundreds of tools") WITH REAL BRAND SVG LOGOS
         ════════════════════════════════════════════════════ */}
         <section className="py-24 px-4 text-center max-w-6xl mx-auto">
-          <div className="text-[13px] font-mono text-[#666666] max-w-2xl mx-auto mb-2.5">
+          <div className="text-[13px] font-mono text-[#4A4A52] max-w-2xl mx-auto mb-2.5 font-bold">
             A full dev environment on the cloud.
           </div>
 

@@ -76,36 +76,37 @@ export default function Blog() {
   return (
     <>
       <SEO title="Blog — Puku" description="News, engineering deep dives, and product updates from the Puku team." />
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="absolute inset-0 -z-10 bg-radial-purple" />
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-white border-b border-[#E5E5E8]">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <Eyebrow className="justify-center">Blog</Eyebrow>
-            <h1 className="mt-5 font-display text-display-xl font-medium tracking-tight">
-              Field notes from the <span className="text-gradient">Puku team.</span>
+            <h1 className="mt-5 font-display text-4xl sm:text-5xl font-semibold tracking-tight text-[#0F0F11]">
+              Field notes from the <span className="text-[#6E56CF]">Puku team.</span>
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink-muted">
+            <p className="mt-6 text-[16px] leading-relaxed text-[#4A4A52] font-normal">
               Engineering deep dives, design decisions, and product updates.
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="pb-12">
+      <section className="py-12 bg-[#FAFAFC]">
         <Container>
           <Link
             to={featured.href}
-            className="group mx-auto block max-w-5xl overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-200 hover:border-accent/40 hover:shadow-card"
+            className="group mx-auto block max-w-5xl overflow-hidden rounded-[2px] border border-[#E5E5E8] bg-white transition-all duration-200 hover:border-[#6E56CF] shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
           >
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="aspect-[5/3] bg-pixel-dots" />
-              <div className="p-8 md:p-10">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E56CF]">{featured.category}</div>
-                <h2 className="mt-3 font-mono text-lg font-bold leading-tight text-[#0F0F11] md:text-xl uppercase tracking-wider">
+              <div className="aspect-[5/3] bg-[#F3F3F5] flex items-center justify-center p-8">
+                <span className="font-mono text-sm font-semibold text-[#6E56CF] uppercase tracking-wider">Featured Article</span>
+              </div>
+              <div className="p-8 md:p-10 text-left">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-[#6E56CF]">{featured.category}</div>
+                <h2 className="mt-3 font-sans text-xl sm:text-2xl font-semibold leading-tight text-[#0F0F11]">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-[14.5px] leading-relaxed text-[#333338]">{featured.excerpt}</p>
-                <div className="mt-6 flex items-center gap-3 text-[12.5px] font-medium text-[#4A4A52]">
+                <p className="mt-4 text-[16px] leading-relaxed text-[#4A4A52] font-normal">{featured.excerpt}</p>
+                <div className="mt-6 flex items-center gap-3 text-[13px] font-medium text-[#4A4A52]">
                   <span>{featured.author}</span>
                   <span>·</span>
                   <span>{featured.date}</span>
@@ -118,19 +119,19 @@ export default function Blog() {
         </Container>
       </section>
 
-      <section className="pb-32">
+      <section className="py-16 bg-white border-t border-[#E5E5E8]">
         <Container>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((p) => (
               <Link
                 key={p.title}
                 to={p.href}
-                className="group block overflow-hidden rounded-2xl border border-[#E5E5E8] bg-white p-6 transition-all duration-200 hover:border-[#6E56CF]"
+                className="group block overflow-hidden rounded-[2px] border border-[#E5E5E8] bg-white p-6 transition-all duration-200 hover:border-[#6E56CF] shadow-none text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
               >
-                <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E56CF]">{p.category}</div>
-                <h3 className="mt-3 font-mono text-sm font-bold leading-snug text-[#0F0F11] uppercase tracking-wider">{p.title}</h3>
-                <p className="mt-3 text-[13.5px] leading-relaxed text-[#333338]">{p.excerpt}</p>
-                <div className="mt-5 flex items-center gap-2 text-[12px] font-medium text-[#4A4A52]">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-[#6E56CF]">{p.category}</div>
+                <h3 className="mt-3 font-sans text-lg font-semibold leading-snug text-[#0F0F11]">{p.title}</h3>
+                <p className="mt-3 text-[16px] leading-relaxed text-[#4A4A52] font-normal">{p.excerpt}</p>
+                <div className="mt-5 flex items-center gap-2 text-[13px] font-medium text-[#4A4A52]">
                   <span>{p.author}</span>
                   <span>·</span>
                   <span>{p.readTime}</span>
@@ -140,7 +141,7 @@ export default function Blog() {
           </div>
 
           <div className="mx-auto mt-16 max-w-3xl text-center">
-            <ButtonLink to="/blog/archive" arrow="right">Browse the archive</ButtonLink>
+            <ButtonLink to="/blog" arrow="right">Browse all articles</ButtonLink>
           </div>
         </Container>
       </section>

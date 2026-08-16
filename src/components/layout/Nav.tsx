@@ -75,7 +75,9 @@ export const Nav = () => {
           <div className="relative" ref={dropdownRef} onMouseEnter={() => setProductsOpen(true)}>
             <button
               onClick={() => setProductsOpen(!productsOpen)}
-              className="flex items-center gap-1 text-[15px] font-semibold text-[#1A1A1E] hover:text-[#6E56CF] py-2 transition-colors rounded-[2px]"
+              aria-expanded={productsOpen}
+              aria-haspopup="true"
+              className="flex items-center gap-1 text-[15px] font-semibold text-[#1A1A1E] hover:text-[#6E56CF] py-2 transition-colors rounded-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
             >
               <span>Products</span>
               <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200 text-[#0F0F11]', productsOpen && 'rotate-180 text-[#6E56CF]')} />
@@ -92,21 +94,21 @@ export const Nav = () => {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="flex items-center gap-2.5 p-2.5 rounded-[2px] hover:bg-[#FAFAFC] border border-transparent hover:border-[#E5E5E8] transition-colors group"
+                      className="flex items-center gap-2.5 p-2.5 rounded-[2px] hover:bg-[#FAFAFC] border border-transparent hover:border-[#E5E5E8] transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                     >
                       <div className="flex h-7.5 w-7.5 items-center justify-center rounded-[2px] bg-[#F3F3F5] border border-[#E5E5E8] group-hover:bg-[#6E56CF] group-hover:border-[#6E56CF] transition-colors shrink-0">
                         <Icon className="h-3.5 w-3.5 text-[#0F0F11] group-hover:text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[13.5px] font-bold text-[#0F0F11] group-hover:text-[#6E56CF] transition-colors truncate">{item.name}</span>
+                          <span className="text-[13.5px] font-semibold text-[#0F0F11] group-hover:text-[#6E56CF] transition-colors truncate">{item.name}</span>
                           {item.badge && (
                             <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4 font-bold bg-[#F4F2FF] text-[#6E56CF]">
                               {item.badge}
                             </Badge>
                           )}
                         </div>
-                        <div className="text-[11.5px] text-[#333338] font-medium truncate">{item.desc}</div>
+                        <div className="text-[11.5px] text-[#4A4A52] font-normal truncate">{item.desc}</div>
                       </div>
                     </Link>
                   );
@@ -115,16 +117,16 @@ export const Nav = () => {
             )}
           </div>
 
-          <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors', isActive ? 'text-[#6E56CF] font-bold' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
+          <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Customers
           </NavLink>
-          <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors', isActive ? 'text-[#6E56CF] font-bold' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
+          <NavLink to="/enterprise" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Enterprise
           </NavLink>
-          <NavLink to="/pricing" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors', isActive ? 'text-[#6E56CF] font-bold' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
+          <NavLink to="/pricing" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Pricing
           </NavLink>
-          <NavLink to="/blog" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors', isActive ? 'text-[#6E56CF] font-bold' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
+          <NavLink to="/blog" className={({ isActive }) => cn('text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]', isActive ? 'text-[#6E56CF]' : 'text-[#1A1A1E] hover:text-[#6E56CF]')}>
             Blog
           </NavLink>
         </nav>
@@ -133,13 +135,13 @@ export const Nav = () => {
         <div className="hidden md:flex flex-1 items-center justify-end gap-3.5">
           <Link
             to="/login"
-            className="min-h-[44px] px-4 py-2.5 text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors rounded-md flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="min-h-[44px] px-5 py-2.5 text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors rounded-[2px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
             Log in
           </Link>
           <Link
             to="/signup"
-            className="min-h-[44px] px-5 py-2.5 text-[15px] font-semibold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-md transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+            className="min-h-[44px] px-6 py-2.5 text-[15px] font-semibold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-[2px] transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
             Get Started
           </Link>
@@ -150,7 +152,7 @@ export const Nav = () => {
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <button
-                className="p-2.5 text-[#0F0F11] rounded-md min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
+                className="p-2.5 text-[#0F0F11] rounded-[2px] min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                 aria-label="Toggle navigation menu"
               >
                 <Menu className="h-5 w-5" aria-hidden="true" />
@@ -158,7 +160,7 @@ export const Nav = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[350px] p-6 bg-white border-l border-[#E5E5E8] flex flex-col gap-6">
               <SheetHeader>
-                <SheetTitle className="flex items-center gap-2 text-left text-lg font-bold">
+                <SheetTitle className="flex items-center gap-2 text-left text-lg font-semibold">
                   <img src="/puku-mark.svg" alt="Puku" className="h-6 w-auto" />
                   Navigation
                 </SheetTitle>
@@ -174,11 +176,11 @@ export const Nav = () => {
                         key={item.name}
                         to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between p-2.5 min-h-[44px] bg-[#FAFAFC] rounded-md border border-[#E5E5E8] hover:border-[#6E56CF]"
+                        className="flex items-center justify-between p-2.5 min-h-[44px] bg-[#FAFAFC] rounded-[2px] border border-[#E5E5E8] hover:border-[#6E56CF]"
                       >
                         <div className="flex items-center gap-2.5">
                           <Icon className="h-4 w-4 text-[#6E56CF]" />
-                          <span className="text-[13.5px] font-medium text-[#0F0F11]">{item.name}</span>
+                          <span className="text-[13.5px] font-semibold text-[#0F0F11]">{item.name}</span>
                         </div>
                         {item.badge && (
                           <Badge variant="secondary" className="text-[10px] px-1.5 py-0 h-4">
@@ -192,17 +194,17 @@ export const Nav = () => {
               </div>
 
               <div className="pt-4 border-t border-[#E5E5E8] space-y-1">
-                <NavLink to="/docs" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-bold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-md flex items-center">Documentation</NavLink>
-                <NavLink to="/enterprise" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-bold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-md flex items-center">Enterprise</NavLink>
-                <NavLink to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-bold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-md flex items-center">Pricing</NavLink>
-                <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-bold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-md flex items-center">Blog</NavLink>
+                <NavLink to="/docs" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Documentation</NavLink>
+                <NavLink to="/enterprise" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Enterprise</NavLink>
+                <NavLink to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Pricing</NavLink>
+                <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)} className="block text-[15px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] min-h-[44px] px-3 rounded-[2px] flex items-center">Blog</NavLink>
               </div>
 
               <div className="mt-auto pt-4 border-t border-[#E5E5E8] flex flex-col gap-3">
-                <Link to="/signup" onClick={() => setMobileMenuOpen(false)} className="w-full min-h-[44px] py-2.5 text-center text-[15px] font-bold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-md flex items-center justify-center transition-colors">
+                <Link to="/signup" onClick={() => setMobileMenuOpen(false)} className="w-full min-h-[44px] py-2.5 text-center text-[15px] font-semibold text-white bg-[#0F0F11] hover:bg-[#6E56CF] rounded-[2px] flex items-center justify-center transition-colors">
                   Get Started
                 </Link>
-                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="w-full min-h-[44px] py-2 text-center text-[15px] font-bold text-[#0F0F11] border border-[#E5E5E8] rounded-md hover:bg-[#FAFAFC] flex items-center justify-center transition-colors">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="w-full min-h-[44px] py-2 text-center text-[15px] font-semibold text-[#0F0F11] border border-[#E5E5E8] rounded-[2px] hover:bg-[#FAFAFC] flex items-center justify-center transition-colors">
                   Log in
                 </Link>
               </div>

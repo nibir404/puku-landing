@@ -1,48 +1,90 @@
-/**
- * Dot-matrix constellation visual — an abstract dot pattern reminiscent of a
- * networked codebase: dense lower half with a sparse halo above, drawn from a
- * single SVG <pattern> for crispness at any size.
- */
-export const DotConstellation = () => {
-  const W = 70;
-  const H = 40;
-  const dots: { cx: number; cy: number; r: number; o: number }[] = [];
+import { useEffect, useRef } from 'react';
+import { gsap } from '@/lib/gsap';
 
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const nx = x / W - 0.5;
-      const ny = y / H - 0.5;
-      // Two overlapping radial clusters (one dense lower-left, one upper-right)
-      const d1 = Math.sqrt(nx * nx + (ny - 0.15) * (ny - 0.15));
-      const d2 = Math.sqrt((nx - 0.18) * (nx - 0.18) + (ny + 0.18) * (ny + 0.18));
-      const v = Math.max(0, 0.45 - d1) * 1.6 + Math.max(0, 0.32 - d2) * 1.4;
-      if (v < 0.05) continue;
-      dots.push({
-        cx: x,
-        cy: y,
-        r: 0.4 + v * 0.8,
-        o: Math.min(0.92, v * 0.9),
-      });
-    }
-  }
+export const DotConstellation = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 700);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 400);
+
+    const handleResize = () => {
+      if (!canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Particle nodes
+    const particleCount = 45;
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      radius: Math.random() * 1.8 + 1,
+      alpha: Math.random() * 0.5 + 0.3,
+    }));
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw constellation connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(110, 86, 207, ${0.25 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles & update position via GSAP ticker sync
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(110, 86, 207, ${p.alpha})`;
+        ctx.fill();
+      }
+    };
+
+    // Use GSAP ticker for 60fps render
+    const tickerListener = () => {
+      render();
+    };
+
+    gsap.ticker.add(tickerListener);
+
+    return () => {
+      gsap.ticker.remove(tickerListener);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className="w-full h-auto"
-      preserveAspectRatio="xMidYMid meet"
-      aria-hidden
-    >
-      {dots.map((d, i) => (
-        <circle
-          key={i}
-          cx={d.cx + 0.5}
-          cy={d.cy + 0.5}
-          r={d.r * 0.75}
-          fill="#0B0B0B"
-          opacity={d.o}
-        />
-      ))}
-    </svg>
+    <div className="w-full h-full min-h-[300px] relative overflow-hidden rounded-[2px] border border-[#E5E5E8] bg-[#FAFAFC]">
+      <canvas ref={canvasRef} className="w-full h-full block" aria-hidden="true" />
+    </div>
   );
 };

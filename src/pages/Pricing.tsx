@@ -289,16 +289,15 @@ export default function Pricing() {
       <SEO title="Pricing — Puku" description="Simple, predictable pricing for AI-native engineering." />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-12 md:pt-40 md:pb-16 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-radial-glow animate-pulse" style={{ animationDuration: '6s' }} />
+      <section className="relative pt-28 pb-12 md:pt-40 md:pb-16 overflow-hidden bg-white border-b border-[#E5E5E8]">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <Eyebrow className="justify-center">Pricing</Eyebrow>
-            <h1 className="mt-5 font-sans text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-ink leading-[1.08]">
+            <h1 className="mt-5 font-sans text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-[#0F0F11] leading-[1.08]">
               Plans Built for{' '}
-              <span className="text-gradient-purple">Every Engineer.</span>
+              <span className="text-[#6E56CF]">Every Engineer.</span>
             </h1>
-            <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-muted max-w-lg mx-auto">
+            <p className="mt-5 text-[16px] sm:text-lg leading-relaxed text-[#4A4A52] font-normal max-w-lg mx-auto">
               From testing side projects to running a full engineering team — pick the plan that fits.
             </p>
           </div>
@@ -306,25 +305,25 @@ export default function Pricing() {
       </section>
 
       {/* Important Notice */}
-      <section className="pb-10">
+      <section className="pb-10 pt-10">
         <Container>
-          <div className="mx-auto max-w-3xl rounded-xl border border-amber-500/25 bg-amber-500/5 overflow-hidden">
+          <div className="mx-auto max-w-3xl rounded-[2px] border border-amber-500/30 bg-amber-500/5 overflow-hidden">
             <button
               onClick={() => setIsNoticeOpen(!isNoticeOpen)}
-              className="flex w-full items-center justify-between gap-3 p-4 text-left focus:outline-none"
+              className="flex w-full items-center justify-between gap-3 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
               aria-expanded={isNoticeOpen}
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-amber-500/15 flex-shrink-0">
-                  <AlertTriangle className="h-4 w-4 text-amber-500" />
+                <div className="flex h-7 w-7 items-center justify-center rounded-[2px] bg-amber-500/15 flex-shrink-0">
+                  <AlertTriangle className="h-4 w-4 text-amber-600" />
                 </div>
-                <span className="text-[13.5px] font-semibold text-ink">
+                <span className="text-[14px] font-semibold text-[#0F0F11]">
                   Important Notice — Please read before payment
                 </span>
               </div>
               <ChevronDown
                 className={cn(
-                  'h-4 w-4 text-ink-muted transition-transform duration-200 flex-shrink-0',
+                  'h-4 w-4 text-[#4A4A52] transition-transform duration-200 flex-shrink-0',
                   isNoticeOpen && 'rotate-180'
                 )}
               />
@@ -338,7 +337,7 @@ export default function Pricing() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-4 pb-4 pt-1 border-t border-amber-500/10 space-y-2.5 text-[13px] leading-relaxed text-ink-muted">
+                  <div className="px-4 pb-4 pt-1 border-t border-amber-500/10 space-y-2.5 text-[14px] font-normal leading-relaxed text-[#4A4A52]">
                     <p>Puku uses its own automatic request classification system to help protect platform reliability. Requests involving hacking attempts, jailbreak techniques, or unsafe activities may be automatically routed to the Minimax model.</p>
                     <p>Our Opus 4.8 service runs through third-party infrastructure in Hong Kong. Certain requests pass through our protection system to reduce upstream account restrictions.</p>
                     <p>Multiple safety layers are applied across our infrastructure for stability. Some requests may take slightly longer to process as a result.</p>
@@ -352,16 +351,16 @@ export default function Pricing() {
 
       {/* Tab Toggle */}
       <section className="pb-10 text-center">
-        <div className="inline-flex rounded-xl border border-border bg-surface p-1 shadow-soft">
+        <div className="inline-flex rounded-[2px] border border-[#E5E5E8] bg-[#FAFAFC] p-1 shadow-none">
           {(['individual', 'team'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={cn(
-                'relative px-5 py-2.5 text-[13.5px] font-semibold rounded-lg transition-all duration-200',
+                'relative px-6 py-2.5 min-h-[44px] text-[15px] font-semibold rounded-[2px] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]',
                 activeTab === tab
-                  ? 'bg-accent text-white shadow-sm'
-                  : 'text-ink-muted hover:text-ink'
+                  ? 'bg-[#6E56CF] text-white shadow-none'
+                  : 'text-[#4A4A52] hover:text-[#0F0F11]'
               )}
             >
               {tab === 'individual' ? 'Individual' : 'Team & Enterprise'}
@@ -400,11 +399,11 @@ export default function Pricing() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: i * 0.06 }}
                     className={cn(
-                      'relative flex flex-col rounded-2xl border bg-surface overflow-hidden transition-all duration-300',
+                      'relative flex flex-col rounded-[2px] border bg-white overflow-hidden transition-all duration-300 shadow-none',
                       'min-w-[82vw] sm:min-w-[55vw] snap-center md:min-w-0',
                       plan.featured
-                        ? 'border-accent/60 shadow-glow'
-                        : 'border-border hover:border-accent/30 shadow-soft hover:shadow-glow'
+                        ? 'border-[#6E56CF]'
+                        : 'border-[#E5E5E8] hover:border-[#6E56CF]'
                     )}
                   >
                     {/* Gradient top strip */}
@@ -412,7 +411,7 @@ export default function Pricing() {
 
                     {plan.featured && (
                       <div className="absolute top-3.5 right-3.5">
-                        <span className="rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                        <span className="rounded-[2px] bg-[#6E56CF] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
                           Recommended
                         </span>
                       </div>
@@ -421,35 +420,35 @@ export default function Pricing() {
                     <div className="flex flex-col flex-1 p-5 sm:p-6">
                       {/* Icon + Name */}
                       <div className="flex items-center gap-2.5 mb-4">
-                        <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br', plan.color)}>
-                          <Icon className="h-4 w-4 text-accent" />
+                        <div className={cn('flex h-8 w-8 items-center justify-center rounded-[2px] bg-gradient-to-br', plan.color)}>
+                          <Icon className="h-4 w-4 text-[#6E56CF]" />
                         </div>
-                        <h2 className="font-bold text-[15px] text-ink">{plan.name}</h2>
+                        <h3 className="font-semibold text-[16px] text-[#0F0F11]">{plan.name}</h3>
                       </div>
 
                       {/* Price */}
                       <div className="flex items-baseline gap-1 mb-1">
-                        <span className="text-3xl font-bold tracking-tight text-ink">{plan.price}</span>
-                        <span className="text-[12px] text-ink-muted">{plan.period}</span>
+                        <span className="text-3xl font-semibold tracking-tight text-[#0F0F11]">{plan.price}</span>
+                        <span className="text-[12px] text-[#4A4A52] font-semibold">{plan.period}</span>
                       </div>
-                      <p className="text-[12.5px] text-ink-muted leading-relaxed mb-4">
+                      <p className="text-[14px] text-[#4A4A52] font-normal leading-relaxed mb-4">
                         {isTeam && teamPlan ? teamPlan.tagline : (plan as typeof individualPlans[0]).desc}
                       </p>
 
                       {/* Team capacity meter */}
                       {isTeam && teamPlan && (
-                        <div className="mb-4 rounded-lg bg-bg border border-border/60 p-3">
+                        <div className="mb-4 rounded-[2px] bg-[#FAFAFC] border border-[#E5E5E8] p-3">
                           <div className="flex justify-between items-center mb-2">
-                            <span className="text-[10px] font-mono font-semibold uppercase text-ink-muted">Usage Capacity</span>
-                            <span className="text-[10px] font-mono font-bold text-accent">{teamPlan.capacity}</span>
+                            <span className="text-[10px] font-mono font-semibold uppercase text-[#4A4A52]">Usage Capacity</span>
+                            <span className="text-[10px] font-mono font-bold text-[#6E56CF]">{teamPlan.capacity}</span>
                           </div>
                           <div className="flex gap-1">
                             {Array.from({ length: 5 }).map((_, idx) => (
                               <div
                                 key={idx}
                                 className={cn(
-                                  'h-1.5 flex-1 rounded-full transition-colors duration-300',
-                                  idx < teamPlan.ticks ? 'bg-accent' : 'bg-border/60'
+                                  'h-1.5 flex-1 rounded-[2px] transition-colors duration-300',
+                                  idx < teamPlan.ticks ? 'bg-[#6E56CF]' : 'bg-[#E5E5E8]'
                                 )}
                               />
                             ))}
@@ -458,16 +457,16 @@ export default function Pricing() {
                       )}
 
                       {/* Divider */}
-                      <div className="h-px bg-border/50 mb-4" />
+                      <div className="h-px bg-[#E5E5E8] mb-4" />
 
                       {/* Features */}
                       <ul className="space-y-2.5 flex-1 mb-6">
                         {plan.features.map((feat, fi) => (
                           <li key={fi} className="flex items-start gap-2">
-                            <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-accent/15">
-                              <Check className="h-2.5 w-2.5 text-accent" strokeWidth={2.5} />
+                            <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-[#F4F2FF]">
+                              <Check className="h-2.5 w-2.5 text-[#6E56CF]" strokeWidth={2.5} />
                             </div>
-                            <span className="text-[12.5px] leading-relaxed text-ink-muted">{feat}</span>
+                            <span className="text-[13.5px] leading-relaxed text-[#4A4A52] font-medium">{feat}</span>
                           </li>
                         ))}
                       </ul>
@@ -477,7 +476,7 @@ export default function Pricing() {
                         to={plan.href}
                         variant={plan.featured ? 'primary' : 'secondary'}
                         size="sm"
-                        className="w-full justify-center font-semibold text-[13px]"
+                        className="w-full justify-center font-semibold text-[14px] min-h-[44px] rounded-[2px]"
                         arrow="none"
                       >
                         {plan.cta}
@@ -492,27 +491,27 @@ export default function Pricing() {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-16 border-t border-border/40 bg-bg">
+      <section className="py-16 border-t border-[#E5E5E8] bg-[#FAFAFC]">
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-10">
             <Eyebrow className="justify-center">Compare</Eyebrow>
-            <h2 className="mt-4 font-bold text-2xl sm:text-3xl tracking-tight text-ink">
+            <h2 className="mt-4 font-semibold text-2xl sm:text-3xl tracking-tight text-[#0F0F11]">
               Full plan comparison
             </h2>
           </div>
 
-          <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-border bg-surface shadow-soft">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[2px] border border-[#E5E5E8] bg-white shadow-none">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] text-left text-[13px]">
                 <thead>
-                  <tr className="border-b border-border bg-bg/60">
-                    <th className="px-5 py-4 font-bold text-[11px] uppercase tracking-wider text-ink-muted w-[200px]">Feature</th>
+                  <tr className="border-b border-[#E5E5E8] bg-[#FAFAFC]">
+                    <th className="px-5 py-4 font-semibold text-[11px] uppercase tracking-wider text-[#4A4A52] w-[200px]">Feature</th>
                     {['Test', 'Student', 'Pro', 'Power', 'Max'].map((h, i) => (
                       <th
                         key={h}
                         className={cn(
-                          'px-4 py-4 font-bold text-[11px] uppercase tracking-wider text-center',
-                          i === 2 ? 'text-accent bg-accent/5' : 'text-ink'
+                          'px-4 py-4 font-semibold text-[11px] uppercase tracking-wider text-center',
+                          i === 2 ? 'text-[#6E56CF] bg-[#F4F2FF]' : 'text-[#0F0F11]'
                         )}
                       >
                         {h}
@@ -520,10 +519,10 @@ export default function Pricing() {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/40">
+                <tbody className="divide-y divide-[#E5E5E8]">
                   {compareRows.map((row, ri) => (
-                    <tr key={ri} className="hover:bg-card/15 transition-colors">
-                      <td className="px-5 py-3.5 font-semibold text-ink text-[13px]">{row.name}</td>
+                    <tr key={ri} className="hover:bg-[#FAFAFC] transition-colors">
+                      <td className="px-5 py-3.5 font-semibold text-[#0F0F11] text-[13.5px]">{row.name}</td>
                       {(['test', 'student', 'pro', 'power', 'max'] as const).map((key, ki) => {
                         const val = row[key];
                         return (
@@ -531,21 +530,21 @@ export default function Pricing() {
                             key={key}
                             className={cn(
                               'px-4 py-3.5 text-center',
-                              ki === 2 ? 'bg-accent/5' : ''
+                              ki === 2 ? 'bg-[#F4F2FF]/40' : ''
                             )}
                           >
                             {typeof val === 'boolean' ? (
                               val ? (
                                 <div className="flex justify-center">
-                                  <div className="h-5 w-5 rounded-full bg-accent/15 flex items-center justify-center">
-                                    <Check className="h-3 w-3 text-accent" strokeWidth={2.5} />
+                                  <div className="h-5 w-5 rounded-full bg-[#F4F2FF] flex items-center justify-center">
+                                    <Check className="h-3 w-3 text-[#6E56CF]" strokeWidth={2.5} />
                                   </div>
                                 </div>
                               ) : (
-                                <span className="text-ink-muted/40 text-lg leading-none">—</span>
+                                <span className="text-[#4A4A52]/40 text-lg leading-none">—</span>
                               )
                             ) : (
-                              <span className={cn('text-[12.5px]', ki === 2 ? 'text-ink font-semibold' : 'text-ink-muted')}>
+                              <span className={cn('text-[13px]', ki === 2 ? 'text-[#0F0F11] font-semibold' : 'text-[#4A4A52]')}>
                                 {val}
                               </span>
                             )}

@@ -53,10 +53,10 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-          className="font-sans text-[36px] sm:text-[58px] font-bold tracking-tight text-ink leading-[1.08] max-w-4xl"
+          className="font-sans text-[36px] sm:text-[54px] font-semibold tracking-tight text-[#0F0F11] leading-[1.08] max-w-4xl"
         >
           Intelligent coordination for modern codebases
-          <span className="animate-cursor-blink text-accent ml-0.5">|</span>
+          <span className="animate-cursor-blink text-[#6E56CF] ml-0.5">|</span>
         </motion.h1>
 
         {/* Subtitle description */}
@@ -64,29 +64,29 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="mx-auto mt-6 max-w-2xl text-[14px] sm:text-[15.5px] leading-relaxed text-ink-muted"
+          className="mx-auto mt-6 max-w-2xl text-[16px] leading-relaxed text-[#4A4A52] font-normal"
         >
           A unified AI system that streams repository index structures, orchestrates autonomous agents, and coordinates workspace deployments securely.
         </motion.p>
 
-        {/* Double Action Button Row */}
+        {/* Double Action Button Row (gap-6) */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mt-8 w-full max-w-md mx-auto px-4 sm:px-0"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 w-full max-w-md mx-auto px-4 sm:px-0"
         >
           <a
             href="/signup"
-            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-bold uppercase tracking-wider text-[12px] px-6 py-3 rounded-[4px] shadow-sm transition-all shrink-0"
+            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
             Get Started
           </a>
           <a
             href="#workflow"
-            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center gap-2 bg-[#e8e8ed] border border-[#E5E5E8] hover:bg-[#dcdce3] text-[#0F0F11] font-bold uppercase tracking-wider text-[11.5px] px-6 py-3 rounded-[4px] shadow-sm transition-all shrink-0"
+            className="w-full sm:w-[200px] min-h-[44px] inline-flex items-center justify-center text-center gap-3 bg-[#F3F3F5] border border-[#E5E5E8] hover:bg-[#E5E5E8] text-[#0F0F11] font-semibold text-[15px] px-6 py-3 rounded-[2px] shadow-none transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
           >
-            <Play className="h-3 w-3 fill-current" />
+            <Play className="h-4 w-4 fill-current shrink-0" />
             <span>See It in Action</span>
           </a>
         </motion.div>
@@ -96,39 +96,39 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
-          className="relative mx-auto mt-16 w-full max-w-4xl rounded-xl border border-border/85 bg-white shadow-soft overflow-hidden flex flex-col font-sans select-none"
+          className="relative mx-auto mt-16 w-full max-w-4xl rounded-[2px] border border-[#E5E5E8] bg-white shadow-none overflow-hidden flex flex-col font-sans select-none"
         >
           {/* macOS window controls header bar */}
-          <div className="h-10 bg-[#f5f5f7] border-b border-border flex items-center justify-between px-4">
+          <div className="h-10 bg-[#f5f5f7] border-b border-[#E5E5E8] flex items-center justify-between px-4">
             <div className="flex gap-1.5 items-center">
               <span className="h-3 w-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
               <span className="h-3 w-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
               <span className="h-3 w-3 rounded-full bg-[#27c93f] border border-[#1aab29]" />
             </div>
-            <div className="text-[11.5px] font-mono text-ink-muted">puku-editor — src/components/ui/Button.tsx</div>
+            <div className="text-[11.5px] font-mono text-[#4A4A52]">puku-editor — src/components/ui/Button.tsx</div>
             <div className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold">puku-agent: active</span>
+              <span className="h-2 w-2 rounded-full bg-[#6E56CF] animate-pulse" />
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#6E56CF] font-bold">puku-agent: active</span>
             </div>
           </div>
 
           {/* Editor Workspace Pane */}
           <div className="grid grid-cols-12 h-auto md:h-[350px] text-xs">
             {/* Column 1: Sidebar Explorer (Desktop Only) */}
-            <div className="hidden md:block col-span-3 border-r border-border bg-[#f5f5f7]/50 p-4 space-y-4">
+            <div className="hidden md:block col-span-3 border-r border-[#E5E5E8] bg-[#f5f5f7]/50 p-4 space-y-4">
               <div>
-                <div className="text-[9.5px] uppercase tracking-wider text-ink-dim font-bold font-mono">Workspace Explorer</div>
-                <ul className="mt-2.5 space-y-2 font-mono text-[11px] text-ink-muted">
+                <div className="text-[9.5px] uppercase tracking-wider text-[#333338] font-bold font-mono">Workspace Explorer</div>
+                <ul className="mt-2.5 space-y-2 font-mono text-[11px] text-[#4A4A52]">
                   <li className="flex items-center gap-2">
                     <span className="text-slate-400">📁</span> src
                   </li>
                   <ul className="pl-4 space-y-2">
-                    <li className="flex items-center gap-2 text-ink font-bold">
-                      <span className="text-accent">📁</span> components
+                    <li className="flex items-center gap-2 text-[#0F0F11] font-bold">
+                      <span className="text-[#6E56CF]">📁</span> components
                     </li>
                     <ul className="pl-4 space-y-1.5">
-                      <li className="flex items-center gap-2 text-ink font-bold">
-                        <span className="text-accent">📄</span> Button.tsx
+                      <li className="flex items-center gap-2 text-[#0F0F11] font-bold">
+                        <span className="text-[#6E56CF]">📄</span> Button.tsx
                       </li>
                       <li className="flex items-center gap-2">
                         <span className="text-slate-400">📄</span> Nav.tsx
@@ -145,8 +145,8 @@ export const Hero = () => {
             {/* Column 2: Code Editor Pane */}
             <div className="col-span-12 md:col-span-6 bg-white p-4 font-mono leading-relaxed text-[11.5px] flex flex-col justify-between text-left">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 border-b border-border/40 pb-2 mb-3">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold">Active Buffer</span>
+                <div className="flex items-center gap-2 border-b border-[#E5E5E8] pb-2 mb-3">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#6E56CF] font-bold">Active Buffer</span>
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 font-semibold select-none text-right w-4">9</span>
@@ -158,14 +158,14 @@ export const Hero = () => {
                 </div>
                 <div className="flex gap-4">
                   <span className="text-slate-600 font-semibold select-none text-right w-4">11</span>
-                  <span className="text-slate-900 font-medium pl-4">primary: 'bg-accent text-white</span>
+                  <span className="text-slate-900 font-medium pl-4">primary: 'bg-[#0F0F11] text-white</span>
                 </div>
                 <div className="flex gap-4 items-center">
                   <span className="text-slate-600 font-semibold select-none text-right w-4">12</span>
                   <span className="text-slate-900 font-medium pl-4">
                     rounded-
                     <span className="text-[#6E56CF] bg-[#F4F2FF] border-b-2 border-[#6E56CF] border-dashed px-1 py-0.5 font-bold">
-                      [4px]
+                      [2px]
                     </span>
                     <span className="h-3.5 w-1 bg-[#6E56CF] inline-block animate-pulse ml-0.5" />
                   </span>
@@ -177,12 +177,12 @@ export const Hero = () => {
               </div>
 
               {/* Mini Terminal inside editor */}
-              <div className="border-t border-border/80 pt-3 mt-4">
-                <div className="flex items-center justify-between text-[9.5px] uppercase tracking-wider text-ink-dim font-bold mb-2">
+              <div className="border-t border-[#E5E5E8] pt-3 mt-4">
+                <div className="flex items-center justify-between text-[9.5px] uppercase tracking-wider text-[#333338] font-bold mb-2">
                   <span>puku-terminal</span>
                   <span className="text-emerald-600">running</span>
                 </div>
-                <div className="bg-[#f5f5f7] rounded border border-border/60 p-2.5 font-mono text-[10.5px] text-ink-muted space-y-1">
+                <div className="bg-[#f5f5f7] rounded-[2px] border border-[#E5E5E8] p-2.5 font-mono text-[10.5px] text-[#4A4A52] space-y-1">
                   <div>$ puku build --verify</div>
                   <div className="text-emerald-700 font-semibold">✓ AST compiler checked index generated successfully (0.4s)</div>
                   <div className="text-emerald-700 font-semibold">✓ 14 unit tests passed without regression errors</div>
@@ -191,28 +191,28 @@ export const Hero = () => {
             </div>
 
             {/* Column 3: Puku Copilot Chat Panel */}
-            <div className="col-span-12 md:col-span-3 border-t md:border-t-0 md:border-l border-border bg-[#f5f5f7]/40 p-4 flex flex-col justify-between text-left">
+            <div className="col-span-12 md:col-span-3 border-t md:border-t-0 md:border-l border-[#E5E5E8] bg-[#f5f5f7]/40 p-4 flex flex-col justify-between text-left">
               <div>
-                <div className="text-[9.5px] uppercase tracking-wider text-ink-dim font-bold font-mono border-b border-border/60 pb-2 mb-3">
+                <div className="text-[9.5px] uppercase tracking-wider text-[#333338] font-bold font-mono border-b border-[#E5E5E8] pb-2 mb-3">
                   Puku Copilot
                 </div>
                 <div className="space-y-3">
-                  <div className="bg-white border border-border/60 p-2.5 rounded-lg">
-                    <div className="text-[9px] font-mono text-ink-muted">Developer</div>
-                    <p className="mt-1 text-[11px] text-ink leading-relaxed">
-                      Make the border radius of all workspace buttons exactly 4px.
+                  <div className="bg-white border border-[#E5E5E8] p-2.5 rounded-[2px]">
+                    <div className="text-[9px] font-mono text-[#4A4A52]">Developer</div>
+                    <p className="mt-1 text-[11px] text-[#0F0F11] leading-relaxed">
+                      Make the border radius of all workspace buttons exactly 2px.
                     </p>
                   </div>
-                  <div className="bg-accent/5 border border-accent/15 p-2.5 rounded-lg">
-                    <div className="text-[9px] font-mono text-accent font-bold">Puku Agent</div>
-                    <p className="mt-1 text-[11px] text-ink leading-relaxed">
-                      Scanning <span className="font-mono text-accent">Button.tsx</span>... Found variant templates. Overwriting border-radius declarations.
+                  <div className="bg-[#F4F2FF] border border-[#E4DDFE] p-2.5 rounded-[2px]">
+                    <div className="text-[9px] font-mono text-[#6E56CF] font-bold">Puku Agent</div>
+                    <p className="mt-1 text-[11px] text-[#0F0F11] leading-relaxed">
+                      Scanning <span className="font-mono text-[#6E56CF]">Button.tsx</span>... Found variant templates. Overwriting border-radius declarations.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center gap-1 bg-white border border-border/80 rounded px-2 py-1.5">
+              <div className="mt-4 flex items-center gap-1 bg-white border border-[#E5E5E8] rounded-[2px] px-2 py-1.5">
                 <span className="text-[10px] text-slate-400">⚡ Ask agent...</span>
               </div>
             </div>
@@ -224,12 +224,12 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="w-full max-w-4xl mt-16 border border-border bg-white rounded-xl overflow-hidden grid grid-cols-2 sm:grid-cols-5 shadow-sm divide-x divide-y sm:divide-y-0 divide-border"
+          className="w-full max-w-4xl mt-16 border border-[#E5E5E8] bg-white rounded-[2px] overflow-hidden grid grid-cols-2 sm:grid-cols-5 shadow-none divide-x divide-y sm:divide-y-0 divide-[#E5E5E8]"
         >
           {clientLogos.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center justify-center p-6 font-display text-base font-semibold text-ink-muted hover:text-ink transition-colors cursor-pointer select-none bg-white hover:bg-[#f5f5f7]/30"
+              className="flex items-center justify-center p-6 font-display text-base font-semibold text-[#4A4A52] hover:text-[#0F0F11] transition-colors cursor-pointer select-none bg-white hover:bg-[#f5f5f7]/30"
             >
               {logo.label}
             </div>

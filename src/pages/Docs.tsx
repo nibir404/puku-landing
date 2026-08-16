@@ -624,17 +624,18 @@ export default function Docs() {
             {/* Left Sidebar - Navigation */}
             <aside className="space-y-6 md:sticky md:top-28 self-start">
               
-              {/* Premium Product Switcher Dropdown (Accommodating 6 products seamlessly) */}
+              {/* Product Switcher Dropdown */}
               <div className="relative" ref={selectorRef}>
                 <button
                   onClick={() => setShowSelector(!showSelector)}
-                  className="w-full flex items-center justify-between gap-2 border border-border bg-white rounded-[4px] p-2.5 shadow-sm text-[13px] font-semibold text-ink hover:border-accent/40 hover:bg-[#f5f5f7]/30 transition-all select-none"
+                  aria-expanded={showSelector}
+                  className="w-full flex items-center justify-between gap-2 border border-[#E5E5E8] bg-white rounded-[2px] p-2.5 shadow-none text-[13px] font-semibold text-[#0F0F11] hover:border-[#6E56CF] hover:bg-[#FAFAFC] transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="text-accent">{selectedProductInfo.icon}</span>
+                    <span className="text-[#6E56CF]">{selectedProductInfo.icon}</span>
                     <span>{selectedProductInfo.name}</span>
                   </div>
-                  <ChevronDown className="h-4 w-4 text-ink-muted transition-transform duration-200" style={{ transform: showSelector ? 'rotate(180deg)' : 'none' }} />
+                  <ChevronDown className="h-4 w-4 text-[#4A4A52] transition-transform duration-200" style={{ transform: showSelector ? 'rotate(180deg)' : 'none' }} />
                 </button>
 
                 <AnimatePresence>
@@ -644,7 +645,7 @@ export default function Docs() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute z-50 left-0 right-0 mt-1 bg-white border border-border rounded-[4px] shadow-lg py-1 overflow-hidden"
+                      className="absolute z-50 left-0 right-0 mt-1 bg-white border border-[#E5E5E8] rounded-[2px] shadow-none py-1 overflow-hidden"
                     >
                       {PRODUCTS_LIST.map((prod) => (
                         <Link
@@ -652,10 +653,10 @@ export default function Docs() {
                           to={`/docs/${prod.id}/introduction`}
                           onClick={() => setShowSelector(false)}
                           className={cn(
-                            "w-full flex items-center gap-2 px-3.5 py-2 text-[12.5px] text-left transition-colors font-medium",
+                            "w-full flex items-center gap-2 px-3.5 py-2 text-[12.5px] text-left transition-colors font-semibold",
                             activeProduct === prod.id
-                              ? "bg-[#F4F2FF] text-[#6E56CF] font-bold"
-                              : "text-[#1A1A1E] hover:text-[#6E56CF] hover:bg-[#FAFAFC]"
+                              ? "bg-[#F4F2FF] text-[#6E56CF]"
+                              : "text-[#0F0F11] hover:text-[#6E56CF] hover:bg-[#FAFAFC]"
                           )}
                         >
                           <span className={activeProduct === prod.id ? 'text-[#6E56CF]' : 'text-[#0F0F11]'}>
@@ -677,7 +678,7 @@ export default function Docs() {
                   placeholder="Search documentation..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-10 rounded-[4px] border border-[#E5E5E8] bg-white pl-9 pr-8 text-[13.5px] text-[#0F0F11] font-medium placeholder-[#4A4A52] focus:outline-none focus:border-[#6E56CF] transition-colors"
+                  className="w-full h-10 rounded-[2px] border border-[#E5E5E8] bg-white pl-9 pr-8 text-[13.5px] text-[#0F0F11] font-normal placeholder-[#4A4A52] focus:outline-none focus:border-[#6E56CF] focus:ring-2 focus:ring-[#6E56CF] transition-colors"
                 />
               </div>
 
@@ -695,10 +696,10 @@ export default function Docs() {
                             <button
                               onClick={() => handleTopicClick(item.id)}
                               className={cn(
-                                "w-full flex items-center gap-2 px-3 py-2.5 rounded-[4px] text-[13px] text-left font-medium transition-all duration-200 border min-h-[44px]",
+                                "w-full flex items-center gap-2 px-3 py-2.5 rounded-[2px] text-[13px] text-left font-semibold transition-all duration-200 border min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]",
                                 activeTopic === item.id
-                                  ? "bg-[#F4F2FF] border-[#6E56CF] text-[#6E56CF] font-bold shadow-sm"
-                                  : "text-[#1A1A1E] hover:text-[#6E56CF] hover:bg-[#FAFAFC] border-transparent font-medium"
+                                  ? "bg-[#F4F2FF] border-[#6E56CF] text-[#6E56CF] shadow-none"
+                                  : "text-[#0F0F11] hover:text-[#6E56CF] hover:bg-[#FAFAFC] border-transparent"
                               )}
                             >
                               <span className={activeTopic === item.id ? "text-[#6E56CF]" : "text-[#0F0F11]"}>
@@ -712,7 +713,7 @@ export default function Docs() {
                     </div>
                   ))
                 ) : (
-                  <div className="text-[13px] text-[#333338] font-medium text-center py-4">
+                  <div className="text-[13px] text-[#4A4A52] font-normal text-center py-4">
                     No matching articles found.
                   </div>
                 )}
@@ -720,28 +721,28 @@ export default function Docs() {
             </aside>
 
             {/* Center Content - Documentation Article */}
-            <main className="min-w-0 bg-white border border-[#E5E5E8] rounded-xl p-8 shadow-sm">
+            <main className="min-w-0 bg-white border border-[#E5E5E8] rounded-[2px] p-8 shadow-none">
               {/* Claude-Style Breadcrumbs */}
-              <div className="flex items-center gap-1.5 text-[11.5px] font-mono font-bold uppercase tracking-wider text-[#333338] mb-4 select-none">
+              <div className="flex items-center gap-1.5 text-[11.5px] font-mono font-bold uppercase tracking-wider text-[#4A4A52] mb-4 select-none">
                 <Link to="/docs" className="hover:text-[#6E56CF] transition-colors">Docs</Link>
                 <span className="text-[#0F0F11]">/</span>
                 <Link to={`/docs/${activeProduct}/introduction`} className="hover:text-[#6E56CF] transition-colors">
                   {selectedProductInfo.name}
                 </Link>
                 <span className="text-[#0F0F11]">/</span>
-                <span className="text-[#0F0F11] font-extrabold">{article.category}</span>
+                <span className="text-[#0F0F11] font-bold">{article.category}</span>
               </div>
 
               <div className="border-b border-[#E5E5E8] pb-6">
-                <h1 className="font-sans text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F0F11] leading-tight">
+                <h1 className="font-sans text-3xl sm:text-4xl font-semibold tracking-tight text-[#0F0F11] leading-tight">
                   {article.title}
                 </h1>
-                <p className="mt-4 text-[15px] sm:text-[16px] leading-relaxed text-[#1A1A1E] font-medium">
+                <p className="mt-4 text-[16px] leading-relaxed text-[#4A4A52] font-normal">
                   {article.description}
                 </p>
               </div>
 
-              <div className="mt-8 font-sans text-[14.5px] sm:text-[15.5px] leading-relaxed text-[#0F0F11] font-medium space-y-6">
+              <div className="mt-8 font-sans text-[16px] leading-relaxed text-[#0F0F11] font-normal space-y-6">
                 {article.content}
               </div>
 
@@ -756,7 +757,7 @@ export default function Docs() {
                           handleTopicClick(allItems[currentIdx - 1].id);
                         }
                       }}
-                      className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#0F0F11] hover:text-[#6E56CF] transition-colors min-h-[44px]"
+                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#0F0F11] hover:text-[#6E56CF] transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                     >
                       ← Previous
                     </button>
@@ -771,7 +772,7 @@ export default function Docs() {
                           handleTopicClick(allItems[currentIdx + 1].id);
                         }
                       }}
-                      className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#6E56CF] hover:text-[#4C3B99] transition-colors min-h-[44px]"
+                      className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#6E56CF] hover:text-[#4C3B99] transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                     >
                       Next →
                     </button>
@@ -792,10 +793,10 @@ export default function Docs() {
                       href={`#${item.id}`}
                       onClick={(e) => handleAnchorClick(e, item.id)}
                       className={cn(
-                        "block font-medium transition-colors duration-200",
+                        "block font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]",
                         activeHeading === item.id
-                          ? "text-[#6E56CF] font-bold"
-                          : "text-[#1A1A1E] font-medium hover:text-[#6E56CF]"
+                          ? "text-[#6E56CF]"
+                          : "text-[#4A4A52] hover:text-[#6E56CF]"
                       )}
                     >
                       {item.label}
@@ -817,7 +818,7 @@ export default function Docs() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-40 p-3 rounded-[4px] bg-ink text-white shadow-pill hover:bg-ink/90 transition-colors focus-visible:outline-none"
+            className="fixed bottom-6 right-6 z-40 p-3 rounded-[2px] bg-[#0F0F11] text-white hover:bg-[#6E56CF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] shadow-none min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Scroll back to top"
           >
             <ArrowUp className="h-5 w-5" />

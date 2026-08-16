@@ -170,20 +170,21 @@ export default function Changelog() {
         <Container>
           {/* Controls Bar: Filter tabs + Search */}
           <div className="mx-auto max-w-4xl mb-20 space-y-6">
-            {/* Search Input */}
-            <div className="relative max-w-md mx-auto">
+            {/* Search Input Bar */}
+            <div className="relative max-w-lg mx-auto">
               <Search className="absolute left-3.5 top-3 h-4 w-4 text-[#0F0F11]" />
               <input
                 type="text"
-                placeholder="Search updates by keyword..."
+                placeholder="Search releases (e.g. cloud, speed, fix)..."
                 value={searchQuery}
+                aria-label="Search release notes"
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 rounded-full border border-[#E5E5E8] bg-[#FAFAFC] pl-10 pr-4 text-[13.5px] text-[#0F0F11] font-medium placeholder-[#4A4A52] focus:outline-none focus:border-[#6E56CF] transition-colors"
+                className="w-full h-11 rounded-[2px] border border-[#E5E5E8] bg-white pl-10 pr-12 text-[14px] text-[#0F0F11] font-normal placeholder-[#4A4A52] focus:outline-none focus:border-[#6E56CF] focus:ring-2 focus:ring-[#6E56CF] transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-2.5 text-xs text-[#0F0F11] hover:text-[#6E56CF] font-bold"
+                  className="absolute right-3.5 top-3 text-xs text-[#0F0F11] hover:text-[#6E56CF] font-semibold"
                 >
                   Clear
                 </button>
@@ -199,15 +200,15 @@ export default function Changelog() {
                     key={p.id}
                     onClick={() => setSelectedProduct(p.id)}
                     className={cn(
-                      "px-4 py-2 text-[13px] font-bold rounded-full border transition-all duration-200 flex items-center gap-1.5 min-h-[44px]",
+                      "px-4 py-2 text-[13px] font-semibold rounded-[2px] border transition-all duration-200 flex items-center gap-2 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]",
                       selectedProduct === p.id
-                        ? "bg-[#6E56CF] border-[#6E56CF] text-white shadow-sm"
-                        : "bg-white border-[#E5E5E8] text-[#1A1A1E] hover:border-[#6E56CF] hover:text-[#6E56CF]"
+                        ? "bg-[#6E56CF] border-[#6E56CF] text-white shadow-none"
+                        : "bg-white border-[#E5E5E8] text-[#0F0F11] hover:border-[#6E56CF] hover:text-[#6E56CF]"
                     )}
                   >
                     <span>{p.name}</span>
                     <span className={cn(
-                      "px-1.5 py-0.5 text-[10px] font-mono font-extrabold rounded-full",
+                      "px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-[2px]",
                       selectedProduct === p.id
                         ? "bg-white/20 text-white"
                         : "bg-[#F3F3F5] text-[#0F0F11]"
@@ -228,14 +229,14 @@ export default function Changelog() {
                 return (
                   <div key={r.version} className="relative flex md:grid md:grid-cols-[120px_auto_1fr] gap-x-4 md:gap-x-6 pb-16 last:pb-0">
                     {/* Left: Date (Desktop only) */}
-                    <div className="hidden md:block text-right text-[12.5px] font-bold pt-1 font-sans select-none tracking-tight" style={{ color: themeColor }}>
+                    <div className="hidden md:block text-right text-[12.5px] font-semibold pt-1 font-mono select-none tracking-tight" style={{ color: themeColor }}>
                       {r.date}
                     </div>
 
                     {/* Center: Timeline line and node */}
                     <div className="flex flex-col items-center relative flex-none">
                       <span
-                        className="h-3.5 w-3.5 rounded-full border-4 border-white z-10 shadow-sm"
+                        className="h-3.5 w-3.5 rounded-full border-4 border-white z-10 shadow-none"
                         style={{ backgroundColor: themeColor }}
                       />
                       {/* Connection Line */}
@@ -250,14 +251,14 @@ export default function Changelog() {
                         <span className="block md:hidden text-[11px] font-bold tracking-wider uppercase font-mono" style={{ color: themeColor }}>
                           {r.date}
                         </span>
-                        <h2 className="font-sans text-[17.5px] font-bold text-[#0F0F11] leading-tight">
+                        <h2 className="font-sans text-[20px] font-semibold text-[#0F0F11] leading-tight">
                           {r.title}
                         </h2>
                       </div>
 
                       {/* Cover Preview Image */}
                       {r.image && (
-                        <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-[#E5E5E8] shadow-sm bg-[#FAFAFC] mt-3">
+                        <div className="w-full aspect-[16/9] rounded-[2px] overflow-hidden border border-[#E5E5E8] shadow-none bg-[#FAFAFC] mt-3">
                           <img
                             src={r.image}
                             alt={`Release v${r.version} overview`}

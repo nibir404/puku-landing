@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { ShadcnButton } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/badge";
@@ -78,21 +78,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={setOpen}>
       {children && <DialogTrigger asChild>{children}</DialogTrigger>}
-      <DialogContent className="sm:max-w-[440px] p-6 bg-white border border-[#E5E5E8] rounded-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[440px] p-6 bg-white border border-[#E5E5E8] rounded-[2px] shadow-none">
         <DialogHeader className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
             <img src="/puku-mark.svg" alt="Puku" className="h-7 w-auto object-contain" />
             <span className="text-xl font-extrabold tracking-tight text-[#0F0F11] font-display">
               Puku
             </span>
-            <Badge variant="secondary" className="text-[10px] px-2 py-0.5 bg-accent/20 text-[#6E56CF] font-semibold">
+            <Badge variant="secondary" className="text-[10px] px-2 py-0.5 bg-[#F4F2FF] text-[#6E56CF] font-semibold border border-[#E4DDFE]">
               AI Platform
             </Badge>
           </div>
-          <DialogTitle className="text-2xl font-bold text-[#0F0F11]">
+          <DialogTitle className="text-2xl font-semibold text-[#0F0F11]">
             {tab === "login" ? "Welcome back" : "Create your account"}
           </DialogTitle>
-          <DialogDescription className="text-sm text-[#4A4A52]">
+          <DialogDescription className="text-[16px] font-normal text-[#4A4A52] leading-relaxed">
             {tab === "login"
               ? "Log in to your Puku workspace to manage your AI pair agents."
               : "Get started with your free 14-day Puku Pro trial."}
@@ -108,11 +108,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
         ) : (
           <Tabs value={tab} onValueChange={(v) => setTab(v as "login" | "signup")} className="w-full mt-2">
-            <TabsList className="grid grid-cols-2 w-full h-11 bg-[#FAFAFC] p-1 border border-[#E5E5E8] rounded-lg">
-              <TabsTrigger value="login" className="h-9 font-semibold text-sm rounded-md data-[state=active]:bg-white data-[state=active]:text-[#0F0F11] data-[state=active]:shadow-sm">
+            <TabsList className="grid grid-cols-2 w-full min-h-[44px] bg-[#FAFAFC] p-1 border border-[#E5E5E8] rounded-[2px]">
+              <TabsTrigger value="login" className="min-h-[44px] font-semibold text-sm rounded-[2px] data-[state=active]:bg-white data-[state=active]:text-[#0F0F11] data-[state=active]:border data-[state=active]:border-[#E5E5E8] shadow-none">
                 Log In
               </TabsTrigger>
-              <TabsTrigger value="signup" className="h-9 font-semibold text-sm rounded-md data-[state=active]:bg-white data-[state=active]:text-[#0F0F11] data-[state=active]:shadow-sm">
+              <TabsTrigger value="signup" className="min-h-[44px] font-semibold text-sm rounded-[2px] data-[state=active]:bg-white data-[state=active]:text-[#0F0F11] data-[state=active]:border data-[state=active]:border-[#E5E5E8] shadow-none">
                 Sign Up
               </TabsTrigger>
             </TabsList>
@@ -123,7 +123,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialAuth("GitHub")}
-                className="h-11 border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-2"
+                className="min-h-[44px] border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-3 rounded-[2px]"
                 aria-label="Continue with GitHub"
               >
                 <BrandIcons.GitHubIcon className="h-4 w-4" />
@@ -134,7 +134,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialAuth("Google")}
-                className="h-11 border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-2"
+                className="min-h-[44px] border-[#E5E5E8] text-[#0F0F11] hover:bg-[#FAFAFC] hover:border-[#6E56CF] font-semibold text-sm flex items-center justify-center gap-3 rounded-[2px]"
                 aria-label="Continue with Google"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0">
@@ -149,13 +149,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
             <div className="relative my-5 flex items-center justify-center">
               <Separator className="w-full" />
-              <span className="absolute bg-white px-3 text-xs font-medium text-[#4A4A52] uppercase tracking-wider">
+              <span className="absolute bg-white px-3 text-xs font-semibold text-[#4A4A52] uppercase tracking-wider">
                 Or continue with email
               </span>
             </div>
 
             {errorMsg && (
-              <div className="p-3 mb-4 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm font-medium" role="alert">
+              <div className="p-3 mb-4 rounded-[2px] bg-red-50 border border-red-200 text-red-700 text-sm font-semibold" role="alert">
                 {errorMsg}
               </div>
             )}
@@ -163,7 +163,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               {tab === "signup" && (
                 <div className="space-y-1.5">
-                  <label htmlFor="modal-name" className="text-sm font-bold text-[#0F0F11]">
+                  <label htmlFor="modal-name" className="text-sm font-semibold text-[#0F0F11]">
                     Full Name
                   </label>
                   <div className="relative">
@@ -174,7 +174,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                       placeholder="Sarah Connor"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                      className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                       required
                     />
                   </div>
@@ -182,7 +182,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               )}
 
               <div className="space-y-1.5">
-                <label htmlFor="modal-email" className="text-sm font-bold text-[#0F0F11]">
+                <label htmlFor="modal-email" className="text-sm font-semibold text-[#0F0F11]">
                   Work Email
                 </label>
                 <div className="relative">
@@ -193,7 +193,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     placeholder="sarah@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                    className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                     required
                   />
                 </div>
@@ -201,14 +201,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="modal-password" className="text-sm font-bold text-[#0F0F11]">
+                  <label htmlFor="modal-password" className="text-sm font-semibold text-[#0F0F11]">
                     Password
                   </label>
                   {tab === "login" && (
                     <button
                       type="button"
                       onClick={() => alert("Password reset link sent to your email!")}
-                      className="text-xs font-bold text-[#6E56CF] hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6E56CF]"
+                      className="text-xs font-semibold text-[#6E56CF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF]"
                     >
                       Forgot?
                     </button>
@@ -222,7 +222,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 h-11 border-[#E5E5E8] text-[#0F0F11] font-medium focus-visible:ring-[#6E56CF]"
+                    className="pl-10 min-h-[44px] border-[#E5E5E8] text-[#0F0F11] font-normal focus-visible:ring-[#6E56CF] rounded-[2px]"
                     required
                   />
                 </div>
@@ -231,7 +231,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <ShadcnButton
                 type="submit"
                 disabled={loading}
-                className="w-full h-11 bg-[#0F0F11] hover:bg-[#6E56CF] text-white font-semibold text-base transition-colors flex items-center justify-center gap-2 rounded-lg"
+                className="w-full min-h-[44px] bg-[#0F0F11] hover:bg-[#6E56CF] text-white font-semibold text-base transition-colors flex items-center justify-center gap-3 rounded-[2px] shadow-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
               >
                 {loading ? (
                   <span>Processing...</span>

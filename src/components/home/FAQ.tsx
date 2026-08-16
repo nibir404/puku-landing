@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Plus, Minus } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/cn';
 
 const faqs = [
@@ -43,50 +43,52 @@ const faqs = [
 export const FAQ = () => {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="relative py-24 md:py-32">
+    <section className="relative py-24 md:py-32 bg-white border-t border-[#E5E5E8]">
       <Container size="narrow">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <Eyebrow className="justify-center">Questions</Eyebrow>
-          <h2 className="mt-5 font-display text-display-lg md:text-display-xl font-medium tracking-tight">
+          <h2 className="mt-5 font-display text-[32px] sm:text-[44px] font-semibold tracking-tight text-[#0F0F11]">
             Everything you wanted to ask.
           </h2>
         </div>
 
-        <div className="rounded-2xl border border-border bg-surface">
-          {faqs.map((f, i) => (
-            <div
-              key={f.q}
-              className={cn(
-                'block w-full text-left transition-colors',
-                i !== 0 && 'border-t border-border',
-              )}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="flex w-full items-center justify-between gap-6 px-6 py-5 md:px-8 hover:bg-card/50 transition-colors text-left"
-              >
-                <div className="font-mono text-sm uppercase tracking-wider font-semibold text-ink">
-                  {f.q}
-                </div>
-                <span className="text-accent">
-                  {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-                </span>
-              </button>
-              <motion.div
-                initial={false}
-                animate={{
-                  height: open === i ? 'auto' : 0,
-                  opacity: open === i ? 1 : 0,
-                }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 pb-6 md:px-8 md:pb-7 text-[14.5px] leading-relaxed text-ink-muted bg-card/20">
-                  {f.a}
-                </div>
-              </motion.div>
-            </div>
-          ))}
+        <div className="rounded-[2px] border border-[#E5E5E8] bg-white shadow-none divide-y divide-[#E5E5E8]">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={f.q} className="block w-full text-left">
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${i}`}
+                  className="flex w-full items-center justify-between gap-6 px-6 py-5 md:px-8 hover:bg-[#FAFAFC] transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E56CF] focus-visible:ring-offset-2"
+                >
+                  <span className="font-sans text-[16px] font-semibold text-[#0F0F11]">
+                    {f.q}
+                  </span>
+                  <span className="text-[#6E56CF] shrink-0">
+                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                  </span>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      id={`faq-answer-${i}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="overflow-hidden bg-[#FAFAFC]"
+                    >
+                      <div className="px-6 pb-6 md:px-8 md:pb-7 text-[16px] leading-relaxed font-normal text-[#4A4A52]">
+                        {f.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </Container>
     </section>
