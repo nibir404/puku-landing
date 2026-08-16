@@ -1,4 +1,4 @@
-export type ModelId = 'puku-3.5-sonnet' | 'puku-opus-3.0' | 'puku-fast-agent' | 'puku-swarm-fleet';
+export type ModelId = 'puku-3.5-sonnet' | 'puku-3.0-opus' | 'puku-3.5-haiku' | 'puku-swarm-fleet';
 
 export type ModelOption = {
   id: ModelId;
@@ -12,29 +12,29 @@ export const MODEL_OPTIONS: ModelOption[] = [
   {
     id: 'puku-3.5-sonnet',
     name: 'Puku 3.5 Sonnet',
-    badge: 'Default',
-    description: 'Most intelligent model for code, architecture & design',
-    tag: 'Sonnet 3.5',
+    badge: 'Most Intelligent',
+    description: 'Optimal balance of reasoning, speed, and coding capabilities.',
+    tag: '3.5 Sonnet',
   },
   {
-    id: 'puku-opus-3.0',
-    name: 'Puku Opus 3.0',
+    id: 'puku-3.0-opus',
+    name: 'Puku 3.0 Opus',
     badge: 'Deep Reasoning',
-    description: 'Advanced reasoning for complex refactoring & security audits',
-    tag: 'Opus 3.0',
+    description: 'Maximum intelligence for complex architecture & security audits.',
+    tag: '3.0 Opus',
   },
   {
-    id: 'puku-fast-agent',
-    name: 'Puku Fast Agent',
-    badge: 'Low Latency',
-    description: 'Ultra-fast sub-second model for quick edits & shell scripts',
-    tag: 'Fast Agent',
+    id: 'puku-3.5-haiku',
+    name: 'Puku 3.5 Haiku',
+    badge: 'Fast & Light',
+    description: 'Ultra-fast response model for quick edits & terminal scripts.',
+    tag: '3.5 Haiku',
   },
   {
     id: 'puku-swarm-fleet',
     name: 'Puku Swarm Fleet',
     badge: 'Multi-Agent',
-    description: 'Parallel multi-agent cloud execution fleet for monorepos',
+    description: 'Parallel multi-agent cloud execution fleet for monorepos.',
     tag: 'Swarm Fleet',
   },
 ];
@@ -46,6 +46,7 @@ export type Artifact = {
   language: string;
   code: string;
   previewHtml?: string;
+  version?: number;
 };
 
 export type Message = {
@@ -57,6 +58,13 @@ export type Message = {
   modelUsed?: string;
 };
 
+export type ProjectSpace = {
+  id: string;
+  name: string;
+  description: string;
+  iconName: string;
+};
+
 export type Thread = {
   id: string;
   title: string;
@@ -64,10 +72,15 @@ export type Thread = {
   category: 'Today' | 'Yesterday' | 'Previous 7 Days';
   modelId: ModelId;
   messages: Message[];
-  pinned?: boolean;
+  starred?: boolean;
+  projectId?: string;
 };
 
-// Default initial mock threads to give realistic Claude.ai experience immediately
+export const MOCK_PROJECTS: ProjectSpace[] = [
+  { id: 'proj-1', name: 'Web Analytics App', description: 'React dashboard & telemetry', iconName: 'BarChart' },
+  { id: 'proj-2', name: 'TypeScript Monorepo', description: 'Shared types & API clients', iconName: 'FolderGit2' },
+];
+
 export const INITIAL_THREADS: Thread[] = [
   {
     id: 'thread-1',
@@ -75,7 +88,8 @@ export const INITIAL_THREADS: Thread[] = [
     updatedAt: '10 mins ago',
     category: 'Today',
     modelId: 'puku-3.5-sonnet',
-    pinned: true,
+    starred: true,
+    projectId: 'proj-1',
     messages: [
       {
         id: 'msg-1',
@@ -88,7 +102,7 @@ export const INITIAL_THREADS: Thread[] = [
         role: 'assistant',
         content: `I've created a complete **React Analytics Dashboard Component** with high-contrast metrics cards, live activity feeds, and interactive status badges.
 
-Click **View Artifact** in the split panel to inspect the live preview or view the full source code.`,
+Click **Click to open artifact ↗** below to view the interactive live preview or inspect the full source code side-by-side.`,
         timestamp: '10:41 AM',
         modelUsed: 'Puku 3.5 Sonnet',
         artifact: {
@@ -96,36 +110,34 @@ Click **View Artifact** in the split panel to inspect the live preview or view t
           title: 'AnalyticsDashboard.tsx',
           type: 'component',
           language: 'tsx',
+          version: 1,
           code: `import React, { useState } from 'react';
-import { Activity, ArrowUpRight, CreditCard, DollarSign, Users, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Activity, ArrowUpRight, DollarSign, Users, CheckCircle2 } from 'lucide-react';
 
 export default function AnalyticsDashboard() {
   const [timeRange, setTimeRange] = useState('7d');
 
   const stats = [
-    { title: 'Total Revenue', value: '$48,294.00', change: '+14.2%', icon: DollarSign, isUp: true },
-    { title: 'Active Agents', value: '1,284', change: '+28.4%', icon: Users, isUp: true },
-    { title: 'Cloud Runs', value: '94,102', change: '+8.1%', icon: Activity, isUp: true },
-    { title: 'Pass Rate', value: '99.94%', change: '+0.04%', icon: CheckCircle2, isUp: true },
+    { title: 'Total Revenue', value: '$48,294.00', change: '+14.2%', icon: DollarSign },
+    { title: 'Active Agents', value: '1,284', change: '+28.4%', icon: Users },
+    { title: 'Cloud Executions', value: '94,102', change: '+8.1%', icon: Activity },
+    { title: 'Pass Rate', value: '99.94%', change: '+0.04%', icon: CheckCircle2 },
   ];
 
   return (
-    <div className="p-6 bg-[#FAFAFC] border border-[#E5E5E8] rounded-lg font-sans max-w-5xl mx-auto space-y-6">
-      {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E5E8] pb-5">
+    <div className="p-6 bg-[#FAF9F5] border border-[#E2E0D8] rounded-2xl font-sans max-w-4xl mx-auto space-y-6">
+      <div className="flex items-center justify-between border-b border-[#E2E0D8] pb-4">
         <div>
-          <h2 className="text-xl font-bold text-[#0F0F11]">System Intelligence Dashboard</h2>
-          <p className="text-xs text-[#4A4A52] mt-0.5">Real-time Puku Cloud Fleet telemetry & agent executions.</p>
+          <h2 className="text-xl font-serif font-semibold text-[#1F1F1E]">Telemetry & Analytics</h2>
+          <p className="text-xs text-[#66645E] mt-0.5">Real-time Puku Cloud Fleet performance telemetry.</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 bg-white border border-[#E2E0D8] p-1 rounded-lg">
           {['24h', '7d', '30d'].map((r) => (
             <button
               key={r}
               onClick={() => setTimeRange(r)}
-              className={\`px-3 py-1 text-xs font-semibold rounded border transition-all \${
-                timeRange === r
-                  ? 'bg-[#6E56CF] text-white border-[#6E56CF]'
-                  : 'bg-white text-[#0F0F11] border-[#E5E5E8] hover:border-[#6E56CF]'
+              className={\`px-2.5 py-1 text-xs font-medium rounded-md transition-all \${
+                timeRange === r ? 'bg-[#1F1F1E] text-white' : 'text-[#66645E] hover:text-[#1F1F1E]'
               }\`}
             >
               {r}
@@ -134,21 +146,18 @@ export default function AnalyticsDashboard() {
         </div>
       </div>
 
-      {/* Grid Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s, i) => {
           const Icon = s.icon;
           return (
-            <div key={i} className="p-4 bg-white border border-[#E5E5E8] rounded-md shadow-sm space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-[#4A4A52]">{s.title}</span>
-                <div className="p-2 rounded bg-[#F4F2FF] text-[#6E56CF]">
-                  <Icon className="h-4 w-4" />
-                </div>
+            <div key={i} className="p-4 bg-white border border-[#E2E0D8] rounded-xl space-y-2">
+              <div className="flex items-center justify-between text-xs text-[#66645E]">
+                <span>{s.title}</span>
+                <Icon className="h-4 w-4 text-[#DA7756]" />
               </div>
-              <div className="text-2xl font-extrabold text-[#0F0F11] tracking-tight">{s.value}</div>
+              <div className="text-2xl font-extrabold text-[#1F1F1E] tracking-tight">{s.value}</div>
               <div className="text-xs font-bold text-emerald-600 flex items-center gap-0.5">
-                <ArrowUpRight className="h-3 w-3" /> {s.change} vs previous period
+                <ArrowUpRight className="h-3 w-3" /> {s.change}
               </div>
             </div>
           );
@@ -158,23 +167,23 @@ export default function AnalyticsDashboard() {
   );
 }`,
           previewHtml: `
-            <div style="font-family: sans-serif; padding: 24px; background: #FAFAFC; border: 1px solid #E5E5E8; border-radius: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E5E5E8; padding-bottom: 16px; margin-bottom: 20px;">
+            <div style="font-family: serif; padding: 24px; background: #FAF9F5; border: 1px solid #E2E0D8; border-radius: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E0D8; padding-bottom: 16px; margin-bottom: 20px;">
                 <div>
-                  <h3 style="margin: 0; font-size: 18px; color: #0F0F11; font-weight: 800;">Puku System Intelligence</h3>
-                  <p style="margin: 4px 0 0 0; font-size: 12px; color: #4A4A52;">Live Puku Cloud Fleet telemetry</p>
+                  <h3 style="margin: 0; font-size: 20px; color: #1F1F1E; font-weight: 600;">Puku System Telemetry</h3>
+                  <p style="margin: 4px 0 0 0; font-size: 12px; color: #66645E;">Live Puku Cloud Fleet telemetry</p>
                 </div>
-                <span style="background: #6E56CF; color: white; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;">Live 7d</span>
+                <span style="background: #DA7756; color: white; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 6px;">Live 7d</span>
               </div>
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                <div style="background: white; padding: 16px; border: 1px solid #E5E5E8; border-radius: 6px;">
-                  <div style="font-size: 11px; color: #4A4A52; font-weight: 600;">REVENUE</div>
-                  <div style="font-size: 22px; font-weight: 800; color: #0F0F11; margin-top: 4px;">$48,294.00</div>
+                <div style="background: white; padding: 16px; border: 1px solid #E2E0D8; border-radius: 12px;">
+                  <div style="font-size: 11px; color: #66645E; font-weight: 600;">TOTAL REVENUE</div>
+                  <div style="font-size: 22px; font-weight: 800; color: #1F1F1E; margin-top: 4px;">$48,294.00</div>
                   <div style="font-size: 11px; color: #16a34a; font-weight: bold; margin-top: 4px;">↑ +14.2%</div>
                 </div>
-                <div style="background: white; padding: 16px; border: 1px solid #E5E5E8; border-radius: 6px;">
-                  <div style="font-size: 11px; color: #4A4A52; font-weight: 600;">ACTIVE AGENTS</div>
-                  <div style="font-size: 22px; font-weight: 800; color: #0F0F11; margin-top: 4px;">1,284</div>
+                <div style="background: white; padding: 16px; border: 1px solid #E2E0D8; border-radius: 12px;">
+                  <div style="font-size: 11px; color: #66645E; font-weight: 600;">ACTIVE AGENTS</div>
+                  <div style="font-size: 22px; font-weight: 800; color: #1F1F1E; margin-top: 4px;">1,284</div>
                   <div style="font-size: 11px; color: #16a34a; font-weight: bold; margin-top: 4px;">↑ +28.4%</div>
                 </div>
               </div>
@@ -189,7 +198,7 @@ export default function AnalyticsDashboard() {
     title: 'TypeScript Monorepo Type Refactor',
     updatedAt: '2 hours ago',
     category: 'Today',
-    modelId: 'puku-opus-3.0',
+    modelId: 'puku-3.0-opus',
     messages: [
       {
         id: 'msg-3',
@@ -202,12 +211,13 @@ export default function AnalyticsDashboard() {
         role: 'assistant',
         content: 'Here is the refactored strict type architecture with type guard utilities and exhaustive matching.',
         timestamp: '08:16 AM',
-        modelUsed: 'Puku Opus 3.0',
+        modelUsed: 'Puku 3.0 Opus',
         artifact: {
           id: 'art-types',
           title: 'types.ts',
           type: 'code',
           language: 'typescript',
+          version: 1,
           code: `export type ApiResponse<T> =
   | { status: 'success'; data: T; timestamp: number }
   | { status: 'error'; code: string; message: string }

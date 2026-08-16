@@ -52,7 +52,6 @@ export default function Chat() {
     let updatedThreads = [...threads];
 
     if (!currentThreadId) {
-      // Create new thread
       const newThread: Thread = {
         id: `thread-${Date.now()}`,
         title: userText.slice(0, 36) + (userText.length > 36 ? '...' : ''),
@@ -73,7 +72,6 @@ export default function Chat() {
       setThreads(updatedThreads);
       setActiveThreadId(currentThreadId);
     } else {
-      // Append to active thread
       updatedThreads = threads.map((t) => {
         if (t.id === currentThreadId) {
           return {
@@ -94,7 +92,6 @@ export default function Chat() {
       setThreads(updatedThreads);
     }
 
-    // Simulate streaming AI assistant response
     setIsGenerating(true);
     setTimeout(() => {
       const modelName = MODEL_OPTIONS.find((m) => m.id === activeModelId)?.name || 'Puku Assistant';
@@ -103,22 +100,23 @@ export default function Chat() {
         title: 'GeneratedComponent.tsx',
         type: 'component',
         language: 'tsx',
+        version: 1,
         code: `import React from 'react';
 
 export default function GeneratedComponent() {
   return (
-    <div className="p-6 bg-white border border-[#E5E5E8] rounded-lg shadow-sm font-sans">
-      <h3 className="text-lg font-bold text-[#0F0F11]">Puku AI Generated Output</h3>
-      <p className="text-sm text-[#4A4A52] mt-2">
+    <div className="p-6 bg-white border border-[#E2E0D8] rounded-xl shadow-xs font-sans">
+      <h3 className="text-lg font-serif font-bold text-[#1F1F1E]">Claude-Style Output Generated</h3>
+      <p className="text-sm text-[#66645E] mt-2">
         Generated response for query: "${userText}"
       </p>
     </div>
   );
 }`,
         previewHtml: `
-          <div style="font-family: sans-serif; padding: 24px; background: white; border: 1px solid #E5E5E8; border-radius: 8px;">
-            <h3 style="margin: 0; font-size: 18px; color: #0F0F11; font-weight: 800;">Puku AI Generated Output</h3>
-            <p style="margin: 8px 0 0 0; font-size: 13px; color: #4A4A52;">Processed by ${modelName}</p>
+          <div style="font-family: serif; padding: 24px; background: white; border: 1px solid #E2E0D8; border-radius: 12px;">
+            <h3 style="margin: 0; font-size: 18px; color: #1F1F1E; font-weight: 600;">Claude-Style Output Generated</h3>
+            <p style="margin: 8px 0 0 0; font-size: 13px; color: #66645E;">Processed by ${modelName}</p>
           </div>
         `,
       };
@@ -164,10 +162,10 @@ export default function GeneratedComponent() {
 
   return (
     <>
-      <SEO title="Puku Web Chat — Claude Style AI Assistant" description="Start interactive AI engineering web chat directly in your browser with live split-pane code artifacts." />
+      <SEO title="Claude Style Puku Web Chat" description="Interactive AI engineering web chat directly in your browser with live split-pane code artifacts." />
 
-      <div className="h-screen w-screen overflow-hidden flex bg-white font-sans text-[#0F0F11] select-none">
-        {/* Left Navigation Sidebar */}
+      <div className="h-screen w-screen overflow-hidden flex bg-[#FAF9F5] font-sans text-[#1F1F1E] select-none">
+        {/* Left Navigation Drawer */}
         <ChatSidebar
           threads={threads}
           activeThreadId={activeThreadId}
@@ -182,23 +180,25 @@ export default function GeneratedComponent() {
 
         {/* Main Workspace Area */}
         <div className="flex-1 flex flex-col min-w-0 h-full relative">
-          {/* Top Mobile/Desktop Sidebar Toggle Bar */}
-          <div className="lg:hidden h-12 px-4 border-b border-[#E5E5E8] flex items-center justify-between bg-[#FAFAFC] shrink-0">
+          {/* Top Mobile Bar */}
+          <div className="lg:hidden h-12 px-4 border-b border-[#E2E0D8] flex items-center justify-between bg-[#FAF9F5] shrink-0">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="p-1.5 text-[#0F0F11] hover:text-[#6E56CF] rounded border border-[#E5E5E8] bg-white flex items-center gap-1.5 text-xs font-semibold"
+              className="p-1.5 text-[#1F1F1E] hover:bg-[#F2F0E8] rounded-md border border-[#E2E0D8] bg-white flex items-center gap-1.5 text-xs font-semibold"
             >
               <PanelLeft className="h-4 w-4" />
               <span>Menu</span>
             </button>
 
             <div className="flex items-center gap-2">
-              <Bot className="h-4 w-4 text-[#6E56CF]" />
-              <span className="text-xs font-bold">Puku Web Chat</span>
+              <div className="h-4 w-4 rounded-full bg-[#DA7756] text-white flex items-center justify-center text-[9px] font-bold">
+                P
+              </div>
+              <span className="text-xs font-serif font-bold">Puku Chat</span>
             </div>
           </div>
 
-          {/* Conditional View: Initial Dedicated Welcome Input vs Active Message Feed */}
+          {/* Conditional View */}
           {!activeThread || activeThread.messages.length === 0 ? (
             <ChatWelcome
               activeModelId={activeModelId}
@@ -218,6 +218,7 @@ export default function GeneratedComponent() {
                     if (lastUserMsg) handleSendMessage(lastUserMsg.content);
                   }
                 }}
+                onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
               />
               <ChatInputBox
                 activeModelId={activeModelId}

@@ -3,19 +3,17 @@ import {
   Copy,
   Check,
   RotateCw,
-  ThumbsUp,
-  ThumbsDown,
   ExternalLink,
   Code,
   Bot,
   User,
-  Sparkles,
-  Share2,
+  Star,
   Trash2,
-  Layers,
+  PanelLeft,
+  Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Thread, Message, Artifact } from '@/lib/chatStore';
+import { Thread, Message, Artifact, MODEL_OPTIONS } from '@/lib/chatStore';
 
 interface ChatMessageFeedProps {
   thread: Thread;
@@ -23,6 +21,7 @@ interface ChatMessageFeedProps {
   onOpenArtifact: (artifact: Artifact) => void;
   onClearThread: () => void;
   onRegenerate: () => void;
+  onToggleSidebar: () => void;
 }
 
 export const ChatMessageFeed = ({
@@ -31,8 +30,11 @@ export const ChatMessageFeed = ({
   onOpenArtifact,
   onClearThread,
   onRegenerate,
+  onToggleSidebar,
 }: ChatMessageFeedProps) => {
   const [copiedMsgId, setCopiedMsgId] = useState<string | null>(null);
+
+  const activeModel = MODEL_OPTIONS.find((m) => m.id === thread.modelId) || MODEL_OPTIONS[0];
 
   const copyToClipboard = (text: string, msgId: string) => {
     navigator.clipboard.writeText(text);
@@ -41,21 +43,29 @@ export const ChatMessageFeed = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col min-h-0 bg-white">
-      {/* Top Conversation Header */}
-      <div className="h-14 px-4 sm:px-6 border-b border-[#E5E5E8] flex items-center justify-between shrink-0 bg-white select-none">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <h2 className="text-sm font-bold text-[#0F0F11] truncate">{thread.title}</h2>
-          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#F4F2FF] text-[#6E56CF] border border-[#E4DDFE] shrink-0">
-            {thread.modelId}
+    <div className="flex-1 flex flex-col min-h-0 bg-[#FAF9F5] font-sans">
+      {/* Claude Top Bar Header */}
+      <div className="h-14 px-4 sm:px-6 border-b border-[#E2E0D8] flex items-center justify-between shrink-0 bg-[#FAF9F5] select-none">
+        <div className="flex items-center gap-3 min-w-0">
+          <button
+            onClick={onToggleSidebar}
+            title="Toggle sidebar"
+            className="p-1.5 text-[#66645E] hover:text-[#1F1F1E] rounded-md hover:bg-[#F2F0E8] transition-colors"
+          >
+            <PanelLeft className="h-4 w-4" />
+          </button>
+
+          <h2 className="text-sm font-serif font-bold text-[#1F1F1E] truncate">{thread.title}</h2>
+          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#FAF0EC] text-[#DA7756] border border-[#DA7756]/20 shrink-0">
+            {activeModel.tag}
           </span>
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={onClearThread}
-            title="Clear message history"
-            className="p-1.5 text-[#4A4A52] hover:text-red-600 rounded transition-colors text-xs flex items-center gap-1 font-semibold"
+            title="Clear thread history"
+            className="p-1.5 text-[#66645E] hover:text-red-600 rounded-md hover:bg-[#F2F0E8] transition-colors text-xs flex items-center gap-1 font-semibold"
           >
             <Trash2 className="h-4 w-4" />
             <span className="hidden sm:inline">Clear</span>
@@ -63,50 +73,50 @@ export const ChatMessageFeed = ({
         </div>
       </div>
 
-      {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 max-w-4xl w-full mx-auto">
+      {/* Messages Feed */}
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 max-w-3xl w-full mx-auto">
         {thread.messages.map((msg) => {
           const isUser = msg.role === 'user';
           return (
             <div key={msg.id} className="space-y-2 group">
-              {/* Sender Info Bar */}
-              <div className="flex items-center justify-between text-xs text-[#4A4A52] select-none">
-                <div className="flex items-center gap-2 font-bold text-[#0F0F11]">
+              {/* Sender Badge Header */}
+              <div className="flex items-center justify-between text-xs text-[#66645E] select-none">
+                <div className="flex items-center gap-2 font-bold text-[#1F1F1E]">
                   {isUser ? (
-                    <div className="h-6 w-6 rounded-full bg-[#0F0F11] text-white flex items-center justify-center text-[10px]">
+                    <div className="h-6 w-6 rounded-full bg-[#1F1F1E] text-white flex items-center justify-center text-[10px]">
                       U
                     </div>
                   ) : (
-                    <div className="h-6 w-6 rounded-full bg-[#6E56CF] text-white flex items-center justify-center text-[10px]">
-                      <Bot className="h-3.5 w-3.5" />
+                    <div className="h-6 w-6 rounded-full bg-[#DA7756] text-white flex items-center justify-center text-[10px]">
+                      P
                     </div>
                   )}
                   <span>{isUser ? 'You' : msg.modelUsed || 'Puku Assistant'}</span>
                 </div>
-                <span className="text-[11px] font-mono text-[#4A4A52]">{msg.timestamp}</span>
+                <span className="text-[11px] font-mono text-[#88857C]">{msg.timestamp}</span>
               </div>
 
-              {/* Message Content */}
+              {/* Message Content Bubble */}
               <div
                 className={cn(
-                  'p-4 rounded-lg text-sm leading-relaxed font-normal',
+                  'p-4 rounded-2xl text-sm leading-relaxed font-normal',
                   isUser
-                    ? 'bg-[#FAFAFC] border border-[#E5E5E8] text-[#0F0F11]'
-                    : 'bg-white border border-[#E5E5E8] text-[#0F0F11] shadow-xs'
+                    ? 'bg-white border border-[#E2E0D8] text-[#1F1F1E]'
+                    : 'bg-white border border-[#E2E0D8] text-[#1F1F1E] shadow-xs'
                 )}
               >
                 <div className="whitespace-pre-wrap font-sans">{msg.content}</div>
 
-                {/* Claude-Style Artifact Card Box inside message */}
+                {/* Claude-Style Artifact Card Box */}
                 {msg.artifact && (
-                  <div className="mt-4 p-3.5 bg-[#F4F2FF] border border-[#E4DDFE] rounded-md flex flex-col sm:flex-row sm:items-center justify-between gap-3 select-none">
+                  <div className="mt-4 p-3.5 bg-[#FAF9F5] border border-[#E2E0D8] rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 select-none">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="p-2 rounded bg-white border border-[#E4DDFE] text-[#6E56CF]">
+                      <div className="p-2 rounded-lg bg-white border border-[#E2E0D8] text-[#DA7756]">
                         <Code className="h-4 w-4" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-xs font-bold text-[#0F0F11] truncate">{msg.artifact.title}</div>
-                        <div className="text-[10.5px] font-mono text-[#6E56CF] uppercase font-bold mt-0.5">
+                        <div className="text-xs font-bold text-[#1F1F1E] truncate">{msg.artifact.title}</div>
+                        <div className="text-[10.5px] font-mono text-[#DA7756] uppercase font-bold mt-0.5">
                           {msg.artifact.type} • {msg.artifact.language}
                         </div>
                       </div>
@@ -114,29 +124,29 @@ export const ChatMessageFeed = ({
 
                     <button
                       onClick={() => onOpenArtifact(msg.artifact!)}
-                      className="px-3 py-1.5 bg-[#6E56CF] hover:bg-[#5B42F3] text-white font-semibold text-xs rounded transition-colors flex items-center justify-center gap-1.5 shrink-0"
+                      className="px-3.5 py-1.5 bg-[#DA7756] hover:bg-[#C26242] text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shrink-0 shadow-xs"
                     >
-                      <span>View Artifact</span>
+                      <span>Click to open artifact</span>
                       <ExternalLink className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 )}
               </div>
 
-              {/* Message Footer Action Bar */}
+              {/* Response Action Bar */}
               {!isUser && (
-                <div className="flex items-center gap-3 pt-1 text-xs text-[#4A4A52] select-none">
+                <div className="flex items-center gap-3 pt-1 text-xs text-[#66645E] select-none">
                   <button
                     onClick={() => copyToClipboard(msg.content, msg.id)}
-                    className="flex items-center gap-1 hover:text-[#6E56CF] transition-colors"
+                    className="flex items-center gap-1 hover:text-[#1F1F1E] transition-colors"
                   >
-                    {copiedMsgId === msg.id ? <Check className="h-3.5 w-3.5 text-[#6E56CF]" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copiedMsgId === msg.id ? <Check className="h-3.5 w-3.5 text-[#DA7756]" /> : <Copy className="h-3.5 w-3.5" />}
                     <span>{copiedMsgId === msg.id ? 'Copied' : 'Copy'}</span>
                   </button>
 
                   <button
                     onClick={onRegenerate}
-                    className="flex items-center gap-1 hover:text-[#6E56CF] transition-colors"
+                    className="flex items-center gap-1 hover:text-[#1F1F1E] transition-colors"
                   >
                     <RotateCw className="h-3.5 w-3.5" />
                     <span>Retry</span>
@@ -147,11 +157,11 @@ export const ChatMessageFeed = ({
           );
         })}
 
-        {/* Streaming Animation Indicator */}
+        {/* Streaming Animation */}
         {isGenerating && (
-          <div className="flex items-center gap-2 text-xs text-[#6E56CF] font-semibold p-3 bg-[#F4F2FF] border border-[#E4DDFE] rounded-md animate-pulse">
-            <Bot className="h-4 w-4 animate-spin" />
-            <span>Puku is thinking and generating code...</span>
+          <div className="flex items-center gap-2 text-xs text-[#DA7756] font-semibold p-3.5 bg-[#FAF0EC] border border-[#DA7756]/20 rounded-xl animate-pulse">
+            <Bot className="h-4 w-4 animate-spin text-[#DA7756]" />
+            <span>Puku is generating response & compiling artifact...</span>
           </div>
         )}
       </div>
