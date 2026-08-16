@@ -139,21 +139,40 @@ export const ChatSidebar = ({
         <div className="flex-1 overflow-y-auto px-3 space-y-4 no-scrollbar text-xs font-medium">
           {/* Main Links */}
           <div className="space-y-1">
-            <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]">
+            <div
+              onClick={onNewChat}
+              className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF] font-bold"
+            >
+              <Home className="h-4 w-4 text-[#6E56CF]" />
+              <span>Dashboard Home</span>
+            </div>
+            <div
+              onClick={onNewChat}
+              className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]"
+            >
               <FolderGit2 className="h-4 w-4 text-[#6E56CF]" />
               <span>Projects</span>
             </div>
-            <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]">
+            <div
+              onClick={onNewChat}
+              className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]"
+            >
               <Boxes className="h-4 w-4 text-[#6E56CF]" />
-              <span>Artifacts</span>
+              <span>Files & Artifacts</span>
             </div>
-            <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]">
+            <div
+              onClick={onNewChat}
+              className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]"
+            >
               <Clock className="h-4 w-4 text-[#6E56CF]" />
-              <span>Scheduled</span>
+              <span>Scheduled Tasks</span>
             </div>
-            <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]">
+            <div
+              onClick={onNewChat}
+              className="flex items-center gap-2.5 px-2.5 py-2 rounded-[2px] hover:bg-white cursor-pointer text-[#4A4A52] hover:text-[#6E56CF]"
+            >
               <Settings2 className="h-4 w-4 text-[#6E56CF]" />
-              <span>Customize</span>
+              <span>Customize & Skills</span>
             </div>
           </div>
 
